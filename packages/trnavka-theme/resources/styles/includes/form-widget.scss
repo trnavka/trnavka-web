@@ -1,0 +1,76 @@
+.form-widget{
+    background-color: #e4e4e4;
+    padding: 48px;
+    .title{
+        @include title-size(18px, 22px, 32px);
+        font-weight: $font-weight-bold;
+        text-align: center;
+        padding-top: 9px;
+    }
+    .prices{
+        display: flex;
+        align-items: center;
+        margin-bottom: 36px;
+        .price-input{
+            width: 100%;
+            text-align: center;
+            margin-right: -1px;
+            margin-left: -1px;
+            label{
+                display: block;
+
+                span{
+                    width: 100%;
+                    display: inline-block;
+                    @include content-size(18px, 22px, 0);
+                    font-weight: $font-weight-bold;
+                    padding: 13px 5px;
+                    border: 2px solid #C4C5C6;
+                    position: relative;
+                    &:hover{
+                        cursor: pointer;
+                    }
+                }
+                input{
+                    display: none;
+
+                    &:checked{
+                        + span{
+                            background: #F4524D;
+                            color: $white;
+                            border: 4px solid #F4524D;
+                            z-index: 100;
+                            &:hover{
+                                background: #e0423d;
+                                border: 4px solid #e0423d;
+                            }
+                        }
+                    }
+                }
+            }
+            &:first-of-type{
+                margin-left: 0;
+            }
+            &:last-of-type{
+                margin-right: 0;
+            }
+        }
+    }
+    .btn-donate{
+        width: 100%;
+        background: #F4524D;
+        @include title-size(18px, 22px, 32px);
+        font-weight: $font-weight-bold;
+        color: $white;
+        padding: 19px 10px 15px 10px;
+        border: 0;
+        border-radius: 0;
+        margin-bottom: 0;
+        &:focus-visible{
+            outline: none;
+        }
+        &:hover{
+            background: #e0423d;
+        }
+    }
+}

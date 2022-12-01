@@ -1,0 +1,71 @@
+.detail-page{
+    @include section-padding(64px,96px);
+    .container-fluid{
+        max-width: 800px;
+    }
+    .back-btn{
+        color: #F4524D;
+        text-decoration: none;
+        display: flex;
+        @include title-size(13px, 15px, 18px);
+        align-items: center;
+        span{
+            font-size: 18px;
+            display: inline-block;
+            margin-right: 5px;
+        }
+    }
+    h1{
+        @include title-size(56px, 70px, 30px);
+        font-weight: $font-weight-bold;
+    }
+    .description{
+        @include content-size(22px, 33px, 48px);
+    }
+
+    .detail-progress {
+        padding-bottom: 48px;
+        margin-bottom: 48px;
+        margin-top: 90px;
+        //border-bottom: 2px solid rgba(196, 197, 198, 0.4);
+
+        @include media-breakpoint-down(md) {
+            margin-bottom: 10px;
+            margin-top: 60px;
+        }
+
+        .detail-progress-bar {
+            position: relative;
+            height: 8px;
+            background-color: #C4C5C6;
+            width: 100%;
+            margin-bottom: 8px;
+
+            .done {
+                position: absolute;
+                left: 0;
+                height: 8px;
+                background-color: #F4524D;
+            }
+        }
+
+        .label {
+            @include content-size(13px, 24px, 0);
+            font-weight: $font-weight-bold;
+        }
+
+        .price {
+            @include content-size(22px, 26px, 0);
+            font-weight: $font-weight-bold;
+
+            &.price-orange {
+                color: #F4524D;
+            }
+        }
+
+    }
+
+    .donation-form{
+        padding: 0;
+    }
+}

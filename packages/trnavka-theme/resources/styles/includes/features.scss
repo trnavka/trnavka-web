@@ -1,0 +1,53 @@
+.features{
+    background-color: $white;
+    @include section-padding(96px, 0);
+    padding-left: 32px;
+    padding-right: 32px;
+
+    @include media-breakpoint-down(md) {
+        padding: 32px;
+    }
+
+    .content{
+        h2 {
+            @include title-size(40px, 48px, 48px);
+        }
+        .feature-card{
+            padding-top: 48px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid rgba(196, 197, 198, 0.4);
+            height: 100%;
+
+            @include media-breakpoint-down(md) {
+                padding-top: 24px;
+                padding-bottom: 24px;
+            }
+
+            .text {
+                p {
+                    @include content-size(15px, 24px, 0);
+                }
+            }
+
+            .title{
+                display: flex;
+                align-items: center;
+                margin-bottom: 24px;
+
+                @include media-breakpoint-down(md) {
+                    margin-bottom: 12px;
+                }
+
+                img{
+                    max-width: 48px;
+                    margin-right: 22px;
+                    filter: grayscale(100%)
+                }
+                h3{
+                    @include title-size(22px, 26px, 0);
+                    font-weight: $font-weight-bold;
+                }
+            }
+        }
+    }
+}

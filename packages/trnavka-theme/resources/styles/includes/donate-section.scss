@@ -1,0 +1,21 @@
+.donate-section{
+    @include section-padding(96px, 96px);
+
+    @include media-breakpoint-down(md) {
+        padding-top: 0;
+
+        .subscription-widget-holder {
+            padding: 0;
+        }
+    }
+
+    .text-content{
+        padding: 32px;
+        h2{
+            @include title-size(40px, 48px, 24px);
+        }
+        p{
+            @include content-size(15px, 24px, 0);
+        }
+    }
+}

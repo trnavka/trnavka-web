@@ -1,0 +1,50 @@
+.header {
+    padding-left: 30px;
+    padding-right: 30px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    background-image: url('../../images/banner_img_trnavka.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-color: rgba(0,0,0,0.4);
+    &:after{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0,0,0,0.4);
+    }
+
+    .lead-holder {
+        @include section-padding(252px, 64px);
+        position: relative;
+        z-index: 100;
+
+        @include media-breakpoint-down(lg) {
+            padding-bottom: 60px;
+        }
+    }
+
+    h1 {
+        @include title-size(64px, 78px, 8px);
+        color: #fff;
+        font-weight: $font-weight-bold;
+
+        @media (max-width: 570px) {
+            font-size: 56px;
+            line-height: 56px;
+        }
+    }
+    .lead{
+        @include content-size(32px, 36px, 0);
+
+        @include media-breakpoint-down(sm) {
+            font-size: 23px;
+            line-height: 1.5;
+        }
+    }
+}
+

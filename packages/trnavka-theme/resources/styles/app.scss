@@ -1,0 +1,80 @@
+$primary: #F4524D;
+$warning: #ffd500;
+$modal-backdrop-opacity: .8;
+
+@mixin section-padding($top, $bottom) {
+    padding-top: $top;
+    padding-bottom: $bottom;
+
+    @include media-breakpoint-down(lg) {
+        padding-top: $top * 0.5;
+        padding-bottom: $bottom * 0.5;
+    }
+
+    @include media-breakpoint-down(md) {
+        padding-top: $top * 0.25;
+        padding-bottom: $bottom * 0.25;
+    }
+}
+
+@mixin title-size($font-size, $line-height, $margin-bottom) {
+    font-size: $font-size;
+    line-height: $line-height;
+    margin-bottom: $margin-bottom;
+
+    @include media-breakpoint-down(lg) {
+        font-size: $font-size * 0.9;
+        line-height: $line-height * 0.9;
+        margin-bottom: $margin-bottom * 0.9;
+    }
+
+    @include media-breakpoint-down(md) {
+        font-size: $font-size * 0.8;
+        line-height: $line-height * 0.8;
+        margin-bottom: $margin-bottom * 0.8;
+    }
+}
+
+@mixin content-size($font-size, $line-height, $margin-bottom) {
+    font-size: $font-size;
+    line-height: $line-height;
+    margin-bottom: $margin-bottom;
+
+    @include media-breakpoint-down(lg) {
+        font-size: $font-size * 0.95;
+        line-height: $line-height * 0.95;
+        margin-bottom: $margin-bottom * 0.95;
+    }
+
+    @include media-breakpoint-down(md) {
+        font-size: $font-size * 0.9;
+        line-height: $line-height * 0.9;
+        margin-bottom: $margin-bottom * 0.9;
+    }
+}
+
+@import "~bootstrap/scss/bootstrap";
+
+@import 'fonts';
+@import 'includes/form-widget';
+@import 'includes/modal-donation-form';
+@import 'includes/header';
+@import 'includes/features';
+@import 'includes/donate-section';
+@import 'includes/donate-form-widget';
+@import 'includes/collections';
+@import 'includes/detail-page';
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: $font-weight-normal;
+    color: #3B3B42;
+    background-color: #f4f4f4;
+    main{
+        max-width: 1440px;
+        margin: 0 auto;
+    }
+    .container-fluid{
+        max-width: 1200px;
+    }
+}

@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Services;
+
+use Illuminate\Support\Facades\Cache;
+
+class HtmlHeader
+{
+    const HOUR_IN_SECONDS = 3600;
+
+    public function getContent(): string
+    {
+        return Cache::get('html_header', fn() => $this->loadAndCache());
+    }
+
+    public function loadAndCache(): string
+    {
+        $content = file_get_contents("https://trnavka-old.devel/?cb=" . rand(1, 100000000), false, stream_context_create(array(
+            "ssl" => array(
+                "verify_peer" => false,
+                "verify_peer_name" => false,
+            ),
+        )));
+
+        preg_match('/<!-- START HEADER_WIDGET -->(.*)<!-- END HEADER_WIDGET -->/ms', $content, $matches);
+
+        $content = $matches[1] ?? '';
+
+        Cache::put('html_header', $content, self::HOUR_IN_SECONDS);
+
+        return $content;
+    }
+}
