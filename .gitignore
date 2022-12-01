@@ -1,10 +1,10 @@
-#.idea/
+.idea/
 
 # Application
 web/app/plugins/*
 !web/app/plugins/.gitkeep
 web/app/mu-plugins/*/
-web/app/themes/twentytwentytwo/
+web/app/themes
 web/app/upgrade
 web/app/uploads/*
 !web/app/uploads/.gitkeep
