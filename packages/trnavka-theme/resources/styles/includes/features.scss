@@ -9,6 +9,19 @@
     }
 
     .content{
+        position: relative;
+
+        .services-row {
+            &::after {
+                content: ' ';
+                border-bottom: 2px solid white;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+            }
+        }
+
         h2 {
             @include title-size(40px, 48px, 48px);
         }

@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\Cache;
+use Roots\WPConfig\Config;
 
 class HtmlHeader
 {
@@ -15,7 +16,7 @@ class HtmlHeader
 
     public function loadAndCache(): string
     {
-        $content = file_get_contents("https://trnavka-old.devel/?cb=" . rand(1, 100000000), false, stream_context_create(array(
+        $content = file_get_contents(Config::get('HTML_HEADER_URL') . "/?cb=" . rand(1, 100000000), false, stream_context_create(array(
             "ssl" => array(
                 "verify_peer" => false,
                 "verify_peer_name" => false,

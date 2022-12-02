@@ -3,17 +3,18 @@
 namespace App\Providers;
 
 use App\Repositories\CampaignRepository;
+use App\Services\Darujme;
+use App\Services\HtmlHeader;
 use App\Services\WordPress;
 use Illuminate\Support\ServiceProvider;
 use Symfony\Bridge\Twig\Extension\FormExtension;
 use Symfony\Bridge\Twig\Form\TwigRendererEngine;
-use Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension;
 use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\Form\FormRenderer;
 use Symfony\Component\Form\FormRendererInterface;
 use Symfony\Component\Form\Forms;
-use Symfony\Component\Form\ResolvedFormTypeFactory;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validation;
 use Twig\Environment;
 use Twig\Loader\ChainLoader;
@@ -25,6 +26,8 @@ class ThemeServiceProvider extends ServiceProvider
     public array $singletons = [
         CampaignRepository::class => CampaignRepository::class,
         WordPress::class => WordPress::class,
+        HtmlHeader::class => HtmlHeader::class,
+        Darujme::class => Darujme::class,
     ];
 
     public function boot()
@@ -52,13 +55,16 @@ class ThemeServiceProvider extends ServiceProvider
             }
         )));
 
-        $twig->addFilter(new \Twig\TwigFilter('trans', function ($id = null, $replace = [], $locale = null) {
+        $twig->addFilter(new \Twig\TwigFilter('trans', function (
+            $id = null,
+            $replace = [],
+            $locale = null
+        ) {
             if (empty($id)) {
                 return '';
             }
             return $id;
         }));
-
 
 //        $formEngine = new TwigRendererEngine(array(DEFAULT_FORM_THEME), $twig);
 //        $twig->addExtension(new TranslationExtension($translator));
@@ -90,6 +96,10 @@ class ThemeServiceProvider extends ServiceProvider
 //                ->addTypeGuessers($app['form.type.guessers'])
 //                ->setResolvedTypeFactory($app['form.resolved_type_factory'])
                 ->getFormFactory();
+        });
+
+        $this->app->singleton(Request::class, function ($app) {
+            return Request::createFromGlobals();
         });
     }
 

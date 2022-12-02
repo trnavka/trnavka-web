@@ -39,18 +39,21 @@ class CampaignRepository
     private function hydrateEntity(WP_Post $post): Campaign
     {
         $data = get_post_meta($post->ID, 'dajnato_campaign', true);
+        $currentAmount = (float) get_post_meta($post->ID, 'dajnato_campaign_current_amount', true);
 
         if (!is_array($data)) {
             $data = [];
         }
 
         return (new Campaign())
+            ->setID($post->ID)
             ->setTitle($post->post_title)
             ->setSlug($post->post_name)
             ->setDarujmeId($data['darujme_id'] ?? '')
+            ->setDarujmeFeedId($data['darujme_feed_id'] ?? '')
             ->setShortDescription($data['short_description'] ?? '')
             ->setContent($data['content'] ?? '')
-            ->setGoalAmount($data['goal_amount'])
-            ->setCurrentAmount($data['start_amount'] ?? 0);
+            ->setGoalAmount((int)round($data['goal_amount']))
+            ->setCurrentAmount((int)round((float)($data['start_amount'] ?? 0) + (float)($currentAmount ?? 0)));
     }
 }

@@ -1,8 +1,8 @@
 .donate-form-widget{
-    background-color: $white;
-    @include section-padding(96px, 0);
+    background-color: #f4f4f4;
+    @include section-margin(96px, 0);
+
     .form-widget-wrapper {
-        background-color: #f4f4f4;
         display: flex;
         justify-content: center;
         .form-widget {

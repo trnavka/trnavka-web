@@ -13,7 +13,7 @@ export default async (app) => {
      */
     .entry({
       app: ["@scripts/app", "@styles/app"],
-      editor: ["@scripts/editor", "@styles/editor"],
+      // editor: ["@scripts/editor", "@styles/editor"],
     })
 
     /**

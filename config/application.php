@@ -42,6 +42,8 @@ if (file_exists($root_dir . '/.env')) {
     }
 }
 
+Config::define('HTML_HEADER_URL', env('HTML_HEADER_URL') ?? 'https://trnavka.sk/');
+
 /**
  * Set up our global environment constant and load its config first
  * Default: production
@@ -97,13 +99,13 @@ Config::define('NONCE_SALT', env('NONCE_SALT'));
  * Custom Settings
  */
 Config::define('AUTOMATIC_UPDATER_DISABLED', true);
-Config::define('DISABLE_WP_CRON', env('DISABLE_WP_CRON') ?: false);
+Config::define('DISABLE_WP_CRON', true);
 // Disable the plugin and theme file editor in the admin
 Config::define('DISALLOW_FILE_EDIT', true);
 // Disable plugin and theme updates and installation from the admin
 Config::define('DISALLOW_FILE_MODS', true);
 // Limit the number of post revisions that Wordpress stores (true (default WP): store every revision)
-Config::define('WP_POST_REVISIONS', env('WP_POST_REVISIONS') ?: true);
+Config::define('WP_POST_REVISIONS', 5);
 
 /**
  * Debugging Settings
