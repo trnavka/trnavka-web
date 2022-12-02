@@ -54,7 +54,6 @@
                 img{
                     max-width: 48px;
                     margin-right: 22px;
-                    filter: grayscale(100%)
                 }
                 h3{
                     @include title-size(22px, 26px, 0);

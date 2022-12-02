@@ -40,7 +40,7 @@ class DonationType extends AbstractType
                     '9&nbsp;€' => 9,
                     '29&nbsp;€' => 29,
                     '99&nbsp;€' => 99,
-                    'Iná suma' => null,
+                    'Iná suma' => '',
                 ],
                 'choice_attr' => function (
                     $choice,
