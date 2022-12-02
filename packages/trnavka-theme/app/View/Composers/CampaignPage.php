@@ -42,7 +42,7 @@ class CampaignPage extends Composer
 
         $form = $this->formFactory
             ->createNamedBuilder('donation', DonationType::class, [
-                'amount' => 29.9
+                'amount' => 29
             ], [
                 'donation_type' => 'subscription',
                 'action' => $this->wp->pageUrl(),
@@ -59,7 +59,7 @@ class CampaignPage extends Composer
                 $form = $this->formFactory
                     ->createNamedBuilder('donation', DarujmeDonationType::class, [
                         'campaign_id' => '8704e3d5-1290-44e6-b427-26f9fe52eae7',
-                        'value' => $data['amount'] ?? $data['otherAmount'],
+                        'value' => empty($data['amount']) ? $data['otherAmount'] : $data['amount'],
                         'payment_method_id' => $data['paymentType'],
                         'first_name' => $data['firstName'],
                         'last_name' => $data['lastName'],

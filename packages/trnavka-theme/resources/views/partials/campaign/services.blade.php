@@ -2,6 +2,12 @@
     <div class="container-fluid ">
         <div class="content">
             <h2>Služby</h2>
+            <style>
+                .feature-card img {
+                    max-width: 48px;
+                    margin-right: 22px;
+                }
+            </style>
             <div class="row services-row">
                 <div class="col-sm-6 col-md-4">
                     <div class="feature-card">
