@@ -8,6 +8,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -36,9 +37,10 @@ class DonationType extends AbstractType
                     '99&nbsp;€' => 99,
                     'Iná suma' => null,
                 ] : [
-                    '9,90&nbsp;€' => 9.9,
-                    '29,90&nbsp;€' => 29.9,
-                    '199,90&nbsp;€' => 199.9,
+                    '9&nbsp;€' => 9,
+                    '29&nbsp;€' => 29,
+                    '99&nbsp;€' => 99,
+                    'Iná suma' => null,
                 ],
                 'choice_attr' => function (
                     $choice,
@@ -46,6 +48,20 @@ class DonationType extends AbstractType
                 ) {
                     return 'Iná suma' === $key ? ['data-is-other' => 'T'] : [];
                 },
+            ])
+            ->add('otherAmount', NumberType::class, [
+                'label' => 'Iná suma',
+                'html5' => true,
+                'required' => false,
+                'attr' => [
+                    'placeholder' => 'Iná suma'
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'groups' => ['other_amount'],
+                        'message' => 'Vyberte z predvolených súm alebo zadajte vlastnú sumu',
+                    ])
+                ]
             ])
             ->add('firstName', TextType::class, [
                 'label' => 'Meno',
@@ -109,19 +125,8 @@ class DonationType extends AbstractType
 
         if ($isCampaign) {
             $builder
-                ->add('otherAmount', NumberType::class, [
-                    'label' => 'Iná suma',
-                    'html5' => true,
-                    'required' => false,
-                    'attr' => [
-                        'placeholder' => 'Iná suma'
-                    ],
-                    'constraints' => [
-                        new NotBlank([
-                            'groups' => ['other_amount'],
-                            'message' => 'Vyberte z predvolených súm alebo zadajte vlastnú sumu',
-                        ])
-                    ]
+                ->add('isCampaignForm', HiddenType::class, [
+                    'mapped' => false,
                 ]);
         }
     }
