@@ -21,7 +21,7 @@ class Header extends Composer
     public function with(): array
     {
         return [
-            'header' => $this->htmlHeader->getContent()
+            'header' => '',//$this->htmlHeader->getContent()
         ];
     }
 }

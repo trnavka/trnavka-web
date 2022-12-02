@@ -69,8 +69,8 @@ export default async (app) => {
           customFontSize: false,
         },
       })
-      // .useTailwindColors()
-      // .useTailwindFontFamily()
-      // .useTailwindFontSize()
+      .useTailwindColors()
+      .useTailwindFontFamily()
+      .useTailwindFontSize()
       .enable()
 };
