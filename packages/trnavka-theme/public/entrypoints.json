@@ -6,23 +6,10 @@
       "js/app.28285a.js"
     ],
     "css": [
-      "css/app.87de2b.css"
+      "css/app.acad83.css"
     ],
     "dependencies": [
       "jquery"
-    ]
-  },
-  "editor": {
-    "js": [
-      "js/runtime.814276.js",
-      "js/575.4b71f1.js",
-      "js/editor.ca0ffb.js"
-    ],
-    "css": [
-      "css/editor.31d6cf.css"
-    ],
-    "dependencies": [
-      "wp-blocks"
     ]
   }
 }
