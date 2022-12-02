@@ -33,5 +33,12 @@
                 {!! $form !!}
             </div>
         </div>
+
+        <div class="container-fluid">
+            <div class="thank-you">
+                <div>Ďakujeme</div>
+            </div>
+        </div>
     </div>
 </div>
+

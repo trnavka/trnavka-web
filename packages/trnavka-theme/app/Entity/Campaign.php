@@ -4,13 +4,21 @@ namespace App\Entity;
 
 class Campaign
 {
+    public int $id;
     public string $title;
     public string $slug;
     public string $darujmeId;
+    public string $darujmeFeedId;
     public string $shortDescription;
     public string $content;
     public null|int $goalAmount = null;
     public int $currentAmount = 0;
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+        return $this;
+    }
 
     public function setTitle(string $title): self
     {
@@ -27,6 +35,12 @@ class Campaign
     public function setDarujmeId(string $darujmeId): self
     {
         $this->darujmeId = $darujmeId;
+        return $this;
+    }
+
+    public function setDarujmeFeedId(string $darujmeFeedId): self
+    {
+        $this->darujmeFeedId = $darujmeFeedId;
         return $this;
     }
 

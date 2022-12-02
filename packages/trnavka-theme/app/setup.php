@@ -41,12 +41,12 @@ add_action( 'after_setup_theme', function () {
      *
      * @link https://roots.io/plugins/soil/
      */
-    add_theme_support( 'soil', [
-        'clean-up',
-        'nav-walker',
-        'nice-search',
-        'relative-urls',
-    ] );
+//    add_theme_support( 'soil', [
+//        'clean-up',
+//        'nav-walker',
+//        'nice-search',
+//        'relative-urls',
+//    ] );
 
     /**
      * Disable full-site editing support.
@@ -237,6 +237,11 @@ remove_action( 'wp_print_styles', 'print_emoji_styles' );
 add_action( 'init', function () {
     header("Access-Control-Allow-Origin: *");
 
+    if (!is_admin() && 'productions' === WP_ENV) {
+        wp_deregister_script('jquery');
+//        wp_register_script('jquery', false);
+    }
+
     $labels  = [
         'name'          => _x( 'Kampane', 'Daj na to campaign pluarl name' ),
         'singular_name' => _x( 'Kampaň', 'Daj na to campaign singular name' ),
@@ -293,10 +298,17 @@ add_action( 'add_meta_boxes', function () {
                 <label for="dajnato_campaign[darujme_id]">ID kampane na darujme.sk</label>
                 <input type="text" name="dajnato_campaign[darujme_id]" id="dajnato_campaign[darujme_id]" class="regular-text" value="<?php echo esc_html($meta['darujme_id'] ?? ''); ?>">
             </div>
+
+            <div class="form-group">
+                <label for="dajnato_campaign[darujme_feed_id]">ID feedu darov na darujme.sk</label>
+                <input type="text" name="dajnato_campaign[darujme_feed_id]" id="dajnato_campaign[darujme_feed_id]" class="regular-text" value="<?php echo esc_html($meta['darujme_feed_id'] ?? ''); ?>">
+            </div>
+
             <div class="form-group">
                 <label for="dajnato_campaign[short_description]">Krátky popis</label>
                 <textarea name="dajnato_campaign[short_description]" id="dajnato_campaign[short_description]" style="width: 100%;" rows="5"><?php echo esc_html($meta['short_description'] ?? ''); ?></textarea>
             </div>
+
             <div class="form-group">
                 <label for="dajnato_campaign[content]">Detailný popis</label>
                 <?php

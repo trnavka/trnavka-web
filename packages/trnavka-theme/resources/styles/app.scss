@@ -17,6 +17,21 @@ $modal-backdrop-opacity: .8;
     }
 }
 
+@mixin section-margin($top, $bottom) {
+    margin-top: $top;
+    margin-bottom: $bottom;
+
+    @include media-breakpoint-down(lg) {
+        margin-top: $top * 0.5;
+        margin-bottom: $bottom * 0.5;
+    }
+
+    @include media-breakpoint-down(md) {
+        margin-top: $top * 0.25;
+        margin-bottom: $bottom * 0.25;
+    }
+}
+
 @mixin title-size($font-size, $line-height, $margin-bottom) {
     font-size: $font-size;
     line-height: $line-height;
@@ -69,7 +84,7 @@ body{
     font-family: 'Montserrat', sans-serif;
     font-weight: $font-weight-normal;
     color: #3B3B42;
-    background-color: #f4f4f4;
+    background-color: #ffffff;
     main{
         max-width: 1440px;
         margin: 0 auto;

@@ -5,6 +5,7 @@ namespace App\View\Composers;
 use App\Form\Type\DarujmeDonationType;
 use App\Form\Type\DonationType;
 use App\Repositories\CampaignRepository;
+use App\Services\Darujme;
 use App\Services\WordPress;
 use Roots\Acorn\View\Composer;
 use Symfony\Component\Form\FormFactory;
@@ -27,13 +28,18 @@ class CampaignPage extends Composer
         private WordPress          $wp,
         private FormFactory        $formFactory,
         private Environment        $twig,
-        private Request            $request
+        private Request            $request,
+        private Darujme            $darujme
     )
     {
     }
 
     public function with(): array
     {
+        if ('T' === $this->request->query->get('update-campaigns', 'F')) {
+            $this->darujme->updateCampaigns();
+        }
+
         $form = $this->formFactory
             ->createNamedBuilder('donation', DonationType::class, [
                 'amount' => 29.9
@@ -52,12 +58,12 @@ class CampaignPage extends Composer
                 $data = $form->getData();
                 $form = $this->formFactory
                     ->createNamedBuilder('donation', DarujmeDonationType::class, [
-                        'campaign_id'       => '8704e3d5-1290-44e6-b427-26f9fe52eae7',
-                        'value'             => $data['amount'] ?? $data['otherAmount'],
+                        'campaign_id' => '8704e3d5-1290-44e6-b427-26f9fe52eae7',
+                        'value' => $data['amount'] ?? $data['otherAmount'],
                         'payment_method_id' => $data['paymentType'],
-                        'first_name'        => $data['firstName'],
-                        'last_name'         => $data['lastName'],
-                        'email'             => $data['email'],
+                        'first_name' => $data['firstName'],
+                        'last_name' => $data['lastName'],
+                        'email' => $data['email'],
                     ], [
                         'action' => 'https://api.darujme.sk/v1/donations/post/'
                     ])

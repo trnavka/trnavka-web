@@ -1,5 +1,6 @@
 .donate-section{
     @include section-padding(96px, 96px);
+    background-color: #f4f4f4;
 
     @include media-breakpoint-down(md) {
         padding-top: 0;
