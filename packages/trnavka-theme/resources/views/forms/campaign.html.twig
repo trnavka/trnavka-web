@@ -1,4 +1,4 @@
-{% set isCampaignForm = donation_form.otherAmount is defined %}
+{% set isCampaignForm = donation_form.isCampaignForm is defined %}
 <div class="d-none js-darujme-form-holder"></div>
 <div class="modal-content donation-form js-donation-form">
     {{ form_start(donation_form, {attr: {novalidate: 'novalidate'}}) }}
@@ -15,11 +15,9 @@
         <div class="field-group mb-4 donation-form-amount">
             <h6>Suma:</h6>
             {{ form_row(donation_form.amount) }}
-            {% if isCampaignForm %}
-                <div class="js-other-sum{% if donation_form.amount.vars.data is not empty %} d-none {% endif %} pt-2">
-                    {{ form_row(donation_form.otherAmount) }}
-                </div>
-            {% endif %}
+            <div class="js-other-sum{% if donation_form.amount.vars.data is not empty %} d-none {% endif %} pt-2">
+                {{ form_row(donation_form.otherAmount) }}
+            </div>
         </div>
         <div class="field-group mb-3">
             <h6>Osobné údaje:</h6>
