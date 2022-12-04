@@ -11,6 +11,12 @@
                 {!! $campaign->content  !!}
             </div>
 
+            @if($campaign->dajnatoAmount > 0)
+                <div class="dajnato-amount">
+                    Vďaka pravidelným darcom mohlo DAJ NA TO prispieť na túto zbierku sumou {!! $campaign->getDajnatoAmountFormatted() !!}.
+                </div>
+            @endif
+
             @if(null !== $campaign->goalAmount)
                 <div class="detail-progress">
                     <div class="detail-progress-bar">
@@ -19,11 +25,11 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="label">Aktuálny stav</div>
-                            <div class="price price-orange">{{ $campaign->currentAmount }} €</div>
+                            <div class="price price-orange">{!! $campaign->getCurrentAmountFormatted() !!}</div>
                         </div>
                         <div class="col-6 text-end">
                             <div class="label">Cieľová suma</div>
-                            <div class="price">{{ $campaign->goalAmount }} €</div>
+                            <div class="price">{!! $campaign->getGoalAmountFormatted() !!}</div>
                         </div>
                     </div>
                 </div>

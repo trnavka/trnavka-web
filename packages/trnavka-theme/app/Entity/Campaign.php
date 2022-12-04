@@ -11,8 +11,10 @@ class Campaign
     public string $darujmeFeedId;
     public string $shortDescription;
     public string $content;
+    public array $options;
     public null|int $goalAmount = null;
     public int $currentAmount = 0;
+    public int $dajnatoAmount = 0;
 
     public function setId(int $id): self
     {
@@ -56,6 +58,12 @@ class Campaign
         return $this;
     }
 
+    public function setOptions(array $options): self
+    {
+        $this->options = $options;
+        return $this;
+    }
+
     public function setGoalAmount(int|null $goalAmount): self
     {
         $this->goalAmount = $goalAmount;
@@ -66,5 +74,31 @@ class Campaign
     {
         $this->currentAmount = $currentAmount;
         return $this;
+    }
+
+    public function setDajnatoAmount(int $dajnatoAmount): self
+    {
+        $this->dajnatoAmount = $dajnatoAmount;
+        return $this;
+    }
+
+    public function getCurrentAmountFormatted(): string
+    {
+        return $this->formattedCurrency($this->currentAmount);
+    }
+
+    public function getGoalAmountFormatted(): string
+    {
+        return $this->formattedCurrency($this->goalAmount);
+    }
+
+    public function getDajnatoAmountFormatted(): string
+    {
+        return $this->formattedCurrency($this->dajnatoAmount);
+    }
+
+    private function formattedCurrency(int $amount): string
+    {
+        return number_format($amount, 0, ',', '&nbsp;') . '&nbsp;€';
     }
 }

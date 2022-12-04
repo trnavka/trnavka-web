@@ -36,6 +36,12 @@
             }
 
         }
+
+        .dajnato-amount {
+            @include content-size(13px, 21px, 15px);
+            color: gray;
+        }
+
         .card-actions {
             .collection-progress {
                 margin-bottom: 32px;

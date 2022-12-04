@@ -1,4 +1,5 @@
 .detail-page{
+    padding: 30px;
     @include section-padding(64px,96px);
     .container-fluid{
         max-width: 800px;
@@ -7,7 +8,7 @@
         color: #F4524D;
         text-decoration: none;
         display: flex;
-        @include title-size(13px, 15px, 18px);
+        @include content-size(15px, 15px, 18px);
         align-items: center;
         span{
             font-size: 18px;
@@ -16,22 +17,27 @@
         }
     }
     h1{
-        @include title-size(56px, 70px, 30px);
+        @include title-size(48px, 70px, 30px);
         font-weight: $font-weight-bold;
     }
     .description{
-        @include content-size(22px, 33px, 48px);
+        @include content-size(18px, 33px, 48px);
+    }
+
+    .dajnato-amount {
+        @include content-size(18px, 33px, 25px);
+        color: gray;
     }
 
     .detail-progress {
         padding-bottom: 48px;
         margin-bottom: 48px;
-        margin-top: 90px;
+        margin-top: 25px;
         //border-bottom: 2px solid rgba(196, 197, 198, 0.4);
 
         @include media-breakpoint-down(md) {
             margin-bottom: 10px;
-            margin-top: 60px;
+            margin-top: 15px;
         }
 
         .detail-progress-bar {

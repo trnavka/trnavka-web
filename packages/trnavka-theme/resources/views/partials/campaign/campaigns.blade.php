@@ -20,6 +20,11 @@
                             <p>{!! $campaign->shortDescription !!}</p>
                         </div>
                         <div class="card-actions">
+                            @if($campaign->dajnatoAmount > 0)
+                                <div class="dajnato-amount">
+                                    Vďaka pravidelným darcom mohlo DAJ NA TO prispieť na túto zbierku sumou {!! $campaign->getDajnatoAmountFormatted() !!}.
+                                </div>
+                            @endif
                             <div class="collection-progress">
                                 <div class="collection-progress-bar">
                                     <span class="done" style="width: {{ round(min(1, $campaign->currentAmount / $campaign->goalAmount) * 100, 4)  }}%"></span>
@@ -27,11 +32,11 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="label">Aktuálny stav</div>
-                                        <div class="price price-orange">{{ $campaign->currentAmount }} €</div>
+                                        <div class="price price-orange">{!! $campaign->getCurrentAmountFormatted() !!} </div>
                                     </div>
                                     <div class="col-6 text-end">
                                         <div class="label">Cieľová suma</div>
-                                        <div class="price">{{ $campaign->goalAmount }} €</div>
+                                        <div class="price">{!! $campaign->getGoalAmountFormatted() !!}</div>
                                     </div>
                                 </div>
                             </div>

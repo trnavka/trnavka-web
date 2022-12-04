@@ -62,9 +62,9 @@ $modal-backdrop-opacity: .8;
     }
 
     @include media-breakpoint-down(md) {
-        font-size: $font-size * 0.9;
-        line-height: $line-height * 0.9;
-        margin-bottom: $margin-bottom * 0.9;
+        font-size: $font-size * 0.95;
+        line-height: $line-height * 0.95;
+        margin-bottom: $margin-bottom * 0.95;
     }
 }
 

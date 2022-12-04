@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Form\Type;
 
+use App\Entity\Campaign;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -25,18 +26,13 @@ class DonationType extends AbstractType
         array                $options
     ): void
     {
-        $isCampaign = $options['donation_type'] === 'campaign';
+        $isCampaign = $options['campaign'] instanceof Campaign;
 
         $builder
             ->add('amount', ChoiceType::class, [
                 'label' => false,
                 'expanded' => true,
-                'choices' => $isCampaign ? [
-                    '10&nbsp;€' => 10,
-                    '30&nbsp;€' => 30,
-                    '99&nbsp;€' => 99,
-                    'Iná suma' => null,
-                ] : [
+                'choices' => $isCampaign ? $this->campaignOptions($options['campaign']) : [
                     '9&nbsp;€' => 9,
                     '29&nbsp;€' => 29,
                     '99&nbsp;€' => 99,
@@ -135,6 +131,7 @@ class DonationType extends AbstractType
     {
         $resolver->setDefaults([
             'csrf_protection' => false,
+            'campaign' => null,
             'validation_groups' => function (FormInterface $form) {
                 if (null === $form->getData()['amount']) {
                     return ['Default', 'other_amount'];
@@ -144,5 +141,12 @@ class DonationType extends AbstractType
             },
             'donation_type' => 'campaign'
         ]);
+    }
+
+    private function campaignOptions(Campaign $campaign): array
+    {
+        return collect($campaign->options)->mapWithKeys(function ($option) {
+                return [sprintf('%d&nbsp;€', $option) => $option];
+            })->toArray() + ['Iná suma' => ''];
     }
 }
