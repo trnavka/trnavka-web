@@ -39,6 +39,7 @@ class CampaignPost extends Composer
             ->createNamedBuilder('donation', DonationType::class, [
                 'amount' => 10
             ], [
+                'campaign' => $campaign,
                 'action' => $this->wp->postUrl($post),
             ])
             ->getForm();

@@ -290,8 +290,20 @@ add_action( 'add_meta_boxes', function () {
             </div>
 
             <div class="form-group">
+                <label for="dajnato_campaign[option_1]">Predvolené sumy</label>
+                <label  for="dajnato_campaign[option_1]" style="display: inline;">1. </label><input type="number" name="dajnato_campaign[option_1]" id="dajnato_campaign[option_1]" class="short-text" value="<?php echo esc_html($meta['option_1'] ?? 10); ?>">
+                <label  for="dajnato_campaign[option_2]" style="display: inline; padding-left: 20px;">2. </label><input type="number" name="dajnato_campaign[option_2]" id="dajnato_campaign[option_2]" class="short-text" value="<?php echo esc_html($meta['option_2'] ?? 30); ?>">
+                <label  for="dajnato_campaign[option_3]" style="display: inline; padding-left: 20px;">3. </label><input type="number" name="dajnato_campaign[option_3]" id="dajnato_campaign[option_3]" class="short-text" value="<?php echo esc_html($meta['option_3'] ?? 99); ?>">
+            </div>
+
+            <div class="form-group">
                 <label for="dajnato_campaign[start_amount]">Úvodná suma</label>
                 <input type="number" name="dajnato_campaign[start_amount]" id="dajnato_campaign[start_amount]" class="regular-text" value="<?php echo esc_html($meta['start_amount'] ?? 0); ?>">
+            </div>
+
+            <div class="form-group">
+                <label for="dajnato_campaign[dajnato_amount]">Príspevok z Daj na to</label>
+                <input type="number" name="dajnato_campaign[dajnato_amount]" id="dajnato_campaign[dajnato_amount]" class="regular-text" value="<?php echo esc_html($meta['dajnato_amount'] ?? 0); ?>">
             </div>
 
             <div class="form-group">

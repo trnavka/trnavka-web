@@ -39,7 +39,7 @@ class CampaignRepository
     private function hydrateEntity(WP_Post $post): Campaign
     {
         $data = get_post_meta($post->ID, 'dajnato_campaign', true);
-        $currentAmount = (float) get_post_meta($post->ID, 'dajnato_campaign_current_amount', true);
+        $currentAmount = (float)get_post_meta($post->ID, 'dajnato_campaign_current_amount', true);
 
         if (!is_array($data)) {
             $data = [];
@@ -53,7 +53,13 @@ class CampaignRepository
             ->setDarujmeFeedId($data['darujme_feed_id'] ?? '')
             ->setShortDescription($data['short_description'] ?? '')
             ->setContent($data['content'] ?? '')
+            ->setOptions([
+                (int)($data['option_1'] ?? 10),
+                (int)($data['option_2'] ?? 30),
+                (int)($data['option_3'] ?? 99),
+            ])
             ->setGoalAmount((int)round($data['goal_amount']))
+            ->setDajnatoAmount((int)round($data['dajnato_amount'] ?? 0))
             ->setCurrentAmount((int)round((float)($data['start_amount'] ?? 0) + (float)($currentAmount ?? 0)));
     }
 }

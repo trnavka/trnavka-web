@@ -93,7 +93,7 @@
                             <h3>Futbalové ihrisko</h3>
                         </div>
                         <div class="text">
-                            <p>Futbalový ihrisko na veľkom umelom trávniku je prístupné verejnosti v časoch, keď na ňom nie je tréning alebo zápas futbalového klubu.</p>
+                            <p>Futbalové ihrisko na veľkom umelom trávniku je prístupné verejnosti v časoch, keď na ňom nie je tréning alebo zápas futbalového klubu.</p>
                         </div>
                     </div>
                 </div>

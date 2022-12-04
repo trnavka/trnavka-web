@@ -58,7 +58,7 @@ class CampaignPage extends Composer
                 $data = $form->getData();
                 $form = $this->formFactory
                     ->createNamedBuilder('donation', DarujmeDonationType::class, [
-                        'campaign_id' => '8704e3d5-1290-44e6-b427-26f9fe52eae7',
+                        'campaign_id' => 'de161f1d-6f09-4d51-b1ae-d0f2207b9215',
                         'value' => empty($data['amount']) ? $data['otherAmount'] : $data['amount'],
                         'payment_method_id' => $data['paymentType'],
                         'first_name' => $data['firstName'],
