@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Entity\Campaign;
+use App\Metabox\CampaignMetabox;
 use WP_Post;
 use WP_Query;
 
@@ -38,7 +39,7 @@ class CampaignRepository
 
     private function hydrateEntity(WP_Post $post): Campaign
     {
-        $data = get_post_meta($post->ID, 'dajnato_campaign', true);
+        $data = get_post_meta($post->ID, CampaignMetabox::id(), true);
         $currentAmount = (float)get_post_meta($post->ID, 'dajnato_campaign_current_amount', true);
 
         if (!is_array($data)) {
