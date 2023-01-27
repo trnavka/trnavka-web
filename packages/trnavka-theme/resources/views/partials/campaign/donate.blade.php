@@ -34,7 +34,8 @@
                     </div>
                     @if(!isset($disable_stats_link) || !$disable_stats_link)
                         <div>
-                            <a href="{{ get_permalink(get_page_by_path('financny-prehlad')) }}">Zobraziť finančný prehľad</a>
+{{--                            <a href="{{ get_permalink(get_page_by_path('financny-prehlad')) }}">Zobraziť finančný prehľad</a>--}}
+                            <a href="/financny-prehlad">Zobraziť finančný prehľad</a>
                         </div>
                     @endif
                 </div>
