@@ -1,21 +1,21 @@
-<div class="donate-section">
+<div class="donate-secstion service-finances-donate">
     <div class="container-fluid ">
         <div class="row">
             <div class="col">
-                <h2>Prečo začať prispievať?</h2>
+                <h1>{{ $title }}</h1>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
-                <div class="donate-content">
+            <div class="col">
+                <div class="donate-section">
+                    <h2>Daj na to!</h2>
                     <p>
-                        TRNÁVKA - saleziánske dielo je saleziánske komunitné centrum, v ktorom stovky ľudí denne trávia zmysluplný čas.
-                        Širokú ponuku služieb využívajú ľudia z Trnávky a širšieho okolia, bez ohľadu na ich vierovyznanie. Každý je vítaný.
-                        Tvoj pravidelný mesačný príspevok je potrebný pre udržanie a rozvoj športových, kultúrnych, sociálnych a duchovných aktivít pre deti, mladých, rodičov aj seniorov.
+                        V roku 2022 boli náklady vo výške cca 100 tisíc eur pokryté sponzormi a individuálnymi darcami.
+                        Veríme, že postupne dokáže podstatnú časť tejto sumy pokryť Daj na to!.
                     </p>
-
                     <p>
                         <strong>Je dôležité finančne prispievať pravidelne, aby Saleziánske dielo mohlo fungovať. Ďakujeme.</strong>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#donationModal">Chcem prispieť</a>
                     </p>
                     <div class="collection-progress">
                         <div class="collection-progress-bar">
@@ -32,15 +32,7 @@
                             </div>
                         </div>
                     </div>
-                    @if(!isset($disable_stats_link) || !$disable_stats_link)
-                        <div>
-                            <a href="{{ get_permalink(get_page_by_path('financny-prehlad')) }}">Zobraziť finančný prehľad</a>
-                        </div>
-                    @endif
                 </div>
-            </div>
-            <div class="col-md-6 subscription-widget-holder">
-                @include('partials.campaign.subscription-widget', ['prefix' => 'top', 'emphasize_background' => true])
             </div>
         </div>
     </div>

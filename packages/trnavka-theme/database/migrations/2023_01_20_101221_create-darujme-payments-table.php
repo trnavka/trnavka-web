@@ -26,6 +26,9 @@ class CreateDarujmePaymentsTable extends Migration
             $table->string('campaign');
             $table->dateTime('received_at');
             $table->dateTime('registered_at');
+            $table->timestamps();
+            $table->unique('payment_id');
+            $table->index('email');
         });
     }
 

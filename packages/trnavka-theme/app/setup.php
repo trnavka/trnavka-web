@@ -7,6 +7,7 @@
 namespace App;
 
 use App\Metabox\CampaignMetabox;
+use App\Metabox\FinancialSubjectMetabox;
 use function Roots\bundle;
 
 /**
@@ -28,7 +29,7 @@ add_action('wp_enqueue_scripts', function () {
  * @return void
  */
 add_action('enqueue_block_editor_assets', function () {
-    bundle('editor')->enqueue();
+//    bundle('editor')->enqueue();
 }, 100);
 
 /**
@@ -250,4 +251,4 @@ add_action('init', function () {
 });
 
 new CampaignMetabox();
-
+new FinancialSubjectMetabox();

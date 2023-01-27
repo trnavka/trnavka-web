@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 use App\Repositories\CampaignRepository;
+use App\Repositories\FinancialSubjectRepository;
 use App\Services\Darujme;
 use App\Services\HtmlHeader;
 use App\Services\WordPress;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Symfony\Bridge\Twig\Extension\FormExtension;
 use Symfony\Bridge\Twig\Form\TwigRendererEngine;
@@ -25,6 +27,7 @@ class ThemeServiceProvider extends ServiceProvider
 {
     public array $singletons = [
         CampaignRepository::class => CampaignRepository::class,
+        FinancialSubjectRepository::class => FinancialSubjectRepository::class,
         WordPress::class => WordPress::class,
         HtmlHeader::class => HtmlHeader::class,
         Darujme::class => Darujme::class,
@@ -32,6 +35,10 @@ class ThemeServiceProvider extends ServiceProvider
 
     public function boot()
     {
+        Blade::directive('euro', function ($expression) {
+            return "<?php echo number_format($expression, 0, ' ', '&nbsp;') . '&nbsp;€'; ?>";
+        });
+
         define('DEFAULT_FORM_THEME', 'form_div_layout.html.twig');
 
 //        $csrfTokenManager = new CsrfTokenManager();

@@ -85,7 +85,6 @@ class AbstractMetabox
 
     public function renderMetaBox($post): void
     {
-//        global $post;
         $meta = get_post_meta($post->ID, $this->metaboxId, true); ?>
 
         <input type="hidden" name="<?php echo $this->nonceId(); ?>" value="<?php echo wp_create_nonce(static::class); ?>">
@@ -103,6 +102,6 @@ class AbstractMetabox
 
         <?php
 
-        $this->renderForm($meta);
+        $this->renderForm(is_array($meta) ? $meta : []);
     }
 }

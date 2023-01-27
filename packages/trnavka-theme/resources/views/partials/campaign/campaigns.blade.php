@@ -1,15 +1,18 @@
-<div class="collections">
-    <div class="container-fluid ">
+<div class="campaigns-header">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-8">
-                <div class="campaigns-header">
-                    <h2>Aktuálne zbierky</h2>
-                    <p class="description">
-                        Okrem dlhodobého pravidelného darcovstva môžeš jednorazovo podporiť aj konkrétne a časovo ohraničené zbierky:
-                    </p>
-                </div>
+                <h2>Aktuálne zbierky</h2>
+                <p class="description">
+                    Okrem dlhodobého pravidelného darcovstva môžeš jednorazovo podporiť aj konkrétne a časovo ohraničené zbierky:
+                </p>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="collections">
+    <div class="container-fluid ">
         <div class="row @if(count($campaigns) > 3) justify-content-center @endif gy-4">
             <?php /** @var \App\Entity\Campaign $campaign */ ?>
             @foreach($campaigns as $campaign)

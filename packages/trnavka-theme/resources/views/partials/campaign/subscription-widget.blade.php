@@ -1,5 +1,5 @@
 <div class="form-widget">
-    <div class="title">Mesačne budem prispievať</div>
+    <div class="title">Mesačne budem prispievať do Daj na to!</div>
     <div class="prices">
         <div class="price-input">
             <label>

@@ -1,6 +1,8 @@
-.collections {
+.campaigns-header {
     background-color: $white;
     @include section-padding(96px, 0);
+    padding-left: 32px;
+    padding-right: 32px;
 
     @include media-breakpoint-down(md) {
         padding-top: 50px;
@@ -13,6 +15,11 @@
     .description {
         @include content-size(15px, 24px, 64px);
     }
+}
+
+.collections {
+    background-color: $white;
+
     .collection-card{
         position: relative;
         padding: 32px;
@@ -43,37 +50,6 @@
         }
 
         .card-actions {
-            .collection-progress {
-                margin-bottom: 32px;
-                .collection-progress-bar {
-                    position: relative;
-                    height: 8px;
-                    background-color: #C4C5C6;
-                    width: 100%;
-                    margin-bottom: 8px;
-
-                    .done {
-                        position: absolute;
-                        left: 0;
-                        height: 8px;
-                        background-color: #F4524D;
-                    }
-                }
-
-                .label {
-                    @include content-size(13px, 24px, 0);
-                    font-weight: $font-weight-bold;
-                }
-
-                .price {
-                    @include content-size(22px, 26px, 0);
-                    font-weight: $font-weight-bold;
-
-                    &.price-orange {
-                        color: #F4524D;
-                    }
-                }
-            }
             .card-link{
                 @include content-size(15px, 24px, 0);
                 color: #F4524D;
@@ -84,10 +60,37 @@
             }
         }
     }
+}
 
-    .campaigns-header {
-        padding-left: 32px;
-        padding-right: 32px;
+.collection-progress {
+    margin-bottom: 32px;
+    .collection-progress-bar {
+        position: relative;
+        height: 8px;
+        background-color: #C4C5C6;
+        width: 100%;
+        margin-bottom: 8px;
+
+        .done {
+            position: absolute;
+            left: 0;
+            height: 8px;
+            background-color: #F4524D;
+        }
+    }
+
+    .label {
+        @include content-size(13px, 24px, 0);
+        font-weight: $font-weight-bold;
+    }
+
+    .price {
+        @include content-size(22px, 26px, 0);
+        font-weight: $font-weight-bold;
+
+        &.price-orange {
+            color: #F4524D;
+        }
     }
 }
 
