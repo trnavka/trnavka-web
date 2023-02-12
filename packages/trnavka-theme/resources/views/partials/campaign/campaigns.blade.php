@@ -13,7 +13,7 @@
 
 <div class="collections">
     <div class="container-fluid ">
-{{--        <div class="row @if(count($active_campaigns) > 3 && count($active_campaigns) % 3 === 1) justify-content-center @endif gy-4">--}}
+        <div class="row @if(count($active_campaigns) > 3 && count($active_campaigns) % 3 === 1) justify-content-center @endif gy-4">
             <?php /** @var \App\Entity\Campaign $campaign */ ?>
             @foreach($active_campaigns as $campaign)
                 <div class="col-md-6 col-lg-4">
