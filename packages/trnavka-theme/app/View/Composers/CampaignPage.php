@@ -101,7 +101,8 @@ class CampaignPage extends Composer
             'title' => $this->wp->title(),
             'subscription_stats' => $subscriptionStats,
             'subscription_amount' => 31000 + $subscriptionStats->sum / 100,
-            'campaigns' => $this->campaignRepository->findAll(),
+            'active_campaigns' => $this->campaignRepository->findAllActive(),
+            'archived_campaigns' => $this->campaignRepository->findAllArchived(),
             'trnavka_financial_subject' => $trnavkaFinancialSubject,
             'financial_subjects' => [$trnavkaFinancialSubject, ...$financialSubjects],
             'form' => $formContent

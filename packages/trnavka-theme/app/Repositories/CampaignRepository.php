@@ -22,15 +22,34 @@ class CampaignRepository
     /**
      * @return Campaign[]
      */
-    public function findAll(): array
+    public function findAllActive(): array
+    {
+        return $this->findAll('publish');
+    }
+
+    /**
+     * @return Campaign[]
+     */
+    public function findAllArchived(): array
+    {
+        return $this->findAll('archived');
+    }
+
+    /**
+     * @return Campaign[]
+     */
+    public function findAll(null | string $status = null): array
     {
         $args = array(
             'post_type' => 'campaign',
-            'post_status' => 'publish',
             'posts_per_page' => 1000,
             'orderby' => 'title',
             'order' => 'ASC',
         );
+
+        if (null !== $status) {
+            $args['post_status'] = $status;
+        }
 
         return collect((new WP_Query($args))->get_posts())
             ->map(fn(WP_Post $post) => $this->hydrateEntity($post))
@@ -61,6 +80,7 @@ class CampaignRepository
             ])
             ->setGoalAmount((int)round($data['goal_amount']))
             ->setDajnatoAmount((int)round($data['dajnato_amount'] ?? 0))
+            ->setActive($post->post_status === 'publish')
             ->setCurrentAmount((int)round((float)($data['start_amount'] ?? 0) + (float)($currentAmount ?? 0)));
     }
 }

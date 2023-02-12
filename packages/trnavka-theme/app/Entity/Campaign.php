@@ -15,6 +15,7 @@ class Campaign
     public null|int $goalAmount = null;
     public int $currentAmount = 0;
     public int $dajnatoAmount = 0;
+    public bool $active = true;
 
     public function setId(int $id): self
     {
@@ -79,6 +80,12 @@ class Campaign
     public function setDajnatoAmount(int $dajnatoAmount): self
     {
         $this->dajnatoAmount = $dajnatoAmount;
+        return $this;
+    }
+
+    public function setActive(bool $active): self
+    {
+        $this->active = $active;
         return $this;
     }
 

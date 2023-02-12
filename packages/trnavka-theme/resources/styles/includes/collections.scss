@@ -28,6 +28,12 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+
+        &.collection-archived {
+            border: 1px solid #c4c5c6;
+            background-color: #ffffff;
+        }
+
         &:hover{
             background-color: rgba(244, 244, 244, 0.54);
         }

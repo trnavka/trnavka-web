@@ -9,34 +9,9 @@
 
             <div class="description">
                 {!! $campaign->content  !!}
-            </div>
 
-            @if($campaign->dajnatoAmount > 0)
-                <div class="dajnato-amount">
-                    Vďaka pravidelným darcom mohlo DAJ NA TO prispieť na túto zbierku sumou {!! $campaign->getDajnatoAmountFormatted() !!}.
-                </div>
-            @endif
-
-            @if(null !== $campaign->goalAmount)
-                <div class="detail-progress">
-                    <div class="detail-progress-bar">
-                        <span class="done" style="width: {{ round(min(1, $campaign->currentAmount / $campaign->goalAmount) * 100, 4)  }}%"></span>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="label">Aktuálny stav</div>
-                            <div class="price price-orange">{!! $campaign->getCurrentAmountFormatted() !!}</div>
-                        </div>
-                        <div class="col-6 text-end">
-                            <div class="label">Cieľová suma</div>
-                            <div class="price">{!! $campaign->getGoalAmountFormatted() !!}</div>
-                        </div>
-                    </div>
-                </div>
-            @endif
-
-            <div style="margin: 0 auto; max-width: 600px; border: 1px solid #dedede; padding: 40px; border-radius: 5px;">
-                {!! $form !!}
+                <p class="pt-3"><strong>Táto zbierka je už ukončená. Vyzbieralo sa {!! $campaign->getCurrentAmountFormatted() !!}.</strong></p>
+                <p class="pt-3">Ak chceš prispieť, tak sa môžeš <a href="..">zapojiť do Daj na to!</a> a podporovať Trnávku pravidelne a dlhodobo.</p>
             </div>
         </div>
 

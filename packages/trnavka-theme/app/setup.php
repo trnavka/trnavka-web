@@ -148,7 +148,9 @@ add_action('widgets_init', function () {
         ] + $config);
 });
 
-add_filter('rest_authentication_errors', function ($result) {
+add_filter('rest_authentication_errors', function (
+    $result
+) {
     // If a previous authentication check was applied,
     // pass that result along without modification.
     if (true === $result || is_wp_error($result)) {
@@ -248,7 +250,48 @@ add_action('init', function () {
         wp_deregister_script('jquery');
 //        wp_register_script('jquery', false);
     }
+
+    register_post_status('archived', [
+        'label'                     => _x( 'Archived', 'post' ),
+        'label_count'               => _n_noop( 'Archived <span class="count">(%s)</span>', 'Archived <span class="count">(%s)</span>'),
+        'public'                    => true,
+        'show_in_admin_all_list'    => true,
+        'show_in_admin_status_list' => true
+    ]);
 });
+
+add_action('admin_footer-edit.php',function () {
+    echo "<script>
+        jQuery(document).ready( function() {
+            jQuery( 'select[name=\"_status\"]' ).append( '<option value=\"archived\">Archived</option>' );
+        });
+        </script>";
+});
+
+$addArchivedPostStatus = function (){
+    global $post;
+
+    if($post->post_type === 'campaign') {
+        if($post->post_status === 'archived'){
+            echo '
+                <script>
+                jQuery(document).ready(function($){
+                    $("#post-status-display").text(" Archived");
+                    $("select#post_status").append("<option value=\"publish\">Published</option>");
+                });
+                </script>';
+        }
+
+        echo '
+            <script>
+            jQuery(document).ready(function($){
+                $("select#post_status").append("<option value=\"archived\" '.selected( $post->post_status, 'archived', false ).'>Archived</option>");
+            });
+            </script>';
+    }
+};
+
+add_action('post_submitbox_misc_actions', $addArchivedPostStatus, 0);
 
 new CampaignMetabox();
 new FinancialSubjectMetabox();
