@@ -51,10 +51,11 @@ class CampaignPost extends Composer
 
             if ($form->isValid()) {
                 $data = $form->getData();
+
                 $form = $this->formFactory
                     ->createNamedBuilder('donation', DarujmeDonationType::class, [
                         'campaign_id'       => $campaign->darujmeId,
-                        'value'             => $data['amount'] ?? $data['otherAmount'],
+                        'value'             => empty($data['amount']) ? $data['otherAmount'] : $data['amount'],
                         'payment_method_id' => $data['paymentType'],
                         'first_name'        => $data['firstName'],
                         'last_name'         => $data['lastName'],
