@@ -43,6 +43,10 @@ class Darujme
                 print_r($response['metadata']);
 
                 foreach ($response['items'] ?? [] as $payment) {
+                    if ('successful' !== $payment['status']) {
+                        continue;
+                    }
+
                     $now = (new DateTimeImmutable())->setTimezone(new \DateTimeZone('Europe/Bratislava'))->format('Y-m-d H:i:s');
 
                     $updateFields = [
