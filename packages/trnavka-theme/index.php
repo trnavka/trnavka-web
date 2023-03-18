@@ -1,7 +1,7 @@
 <!doctype html>
 <html <?php language_attributes(); ?>>
     <head>
-        <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="d9135c82-8787-4c6a-9dcd-c53b31e191a4" data-blockingmode="auto" type="text/javascript"></script>
+        <!--<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="d9135c82-8787-4c6a-9dcd-c53b31e191a4" data-blockingmode="auto" type="text/javascript"></script>-->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-HH2X1377G8"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
