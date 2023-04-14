@@ -46,5 +46,18 @@
             line-height: 1.5;
         }
     }
+
+    .header-dajnato-button {
+        display: none;
+
+        @include media-breakpoint-down(sm) {
+            display: block;
+            margin-top: 60px;
+
+            .btn-donate {
+                max-width: 250px;
+            }
+        }
+    }
 }
 
