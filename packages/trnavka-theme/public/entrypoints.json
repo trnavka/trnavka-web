@@ -1,0 +1,15 @@
+{
+  "app": {
+    "js": [
+      "js/runtime.814276.js",
+      "js/138.0717f8.js",
+      "js/app.28285a.js"
+    ],
+    "css": [
+      "css/app.2a78c5.css"
+    ],
+    "dependencies": [
+      "jquery"
+    ]
+  }
+}
