@@ -9,7 +9,7 @@
                     </p>
 
                     <div class="header-dajnato-button">
-                        <button type="button" class="btn-donate" data-bs-toggle="modal" data-bs-target="#donationModal">Daruj teraz</button>
+                        <button type="button" class="btn-donate" data-bs-toggle="modal" data-bs-target="#donationModal">Podporiť</button>
                     </div>
                 </div>
             </div>
