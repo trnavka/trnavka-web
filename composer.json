@@ -32,7 +32,8 @@
         "symfony/form": "^6.0",
         "symfony/twig-bridge": "^6.0",
         "symfony/validator": "^6.0",
-        "illuminate/database": "*"
+        "illuminate/database": "*",
+        "league/csv": "^9.8"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest"
