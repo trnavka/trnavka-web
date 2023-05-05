@@ -4,18 +4,7 @@
     .container-fluid{
         max-width: 800px;
     }
-    .back-btn{
-        color: #F4524D;
-        text-decoration: none;
-        display: flex;
-        @include content-size(15px, 15px, 18px);
-        align-items: center;
-        span{
-            font-size: 18px;
-            display: inline-block;
-            margin-right: 5px;
-        }
-    }
+
     h1{
         @include title-size(48px, 70px, 30px);
         font-weight: $font-weight-bold;

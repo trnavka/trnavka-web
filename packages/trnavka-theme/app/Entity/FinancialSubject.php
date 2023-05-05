@@ -7,6 +7,7 @@ class FinancialSubject
     public int $id;
     public string $title;
     public string $slug;
+    public string $description = '';
     public int $incomeServiceFees = 0;
     public int $incomeCollections = 0;
     public int $incomeParishCollections = 0;
@@ -112,6 +113,12 @@ class FinancialSubject
     public function setCostsOther(int $costsOther): self
     {
         $this->costsOther = $costsOther;
+        return $this;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
         return $this;
     }
 }

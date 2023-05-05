@@ -23,6 +23,13 @@
                         </h3>
                         <div id="{{$financial_subject->slug}}" class="accordion-collapse collapse" aria-labelledby="{{$financial_subject->slug}}-heading">
                             <div class="accordion-body">
+
+                                @if(!empty($financial_subject->description))
+                                    <p class="small">
+                                        {{$financial_subject->description}}
+                                    </p>
+                                @endif
+
                                 <h4>Príjmy</h4>
                                 <table class="table table-borderless table-sm">
                                     <tbody>

@@ -98,3 +98,16 @@ body{
         max-width: 1200px;
     }
 }
+
+.back-btn{
+    color: #3B3B42;
+    text-decoration: none;
+    display: flex;
+    @include content-size(15px, 15px, 18px);
+    align-items: center;
+    span{
+        font-size: 18px;
+        display: inline-block;
+        margin-right: 5px;
+    }
+}
