@@ -62,6 +62,12 @@ class FinancialSubjectMetabox extends AbstractMetabox
 
         $content = '';
 
+
+        $content .= '<div class="form-group">';
+        $content .= '<label for="' . $this->fieldNameString('description') . '">Popis subjektu</label>';
+        $content .= '<textarea rows="10" name="' . $this->fieldNameString('description') . '" id="' . $this->fieldNameString('description') . '" class="regular-text">' . esc_html($meta['description'] ?? '') . '</textarea>';
+        $content .= '</div>';
+
         foreach ($groups as $group) {
             $content .= '<h3>' . $group['title'] . '</h3>';
 

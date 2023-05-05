@@ -2,6 +2,7 @@
     <div class="container-fluid ">
         <div class="row">
             <div class="col">
+                <a class="back-btn" href="../dajnato/"><span>&larr;</span>späť na Daj na to</a>
                 <h1>{{ $title }}</h1>
             </div>
         </div>

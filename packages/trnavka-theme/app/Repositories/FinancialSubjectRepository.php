@@ -51,6 +51,7 @@ class FinancialSubjectRepository
             ->setCostsMaintenance((int)($data['costs_maintenance'] ?? 0))
             ->setCostsHr((int)($data['costs_hr'] ?? 0))
             ->setCostsFees((int)($data['costs_fees'] ?? 0))
-            ->setCostsOther((int)($data['costs_other'] ?? 0));
+            ->setCostsOther((int)($data['costs_other'] ?? 0))
+            ->setDescription(($data['description'] ?? ''));
     }
 }
