@@ -39,15 +39,24 @@ $(document).ready(function () {
                 data: $form.serialize(),
                 type: 'POST'
             }).done((response, status, jqXHR) => {
-                $form.replaceWith($(response).find('.js-donation-form form'));
+                const $html = $(response);
 
-                let top = 0;
+                if ($html.find('.js-darujme-form form').length > 0) {
+                    const $form = $html.find('.js-darujme-form form');
+                    $('.js-darujme-form-holder').append($form);
+                    $form.submit();
+                }
+                else {
+                    $form.replaceWith($html.find('.js-donation-form form'));
 
-                $('.is-invalid:first').parents('#donationModal .modal-dialog *').each(function () {
-                    top = Math.max(top, $(this).position().top);
-                });
+                    let top = 0;
 
-                $form.scrollTop(top);
+                    $('.is-invalid:first').parents('#donationModal .modal-dialog *').each(function () {
+                        top = Math.max(top, $(this).position().top);
+                    });
+
+                    $form.scrollTop(top);
+                }
             });
         })
         .on('change', 'input[name="donation[onetimeOrRecurring]"]', function () {
