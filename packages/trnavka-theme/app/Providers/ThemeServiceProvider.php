@@ -2,15 +2,17 @@
 
 namespace App\Providers;
 
+use App\Form\Type\DonationType;
 use App\Repositories\CampaignRepository;
 use App\Repositories\FinancialSubjectRepository;
 use App\Services\Darujme;
 use App\Services\HtmlHeader;
 use App\Services\WordPress;
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\ServiceProvider;
+use Roots\Acorn\Sage\SageServiceProvider;
 use Symfony\Bridge\Twig\Extension\FormExtension;
 use Symfony\Bridge\Twig\Form\TwigRendererEngine;
+use Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension;
 use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\Form\FormRenderer;
@@ -23,7 +25,7 @@ use Twig\Loader\ChainLoader;
 use Twig\Loader\FilesystemLoader;
 use Twig\RuntimeLoader\FactoryRuntimeLoader;
 
-class ThemeServiceProvider extends ServiceProvider
+class ThemeServiceProvider extends SageServiceProvider
 {
     public array $singletons = [
         CampaignRepository::class => CampaignRepository::class,
@@ -31,11 +33,16 @@ class ThemeServiceProvider extends ServiceProvider
         WordPress::class => WordPress::class,
         HtmlHeader::class => HtmlHeader::class,
         Darujme::class => Darujme::class,
+        DonationType::class => DonationType::class,
     ];
 
     public function boot()
     {
-        Blade::directive('euro', function ($expression) {
+        parent::boot();
+
+        Blade::directive('euro', function (
+            $expression
+        ) {
             return "<?php echo number_format($expression, 0, ' ', '&nbsp;') . '&nbsp;€'; ?>";
         });
 
@@ -80,23 +87,35 @@ class ThemeServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->app->singleton(TwigRendererEngine::class, function ($app) {
+        parent::register();
+
+        $this->app->singleton(TwigRendererEngine::class, function (
+            $app
+        ) {
             return new TwigRendererEngine(['bootstrap_5_horizontal_layout.html.twig', 'fields.twig'], $this->getTwigEnvironment());
         });
 
-        $this->app->singleton(FormRenderer::class, function ($app) {
+        $this->app->singleton(FormRenderer::class, function (
+            $app
+        ) {
             return new FormRenderer($app->make(TwigRendererEngine::class));
         });
 
         $this->app->alias(FormRenderer::class, FormRendererInterface::class);
 
-        $this->app->bind('form.extensions', function ($app) {
+        $this->app->bind('form.extensions', function (
+            $app
+        ) {
+//            dd($this->app);
             return [
                 new ValidatorExtension(Validation::createValidator()),
+                new DependencyInjectionExtension($this->app, [], [])
             ];
         });
 
-        $this->app->singleton(FormFactory::class, function ($app) {
+        $this->app->singleton(FormFactory::class, function (
+            $app
+        ) {
             return Forms::createFormFactoryBuilder()
                 ->addExtensions($app['form.extensions'])
 //                ->addTypeExtensions($app['form.type.extensions'])
@@ -105,7 +124,9 @@ class ThemeServiceProvider extends ServiceProvider
                 ->getFormFactory();
         });
 
-        $this->app->singleton(Request::class, function ($app) {
+        $this->app->singleton(Request::class, function (
+            $app
+        ) {
             return Request::createFromGlobals();
         });
     }

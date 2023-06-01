@@ -5,7 +5,6 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('partials.campaign.modal')
     @include('partials.campaign.header')
     @include('partials.campaign.donate')
     @include('partials.campaign.services')

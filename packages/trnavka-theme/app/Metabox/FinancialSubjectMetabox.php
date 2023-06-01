@@ -6,7 +6,7 @@ class FinancialSubjectMetabox extends AbstractMetabox
 {
     public function __construct()
     {
-        parent::__construct('financial_subject', 'Finančný subjekt', [
+        parent::__construct('financial_subject', 'Finančný subjekt', [], [
             'labels' => [
                 'name' => _x('Finančné subjekty', 'Finančný subjekt plural name'),
                 'singular_name' => _x('Finančný subjekt', 'Finančný subjekt singular name'),

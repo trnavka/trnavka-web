@@ -4,18 +4,21 @@ namespace App\Entity;
 
 class Campaign
 {
-    public int $id;
+    public ?int $id = null;
     public string $title;
     public string $slug;
     public string $darujmeId;
     public string $darujmeFeedId;
     public string $shortDescription;
     public string $content;
-    public array $options;
+    public array $options = [];
+    public array $recurringOptions = [];
     public null|int $goalAmount = null;
     public int $currentAmount = 0;
     public int $dajnatoAmount = 0;
     public bool $active = true;
+    public bool $published = false;
+    public bool $titleShown = false;
 
     public function setId(int $id): self
     {
@@ -65,6 +68,12 @@ class Campaign
         return $this;
     }
 
+    public function setRecurringOptions(array $recurringOptions): self
+    {
+        $this->recurringOptions = $recurringOptions;
+        return $this;
+    }
+
     public function setGoalAmount(int|null $goalAmount): self
     {
         $this->goalAmount = $goalAmount;
@@ -86,6 +95,18 @@ class Campaign
     public function setActive(bool $active): self
     {
         $this->active = $active;
+        return $this;
+    }
+
+    public function setPublished(bool $published): self
+    {
+        $this->published = $published;
+        return $this;
+    }
+
+    public function setTitleShown(bool $titleShown): self
+    {
+        $this->titleShown = $titleShown;
         return $this;
     }
 

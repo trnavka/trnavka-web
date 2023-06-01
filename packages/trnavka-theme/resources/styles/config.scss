@@ -1,0 +1,73 @@
+$primary: #F4524D;
+$warning: #ffd500;
+$modal-backdrop-opacity: .8;
+$accordion-button-active-bg: white;
+$accordion-button-active-color: black;
+$accordion-button-icon:         url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='#F4524D' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill-rule='evenodd' d='M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z' clip-rule='evenodd'/%3e%3c/svg%3e");
+$accordion-button-active-icon:  url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='#F4524D' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill-rule='evenodd' d='M0 8a1 1 0 0 1 1-1h14a1 1 0 1 1 0 2H1a1 1 0 0 1-1-1z' clip-rule='evenodd'/%3e%3c/svg%3e");
+
+@mixin section-padding($top, $bottom) {
+    padding-top: $top;
+    padding-bottom: $bottom;
+
+    @include media-breakpoint-down(lg) {
+        padding-top: $top * 0.5;
+        padding-bottom: $bottom * 0.5;
+    }
+
+    @include media-breakpoint-down(md) {
+        padding-top: $top * 0.25;
+        padding-bottom: $bottom * 0.25;
+    }
+}
+
+@mixin section-margin($top, $bottom) {
+    margin-top: $top;
+    margin-bottom: $bottom;
+
+    @include media-breakpoint-down(lg) {
+        margin-top: $top * 0.5;
+        margin-bottom: $bottom * 0.5;
+    }
+
+    @include media-breakpoint-down(md) {
+        margin-top: $top * 0.25;
+        margin-bottom: $bottom * 0.25;
+    }
+}
+
+@mixin title-size($font-size, $line-height, $margin-bottom) {
+    font-size: $font-size;
+    line-height: $line-height;
+    margin-bottom: $margin-bottom;
+
+    @include media-breakpoint-down(lg) {
+        font-size: $font-size * 0.9;
+        line-height: $line-height * 0.9;
+        margin-bottom: $margin-bottom * 0.9;
+    }
+
+    @include media-breakpoint-down(md) {
+        font-size: $font-size * 0.8;
+        line-height: $line-height * 0.8;
+        margin-bottom: $margin-bottom * 0.8;
+    }
+}
+
+@mixin content-size($font-size, $line-height, $margin-bottom) {
+    font-size: $font-size;
+    line-height: $line-height;
+    margin-bottom: $margin-bottom;
+
+    @include media-breakpoint-down(lg) {
+        font-size: $font-size * 0.95;
+        line-height: $line-height * 0.95;
+        margin-bottom: $margin-bottom * 0.95;
+    }
+
+    @include media-breakpoint-down(md) {
+        font-size: $font-size * 0.95;
+        line-height: $line-height * 0.95;
+        margin-bottom: $margin-bottom * 0.95;
+    }
+}

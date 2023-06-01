@@ -1,0 +1,1 @@
+@include('partials.campaign.modal')

@@ -1,24 +1,38 @@
+@php
+    $dajnato_cta_title = $dajnato_cta_title ?? 'Mesačne budem prispievať do Daj na to!';
+	$dajnato_cta_button = $dajnato_cta_button ?? 'Pokračovať';
+    $dajnato_cta_values = $dajnato_cta_values ?? [
+            [
+                'value' => 9,
+                'selected' => false,
+            ],
+            [
+                'value' => 29,
+                'selected' => true,
+            ],
+            [
+                'value' => 99,
+                'selected' => false,
+            ],
+        ];
+@endphp
+
 <div class="form-widget">
-    <div class="title">Mesačne budem prispievať do Daj na to!</div>
-    <div class="prices">
-        <div class="price-input">
-            <label>
-                <input type="radio" name="{{ $prefix }}price-list-widget" value="9" class="js-subscription-widget">
-                <span>9 €</span>
-            </label>
+    <div class="title">{{ $dajnato_cta_title }}</div>
+
+    @if (!empty($dajnato_cta_values))
+        <div class="prices">
+            @foreach($dajnato_cta_values as $value)
+                <div class="price-input">
+                    <label>
+                        <input type="radio" name="{{ $prefix }}price-list-widget" value="{{$value['value']}}" @if($value['selected'])
+                            checked
+                            @endif class="js-subscription-widget">
+                        <span>@euro($value['value'])</span>
+                    </label>
+                </div>
+            @endforeach
         </div>
-        <div class="price-input">
-            <label>
-                <input type="radio" name="{{ $prefix }}price-list-widget" checked="checked" value="29" class="js-subscription-widget">
-                <span>29 €</span>
-            </label>
-        </div>
-        <div class="price-input">
-            <label>
-                <input type="radio" name="{{ $prefix }}price-list-widget" value="99" class="js-subscription-widget">
-                <span>99 €</span>
-            </label>
-        </div>
-    </div>
-    <button type="button" class="btn-donate" data-bs-toggle="modal" data-bs-target="#donationModal">Pokračovať</button>
+    @endif
+    <button type="button" @if(isset($dajnato_cta_form_url))class="btn-donate btn-dajnato-cta" data-form-url="{{ $dajnato_cta_form_url }}" @else class="btn-donate" data-bs-toggle="modal" data-bs-target="#donationModal"@endif>{{ $dajnato_cta_button }}</button>
 </div>

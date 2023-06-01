@@ -1,14 +1,67 @@
 .detail-page{
-    padding: 30px;
-    @include section-padding(64px,96px);
+    padding: 30px 15px;
+
+    //margin-top: 30px;
+    margin-bottom: 96px;
+
+    font-size: 18px;
+    line-height: 32px;
+
+    @include media-breakpoint-down(md) {
+        font-size: 16px;
+        line-height: 28px;
+        padding-top: 20px;
+    }
+
+    @include media-breakpoint-down(sm) {
+        font-size: 15px;
+        line-height: 24px;
+    }
+
     .container-fluid{
         max-width: 800px;
     }
 
     h1{
-        @include title-size(48px, 70px, 30px);
         font-weight: $font-weight-bold;
+
+        font-size: 40px;
+        line-height: 49px;
+
+        margin-top: 30px;
+        margin-bottom: 30px;
+
+        @include media-breakpoint-down(md) {
+            font-size: 34px;
+            line-height: 42px;
+            margin-top: 20px;
+        }
+
+        @include media-breakpoint-down(sm) {
+            font-size: 24px;
+            line-height: 32px;
+        }
     }
+
+    h2 {
+        font-weight: $font-weight-bold;
+
+        font-size: 24px;
+        line-height: 32px;
+
+        margin-bottom: 16px;
+
+        @include media-breakpoint-down(md) {
+            font-size: 21px;
+            line-height: 28px;
+        }
+
+        @include media-breakpoint-down(sm) {
+            font-size: 17px;
+            line-height: 25px;
+        }
+    }
+
     .description{
         @include content-size(18px, 33px, 48px);
     }
@@ -58,6 +111,31 @@
             }
         }
 
+    }
+}
+
+.embedded-dajnato-form {
+    font-size: 16px;
+
+    .embedded-dajnato-form-holder {
+        margin: 0 auto;
+        max-width: 600px;
+        border: 1px solid #dedede;
+        padding: 40px;
+        border-radius: 5px;
+    }
+
+    @include media-breakpoint-down(md) {
+        font-size: 16px;
+
+        .embedded-dajnato-form-holder {
+            padding: 20px;
+            border: none;
+        }
+    }
+
+    @include media-breakpoint-down(sm) {
+        font-size: 15px;
     }
 
     .donation-form{

@@ -1,76 +1,64 @@
-// @ts-check
-
 /**
- * Build configuration
+ * Compiler configuration
  *
- * @see {@link https://bud.js.org/guides/configure}
+ * @see {@link https://roots.io/docs/sage sage documentation}
+ * @see {@link https://bud.js.org/guides/configure bud.js configuration guide}
+ *
  * @param {import('@roots/bud').Bud} app
  */
 export default async (app) => {
-  app
     /**
-     * Application entrypoints
+     * Application assets & entrypoints
+     *
+     * @see {@link https://bud.js.org/docs/bud.entry}
+     * @see {@link https://bud.js.org/docs/bud.assets}
      */
-    .entry({
-      app: ["@scripts/app", "@styles/app"],
-      // editor: ["@scripts/editor", "@styles/editor"],
-    })
+    app
+            .entry('app', ['@scripts/app', '@styles/app'])
+            .entry('editor', ['@scripts/editor', '@styles/editor'])
+            .entry('media', ['@scripts/media'])
+            .assets(['images','fonts']);
 
     /**
-     * Directory contents to be included in the compilation
+     * Set public path
+     *
+     * @see {@link https://bud.js.org/docs/bud.setPublicPath}
      */
-    .assets(["images"])
+    app.setPublicPath('/app/themes/theme/public/');
 
     /**
-     * Matched files trigger a page reload when modified
+     * Development server settings
+     *
+     * @see {@link https://bud.js.org/docs/bud.setUrl}
+     * @see {@link https://bud.js.org/docs/bud.setProxyUrl}
+     * @see {@link https://bud.js.org/docs/bud.watch}
      */
-    .watch(["resources/views/**/*", "app/**/*"])
-
-    /**
-     * Proxy origin (`WP_HOME`)
-     */
-    .proxy("http://trnavka.devel")
-
-    /**
-     * Development origin
-     */
-    .serve("http://0.0.0.0:3000")
-
-    /**
-     * URI of the `public` directory
-     */
-    .setPublicPath("/app/themes/theme/public/")
+    app
+            .setUrl('http://localhost:3000')
+            .setProxyUrl('http://trnavka.devel')
+            .watch(['resources/views', 'app']);
 
     /**
      * Generate WordPress `theme.json`
      *
      * @note This overwrites `theme.json` on every build.
+     *
+     * @see {@link https://bud.js.org/extensions/sage/theme.json}
+     * @see {@link https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-json}
      */
-    .wpjson
-      .settings({
-        color: {
-          custom: false,
-          customGradient: false,
-          defaultPalette: false,
-          defaultGradients: false,
-        },
-        custom: {
-          spacing: {},
-          typography: {
-            'font-size': {},
-            'line-height': {},
-          },
-        },
-        spacing: {
-          padding: true,
-          units: ['px', '%', 'em', 'rem', 'vw', 'vh'],
-        },
-        typography: {
-          customFontSize: false,
-        },
-      })
-      .useTailwindColors()
-      .useTailwindFontFamily()
-      .useTailwindFontSize()
-      .enable()
+    app.wpjson
+            .set('settings.color.custom', false)
+            .set('settings.color.customDuotone', false)
+            .set('settings.color.customGradient', false)
+            .set('settings.color.defaultDuotone', false)
+            .set('settings.color.defaultGradients', false)
+            .set('settings.color.defaultPalette', false)
+            .set('settings.color.duotone', [])
+            .set('settings.custom.spacing', {})
+            .set('settings.custom.typography.font-size', {})
+            .set('settings.custom.typography.line-height', {})
+            .set('settings.spacing.padding', true)
+            .set('settings.spacing.units', ['px', '%', 'em', 'rem', 'vw', 'vh'])
+            .set('settings.typography.customFontSize', false)
+            .enable();
 };
