@@ -112,11 +112,19 @@ class Dajnato
 
     public function darujmeData(Campaign $campaign, array $data): array
     {
-        dd($data);
+        if ('recurring' === $data['onetimeOrRecurring']) {
+            $value = $data['recurringAmount'] ?? null;
+            $paymentType = $data['recurringPaymentType'];
+        }
+        else {
+            $value = $data['onetimeAmount'] ?? null;
+            $paymentType = $data['onetimePaymentType'];
+        }
+
         return [
             'campaign_id' => $campaign->darujmeId,
-            'value' => empty($data['amount']) ? $data['otherAmount'] : $data['amount'],
-            'payment_method_id' => $data['paymentType'],
+            'value' => empty($value) ? $data['otherAmount'] : $value,
+            'payment_method_id' => $paymentType,
             'first_name' => $data['firstName'],
             'last_name' => $data['lastName'],
             'email' => $data['email'],
