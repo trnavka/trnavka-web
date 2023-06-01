@@ -3,17 +3,13 @@
 namespace App\View\Composers;
 
 use App\Entity\FinancialSubject;
-use App\Form\Type\DarujmeDonationType;
-use App\Form\Type\DonationType;
 use App\Repositories\CampaignRepository;
 use App\Repositories\FinancialSubjectRepository;
 use App\Services\Dajnato;
 use App\Services\Darujme;
 use App\Services\WordPress;
 use Roots\Acorn\View\Composer;
-use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\Request;
-use Twig\Environment;
 
 class CampaignPage extends Composer
 {
@@ -28,14 +24,12 @@ class CampaignPage extends Composer
     ];
 
     public function __construct(
-        private CampaignRepository $campaignRepository,
+        private CampaignRepository         $campaignRepository,
         private FinancialSubjectRepository $financialSubjectRepository,
-        private WordPress          $wp,
-        private FormFactory        $formFactory,
-        private Environment        $twig,
-        private Request            $request,
-        private Darujme            $darujme,
-        private Dajnato $dajnato
+        private WordPress                  $wp,
+        private Request                    $request,
+        private Darujme                    $darujme,
+        private Dajnato                    $dajnato
     )
     {
     }
@@ -59,25 +53,26 @@ class CampaignPage extends Composer
         $showDajnatoStats = 'Uhb76xhTV7YeeWPGfu' === $this->request->query->get('dajnato', 'F');
 
         return [
-            'campaign' => $this->dajnato->campaign(),
-            'dajnato_cta_form_url' => $this->dajnato->formUrl(null, true),
-            'title' => $this->wp->title(),
-            'subscription_stats' => $subscriptionStats,
-            'subscription_amount' => 31000 + $subscriptionStats->sum / 100,
-            'active_campaigns' => $this->campaignRepository->findAllActive(),
-            'archived_campaigns' => $this->campaignRepository->findAllArchived(),
-            'trnavka_financial_subject' => $trnavkaFinancialSubject,
-            'financial_subjects' => [$trnavkaFinancialSubject, ...$financialSubjects],
-        ] + ($showDajnatoStats ? [
-            'dajnato_stats' => $this->darujme->stats(),
-        ] : []);
+                'campaign' => $this->dajnato->campaign(),
+                'dajnato_cta_form_url' => $this->dajnato->formUrl(null, true),
+                'title' => $this->wp->title(),
+                'subscription_stats' => $subscriptionStats,
+                'subscription_amount' => 31000 + $subscriptionStats->sum / 100,
+                'active_campaigns' => $this->campaignRepository->findAllActive(),
+                'archived_campaigns' => $this->campaignRepository->findAllArchived(),
+                'trnavka_financial_subject' => $trnavkaFinancialSubject,
+                'financial_subjects' => [$trnavkaFinancialSubject, ...$financialSubjects],
+            ] + ($showDajnatoStats ? [
+                'dajnato_stats' => $this->darujme->stats(),
+            ] : []);
     }
 
     /**
      * @param FinancialSubject[] $financialSubjects
      * @return FinancialSubject
      */
-    private function trnavkaMetaFinancialSubject(array $financialSubjects): FinancialSubject {
+    private function trnavkaMetaFinancialSubject(array $financialSubjects): FinancialSubject
+    {
         $trnavka = new FinancialSubject();
 
         $trnavka
