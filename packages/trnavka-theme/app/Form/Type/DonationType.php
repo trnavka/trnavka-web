@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Form\Type;
 
 use App\Entity\Campaign;
+use App\Services\Dajnato;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -21,29 +22,91 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class DonationType extends AbstractType
 {
+    public function __construct(private Dajnato $dajnato)
+    {
+    }
+
     public function buildForm(
         FormBuilderInterface $builder,
         array                $options
     ): void
     {
-        $isCampaign = $options['campaign'] instanceof Campaign;
+        /** @var Campaign $campaign */
+        $campaign = $options['campaign'];
+        $oneTimePaymentsEnabled = $this->dajnato->oneTimePaymentsEnabled($campaign);
+        $recurringPaymentsEnabled = $this->dajnato->recurringPaymentsEnabled($campaign);
+
+        if ($oneTimePaymentsEnabled) {
+            $builder
+                ->add('onetimeAmount', ChoiceType::class, [
+                    'label' => false,
+                    'expanded' => true,
+                    'choices' => $this->amountChoices($campaign->options),
+                    'choice_attr' => function (
+                        $choice,
+                        $key
+                    ) {
+                        return 'Iná suma' === $key ? ['data-is-other' => 'T'] : [];
+                    },
+                ])
+                ->add('onetimePaymentType', ChoiceType::class, [
+                    'label' => false,
+                    'expanded' => true,
+                    'choices' => [
+                        'Platba kartou' => '1342d2af-a343-4e73-9f5a-7593b9978697',
+                        'Platba prevodom na účet' => '3dcf55d1-6383-45b4-b098-dc588187b854',
+                        'Apple Pay alebo Google Pay' => '1342d2af-a343-4e73-9f5a-7593b9978697',
+                        'Platba cez internet banking (VÚB)' => 'f2e7956e-a3f6-4bff-9e18-2ab3096a5bed',
+                        'Platba cez internet banking (Slovenská Sporiteľňa)' => 'c07e714c-74ed-4ac6-ab63-3898a73f1fa0',
+                        'Platba cez internet banking (Tatra banka)' => '38409407-c4ec-4060-b4a1-4792f29335ad',
+                    ],
+                    'constraints' => [
+                        new NotBlank([
+                            'groups' => ['onetime'],
+                            'message' => 'Vyberte spôsob platby'
+                        ])
+                    ]
+                ]);
+        }
+
+        if ($recurringPaymentsEnabled) {
+            $builder
+                ->add('recurringAmount', ChoiceType::class, [
+                    'label' => false,
+                    'expanded' => true,
+                    'choices' => $this->amountChoices($campaign->recurringOptions),
+                    'choice_attr' => function (
+                        $choice,
+                        $key
+                    ) {
+                        return 'Iná suma' === $key ? ['data-is-other' => 'T'] : [];
+                    },
+                    'label_html' => true
+                ])
+                ->add('recurringPaymentType', ChoiceType::class, [
+                    'label' => false,
+                    'expanded' => true,
+                    'choices' => [
+                        'Platba kartou' => 'b71ff7cf-39f7-40db-8a34-e1f30292c215',
+                        'Platba trvalým príkazom' => 'f425f4af-74ce-4a9b-82d6-783c93b80f17',
+                    ],
+                    'constraints' => [
+                        new NotBlank([
+                            'groups' => ['recurring'],
+                            'message' => 'Vyberte spôsob platby'
+                        ])
+                    ]
+                ]);
+        }
 
         $builder
-            ->add('amount', ChoiceType::class, [
+            ->add('onetimeOrRecurring', ChoiceType::class, [
                 'label' => false,
                 'expanded' => true,
-                'choices' => $isCampaign ? $this->campaignOptions($options['campaign']) : [
-                    '9&nbsp;€' => 9,
-                    '29&nbsp;€' => 29,
-                    '99&nbsp;€' => 99,
-                    'Iná suma' => '',
+                'choices' => [
+                    'Každý mesiac' => 'recurring',
+                    'Jednorazovo' => 'onetime',
                 ],
-                'choice_attr' => function (
-                    $choice,
-                    $key
-                ) {
-                    return 'Iná suma' === $key ? ['data-is-other' => 'T'] : [];
-                },
             ])
             ->add('otherAmount', NumberType::class, [
                 'label' => 'Iná suma',
@@ -87,65 +150,52 @@ class DonationType extends AbstractType
                     new Email(['message' => 'Zadajte platnú emailovú adresu'])
                 ]
             ])
-            ->add('paymentType', ChoiceType::class, [
-                'label' => false,
-                'expanded' => true,
-                'choices' => $isCampaign ? [
-                    'Platba kartou' => '1342d2af-a343-4e73-9f5a-7593b9978697',
-                    'Platba prevodom na účet' => '3dcf55d1-6383-45b4-b098-dc588187b854',
-                    'Platba cez internet banking (VÚB)' => 'f2e7956e-a3f6-4bff-9e18-2ab3096a5bed',
-                    'Platba cez internet banking (Slovenská Sporiteľňa)' => 'c07e714c-74ed-4ac6-ab63-3898a73f1fa0',
-                    'Platba cez internet banking (Tatra banka)' => '38409407-c4ec-4060-b4a1-4792f29335ad',
-                ] : [
-                    'Platba kartou' => 'b71ff7cf-39f7-40db-8a34-e1f30292c215',
-                    'Platba trvalým príkazom' => 'f425f4af-74ce-4a9b-82d6-783c93b80f17',
-                ],
-                'constraints' => [
-                    new NotBlank(['message' => 'Vyberte spôsob platby'])
-                ]
-            ])
             ->add('terms', CheckboxType::class, [
-                'label' => 'Potvrdzujem, že mám preštudované informácie o <a href="http://saleziani.sk/msaleziani/gdpr" target="_blank">spracovaní osobných údajov</a> organizáciou Saleziáni dona Bosca – Slovenská provincia, ktorej poskytujem dar',
+                'label' => 'Potvrdzujem, že mám informácie o <a href="http://saleziani.sk/msaleziani/gdpr" target="_blank">spracovaní osobných údajov</a> organizáciou Saleziáni don Bosca, ktorej poskytujem dar',
                 'label_html' => true,
                 'constraints' => [
                     new IsTrue()
                 ]
             ])
             ->add('gdpr', CheckboxType::class, [
-                'label' => 'Potvrdzujem, že mám preštudované informácie o spracovaní Osobných údajov v systéme <a href="https://darujme.sk/pravidla-ochrany-osobnych-udajov/" target="_blank">DARUJME.sk</a>',
+                'label' => 'Potvrdzujem, že mám informácie o spracovaní osobných údajov v systéme <a href="https://darujme.sk/pravidla-ochrany-osobnych-udajov/" target="_blank">DARUJME.sk</a>',
                 'label_html' => true,
                 'constraints' => [
                     new IsTrue()
                 ]
             ]);
-
-        if ($isCampaign) {
-            $builder
-                ->add('isCampaignForm', HiddenType::class, [
-                    'mapped' => false,
-                ]);
-        }
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([
-            'csrf_protection' => false,
-            'campaign' => null,
-            'validation_groups' => function (FormInterface $form) {
-                if (null === $form->getData()['amount']) {
-                    return ['Default', 'other_amount'];
-                }
+        $resolver
+//            ->setAllowedTypes('campaign', Campaign::class)
+            ->setDefaults([
+                'csrf_protection' => false,
+                'values' => [],
+                'campaign' => $this->dajnato->campaign(),
+                'validation_groups' => function (
+                    FormInterface $form
+                ) {
+                    $data = $form->getData();
 
-                return ['Default'];
-            },
-            'donation_type' => 'campaign'
-        ]);
+                    $validationGroup = 'recurring' === $data['onetimeOrRecurring'] ? 'recurring' : 'onetime';
+
+                    if ('' === $form->getData()['recurring' === $data['onetimeOrRecurring'] ? 'recurringAmount' : 'onetimeAmount']) {
+                        return ['Default', 'other_amount', $validationGroup];
+                    }
+
+                    return ['Default', $validationGroup];
+                },
+                'donation_type' => 'campaign'
+            ]);
     }
 
-    private function campaignOptions(Campaign $campaign): array
+    private function amountChoices($options): array
     {
-        return collect($campaign->options)->mapWithKeys(function ($option) {
+        return collect($options)->reject('empty')->mapWithKeys(function (
+                $option
+            ) {
                 return [sprintf('%d&nbsp;€', $option) => $option];
             })->toArray() + ['Iná suma' => ''];
     }

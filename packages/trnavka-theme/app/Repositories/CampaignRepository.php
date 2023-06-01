@@ -24,7 +24,7 @@ class CampaignRepository
      */
     public function findAllActive(): array
     {
-        return $this->findAll('publish');
+        return $this->findAllPublished('publish');
     }
 
     /**
@@ -32,13 +32,25 @@ class CampaignRepository
      */
     public function findAllArchived(): array
     {
-        return $this->findAll('archived');
+        return $this->findAllPublished('archived');
     }
 
     /**
      * @return Campaign[]
      */
-    public function findAll(null | string $status = null): array
+    public function findAllPublished(null|string $status = null): array
+    {
+        return collect($this->findAll($status))
+            ->filter(fn(
+                Campaign $campaign
+            ) => $campaign->published)
+            ->toArray();
+    }
+
+    /**
+     * @return Campaign[]
+     */
+    public function findAll(null|string $status = null): array
     {
         $args = array(
             'post_type' => 'campaign',
@@ -52,7 +64,9 @@ class CampaignRepository
         }
 
         return collect((new WP_Query($args))->get_posts())
-            ->map(fn(WP_Post $post) => $this->hydrateEntity($post))
+            ->map(fn(
+                WP_Post $post
+            ) => $this->hydrateEntity($post))
             ->toArray();
     }
 
@@ -78,9 +92,16 @@ class CampaignRepository
                 (int)($data['option_2'] ?? 30),
                 (int)($data['option_3'] ?? 99),
             ])
-            ->setGoalAmount((int)round($data['goal_amount']))
+            ->setRecurringOptions([
+                (int)($data['recurring_option_1'] ?? null),
+                (int)($data['recurring_option_2'] ?? null),
+                (int)($data['recurring_option_3'] ?? null),
+            ])
+            ->setGoalAmount((int)round($data['goal_amount'] ?? 0))
             ->setDajnatoAmount((int)round($data['dajnato_amount'] ?? 0))
             ->setActive($post->post_status === 'publish')
+            ->setPublished('T' === ($data['published'] ?? 'T'))
+            ->setTitleShown('T' === ($data['title_shown'] ?? 'T'))
             ->setCurrentAmount((int)round((float)($data['start_amount'] ?? 0) + (float)($currentAmount ?? 0)));
     }
 }

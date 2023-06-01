@@ -7,6 +7,7 @@ use App\Form\Type\DarujmeDonationType;
 use App\Form\Type\DonationType;
 use App\Repositories\CampaignRepository;
 use App\Repositories\FinancialSubjectRepository;
+use App\Services\Dajnato;
 use App\Services\Darujme;
 use App\Services\WordPress;
 use Roots\Acorn\View\Composer;
@@ -33,7 +34,8 @@ class CampaignPage extends Composer
         private FormFactory        $formFactory,
         private Environment        $twig,
         private Request            $request,
-        private Darujme            $darujme
+        private Darujme            $darujme,
+        private Dajnato $dajnato
     )
     {
     }
@@ -50,47 +52,6 @@ class CampaignPage extends Composer
             exit;
         }
 
-        $form = $this->formFactory
-            ->createNamedBuilder('donation', DonationType::class, [
-                'amount' => 29
-            ], [
-                'donation_type' => 'subscription',
-                'action' => $this->wp->pageUrl(),
-            ])
-            ->getForm();
-
-        $formContent = null;
-
-        if ($this->request->isMethod('POST')) {
-            $form->submit($this->request->get('donation'));
-
-            if ($form->isValid()) {
-                $data = $form->getData();
-                $form = $this->formFactory
-                    ->createNamedBuilder('donation', DarujmeDonationType::class, [
-                        'campaign_id' => 'de161f1d-6f09-4d51-b1ae-d0f2207b9215',
-                        'value' => empty($data['amount']) ? $data['otherAmount'] : $data['amount'],
-                        'payment_method_id' => $data['paymentType'],
-                        'first_name' => $data['firstName'],
-                        'last_name' => $data['lastName'],
-                        'email' => $data['email'],
-                    ], [
-                        'action' => 'https://api.darujme.sk/v1/donations/post/'
-                    ])
-                    ->getForm();
-
-                $formContent = preg_replace('/donation\\[([a-zA-Z_]*)]/ms', '$1', $this->twig->render('darujmeForm.html.twig', array(
-                    'form' => $form->createView(),
-                )));
-            }
-        }
-
-        if (null === $formContent) {
-            $formContent = $this->twig->render('campaign.html.twig', array(
-                'donation_form' => $form->createView(),
-            ));
-        }
-
         $financialSubjects = $this->financialSubjectRepository->findAll();
         $trnavkaFinancialSubject = $this->trnavkaMetaFinancialSubject($financialSubjects);
         $subscriptionStats = $this->darujme->subscriptionStats();
@@ -98,6 +59,8 @@ class CampaignPage extends Composer
         $showDajnatoStats = 'Uhb76xhTV7YeeWPGfu' === $this->request->query->get('dajnato', 'F');
 
         return [
+            'campaign' => $this->dajnato->campaign(),
+            'dajnato_cta_form_url' => $this->dajnato->formUrl(null, true),
             'title' => $this->wp->title(),
             'subscription_stats' => $subscriptionStats,
             'subscription_amount' => 31000 + $subscriptionStats->sum / 100,
@@ -105,7 +68,6 @@ class CampaignPage extends Composer
             'archived_campaigns' => $this->campaignRepository->findAllArchived(),
             'trnavka_financial_subject' => $trnavkaFinancialSubject,
             'financial_subjects' => [$trnavkaFinancialSubject, ...$financialSubjects],
-            'form' => $formContent
         ] + ($showDajnatoStats ? [
             'dajnato_stats' => $this->darujme->stats(),
         ] : []);

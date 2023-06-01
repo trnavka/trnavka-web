@@ -6,9 +6,14 @@
 
 namespace App;
 
+use App\Entity\Campaign;
 use App\Metabox\CampaignMetabox;
 use App\Metabox\FinancialSubjectMetabox;
+use App\Metabox\SmallThumbnailMetabox;
+use App\Repositories\CampaignRepository;
+use Log1x\SageDirectives\Directives;
 use function Roots\bundle;
+use function Roots\view;
 
 /**
  * Register the theme assets.
@@ -18,9 +23,13 @@ use function Roots\bundle;
 add_action('wp_enqueue_scripts', function () {
     bundle('app')->enqueue();
 
-    wp_dequeue_style('wp-block-library');
-    wp_dequeue_style('wp-block-library-theme');
-    wp_dequeue_style('wc-blocks-style'); // Remove WooCommerce block CSS
+//    wp_dequeue_style('wp-block-library');
+//    wp_dequeue_style('wp-block-library-theme');
+//    wp_dequeue_style('wc-blocks-style'); // Remove WooCommerce block CSS
+}, 100);
+
+add_action('admin_enqueue_scripts', function (): void {
+    bundle('media')->enqueue();
 }, 100);
 
 /**
@@ -29,7 +38,7 @@ add_action('wp_enqueue_scripts', function () {
  * @return void
  */
 add_action('enqueue_block_editor_assets', function () {
-//    bundle('editor')->enqueue();
+    bundle('editor')->enqueue();
 }, 100);
 
 /**
@@ -109,7 +118,6 @@ add_action('after_setup_theme', function () {
         'style',
     ]);
 
-    add_theme_support('editor-color-palette');
     add_theme_support('disable-custom-colors');
 
     remove_action('wp_enqueue_scripts', 'wp_enqueue_global_styles');
@@ -246,21 +254,97 @@ remove_action('wp_head', 'rel_canonical');
 add_action('init', function () {
     header("Access-Control-Allow-Origin: *");
 
+    add_rewrite_rule('dajnato-form/?$', 'index.php?static_template=dajnato-form', 'top');
+
+    // Not required. Just here for easier local development.
+    flush_rewrite_rules();
+
     if (!is_admin() && 'productions' === WP_ENV) {
         wp_deregister_script('jquery');
 //        wp_register_script('jquery', false);
     }
 
     register_post_status('archived', [
-        'label'                     => _x( 'Archived', 'post' ),
-        'label_count'               => _n_noop( 'Archived <span class="count">(%s)</span>', 'Archived <span class="count">(%s)</span>'),
-        'public'                    => true,
-        'show_in_admin_all_list'    => true,
+        'label' => _x('Archived', 'post'),
+        'label_count' => _n_noop('Archived <span class="count">(%s)</span>', 'Archived <span class="count">(%s)</span>'),
+        'public' => true,
+        'show_in_admin_all_list' => true,
         'show_in_admin_status_list' => true
     ]);
+
+    if (is_admin()) {
+        $campaignRepository = new CampaignRepository();
+
+        $defaultAttributes = [
+            'dajnato-cta' => [
+                'title' => [
+                    'type' => 'string',
+                    'default' => 'Chcem podporiť Daj na to!'
+                ],
+                'button' => [
+                    'type' => 'string',
+                    'default' => 'Pokračovať'
+                ],
+                'campaign_id' => [
+                    'type' => 'string',
+                    'default' => '',
+                ],
+                'campaigns' => [
+                    'type' => 'array',
+                    'default' => collect($campaignRepository->findAll())->map(fn(
+                        Campaign $campaign
+                    ) => [
+                        'id' => $campaign->id,
+                        'title' => $campaign->title,
+                    ])->toArray()
+                ],
+            ]
+        ];
+    }
+
+    foreach (scandir(TEMPLATEPATH . '/resources/views/blocks/') as $filename) {
+        preg_match('~([a-zA-Z0-9-]+)\.blade\.php~', $filename, $matches);
+
+        if (isset($matches[1])) {
+            register_block_type('theme/' . $matches[1] . '-block', [
+                'attributes' => $defaultAttributes[$matches[1]] ?? [],
+                'render_callback' => fn(
+                    $attributes,
+                    $content
+                ): string => view('blocks/' . $matches[1], compact('attributes', 'content'))->render()
+            ]);
+        }
+    }
 });
 
-add_action('admin_footer-edit.php',function () {
+add_filter('query_vars', function (
+    $queryVars
+) {
+    $queryVars[] = 'static_template';
+    $queryVars[] = 'campaign_id';
+
+    return $queryVars;
+});
+
+add_action('template_include', function (
+    $template
+) {
+    $staticQueryVarValue = get_query_var('static_template');
+
+    if ('dajnato-form' === $staticQueryVarValue) {
+//dd(get_stylesheet_directory() . "/static-templates/resources/views/campaign.blade.php");
+        return get_stylesheet_directory() . "/resources/views/dajnato-form.blade.php";
+    }
+
+    return $template;
+});
+
+add_theme_support('post-thumbnails');
+add_filter('big_image_size_threshold', function () {
+    return 3000;
+});
+
+add_action('admin_footer-edit.php', function () {
     echo "<script>
         jQuery(document).ready( function() {
             jQuery( 'select[name=\"_status\"]' ).append( '<option value=\"archived\">Archived</option>' );
@@ -268,11 +352,11 @@ add_action('admin_footer-edit.php',function () {
         </script>";
 });
 
-$addArchivedPostStatus = function (){
+$addArchivedPostStatus = function () {
     global $post;
 
-    if($post->post_type === 'campaign') {
-        if($post->post_status === 'archived'){
+    if ($post->post_type === 'campaign') {
+        if ($post->post_status === 'archived') {
             echo '
                 <script>
                 jQuery(document).ready(function($){
@@ -285,7 +369,7 @@ $addArchivedPostStatus = function (){
         echo '
             <script>
             jQuery(document).ready(function($){
-                $("select#post_status").append("<option value=\"archived\" '.selected( $post->post_status, 'archived', false ).'>Archived</option>");
+                $("select#post_status").append("<option value=\"archived\" ' . selected($post->post_status, 'archived', false) . '>Archived</option>");
             });
             </script>';
     }
@@ -294,4 +378,5 @@ $addArchivedPostStatus = function (){
 add_action('post_submitbox_misc_actions', $addArchivedPostStatus, 0);
 
 new CampaignMetabox();
+new SmallThumbnailMetabox();
 new FinancialSubjectMetabox();

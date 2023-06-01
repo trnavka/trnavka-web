@@ -2,17 +2,37 @@
     background-color: #e4e4e4;
     padding: 48px;
 
+    @include media-breakpoint-down(md) {
+        padding: 36px;
+    }
+
+    @include media-breakpoint-down(sm) {
+        padding: 20px;
+
+        .btn-donate {
+            margin-bottom: 0;
+        }
+    }
+
     .title {
-        @include title-size(18px, 22px, 32px);
+        @include title-size(18px, 25px, 32px);
         font-weight: $font-weight-bold;
         text-align: center;
         padding-top: 9px;
+
+        @include media-breakpoint-down(sm) {
+            margin-bottom: 20px;
+        }
     }
 
     .prices {
         display: flex;
         align-items: center;
         margin-bottom: 36px;
+
+        @include media-breakpoint-down(sm) {
+            margin-bottom: 20px;
+        }
 
         .price-input {
             width: 100%;
@@ -77,6 +97,10 @@
     border: 0;
     border-radius: 0;
     margin-bottom: 0;
+
+    &:disabled {
+        opacity: 0.5;
+    }
 
     &:focus-visible {
         outline: none;

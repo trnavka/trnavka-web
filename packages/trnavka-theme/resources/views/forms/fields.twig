@@ -26,7 +26,15 @@
     {{ block('radio_btn_group') }}
 {% endblock %}
 
-{% block _donation_amount_row %}
+{% block _donation_recurringAmount_row %}
+    {{ block('radio_btn_group') }}
+{% endblock %}
+
+{% block _donation_onetimeAmount_row %}
+    {{ block('radio_btn_group') }}
+{% endblock %}
+
+{% block _donation_onetimeOrRecurring_row %}
     {{ block('radio_btn_group') }}
 {% endblock %}
 

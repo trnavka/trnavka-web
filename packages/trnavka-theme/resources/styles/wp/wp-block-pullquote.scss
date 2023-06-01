@@ -1,0 +1,37 @@
+.wp-block-pullquote {
+    color: $primary;
+    font-size: 24px;
+    line-height: 32px;
+
+    font-weight: $font-weight-bold;
+    text-align: left;
+    padding: 40px;
+    margin: 48px 0;
+    border-left: 1px solid $primary;
+
+    blockquote {
+        margin-bottom: 0;
+    }
+
+    p:first-child {
+        margin-top: 0;
+    }
+
+    p:last-child {
+        margin-bottom: 0;
+    }
+
+    @include media-breakpoint-down(md) {
+        font-size: 21px;
+        line-height: 28px;
+        padding: 30px;
+        margin: 30px 0;
+    }
+
+    @include media-breakpoint-down(sm) {
+        font-size: 17px;
+        line-height: 25px;
+        padding: 20px;
+        margin: 30px 0;
+    }
+}

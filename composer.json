@@ -23,11 +23,11 @@
         "oscarotero/env": "^2.1",
         "roots/bedrock-autoloader": "^1.0",
         "roots/bedrock-disallow-indexing": "^2.0.0",
-        "roots/wordpress": "^6.1.1",
+        "roots/wordpress": "^6.2.1",
         "roots/wp-config": "1.0.0",
         "roots/wp-password-bcrypt": "1.1.0",
         "packages/awesome-flickr-gallery-plugin": "3.5.6",
-        "roots/acorn": "^2.1",
+        "roots/acorn": "^3.1",
         "trnavka/theme": "0.0.1",
         "symfony/form": "^6.0",
         "symfony/twig-bridge": "^6.0",
@@ -70,6 +70,9 @@
     "scripts": {
         "post-root-package-install": [
             "php -r \"copy('.env.example', '.env');\""
+        ],
+        "post-autoload-dump": [
+            "Roots\\Acorn\\ComposerScripts::postAutoloadDump"
         ]
     }
 }

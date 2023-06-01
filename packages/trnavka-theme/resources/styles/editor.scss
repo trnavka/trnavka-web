@@ -1,0 +1,98 @@
+@import 'config';
+@import "~bootstrap/scss/bootstrap";
+@import 'fonts';
+@import 'wp/wp-block-pullquote';
+
+.edit-post-visual-editor {
+    margin: 0 15px;
+}
+
+.edit-post-visual-editor__post-title-wrapper {
+    margin-top: 15px;
+}
+
+.wp-block {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Montserrat, sans-serif !important;
+}
+
+.dajnato-cta-block-editor {
+    background-color: #F4F4F4;
+    padding: 38px 48px 48px 48px;
+    max-width: 540px;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .dajnato-values {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+
+        margin-top: 30px;
+        margin-bottom: 30px;
+
+        .dajnato-value {
+            flex: 1 1 80px;
+            text-align: center;
+
+            border: 2px solid #c4c5c6;
+            display: inline-block;
+            margin-bottom: 0;
+            padding: 13px 5px;
+
+            &:not(:first-child) {
+                position: relative;
+                margin-left: -2px;
+            }
+
+            input[type=number] {
+                width: 100%;
+                font-size: 18px;
+                font-weight: 700;
+                line-height: 22px;
+                border: none;
+                background: none;
+            }
+
+            &.dajnato-value-selected {
+                background-color: #F4524D;
+                border-color: #F4524D;
+                z-index: 1000;
+
+                input[type=number] {
+                    color: white;
+                }
+            }
+        }
+    }
+
+    textarea {
+        text-align: center;
+        font-size: 18px;
+        font-weight: 700;
+        border: none;
+        background: none;
+        width: 100%;
+    }
+
+    input {
+        text-align: center;
+
+        &.dajnato-button {
+            background: #f4524d;
+            border: 0;
+            border-radius: 0;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 22px;
+            margin-bottom: 0;
+            padding: 19px 10px 15px;
+            width: 100%;
+        }
+    }
+}

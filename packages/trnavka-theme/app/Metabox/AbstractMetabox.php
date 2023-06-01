@@ -12,19 +12,23 @@ class AbstractMetabox
     public function __construct(
         string $postTypeId,
         string $title,
-        array  $args
+        array $metaboxArgs,
+        array|null $postTypeArgs = null
     )
     {
         $this->postTypeId = $postTypeId;
         $this->metaboxId = static::id();
 
-        add_action('init', fn() => register_post_type($postTypeId, $args));
+        if (null !== $postTypeArgs) {
+            add_action('init', fn() => register_post_type($postTypeId, $postTypeArgs));
+        }
+
         add_action('add_meta_boxes', fn() => add_meta_box(
             $this->metaboxId,
             $title,
             [$this, 'renderMetaBox'],
             $this->postTypeId,
-            'advanced',
+            $metaboxArgs['context'] ?? 'advanced',
             'high'
         ));
         add_action('save_post', [$this, 'saveMetaBox']);
@@ -53,9 +57,14 @@ class AbstractMetabox
             update_post_meta(
                 $postId,
                 $this->metaboxId,
-                $_POST[$this->metaboxId]
+                $this->formToModelData($_POST[$this->metaboxId])
             );
         }
+    }
+
+    protected function formToModelData(array $postData): array
+    {
+        return $postData;
     }
 
     private function nonceId(): string
