@@ -7,6 +7,8 @@ use Roots\Acorn\View\Composer;
 
 class DajnatoCta extends Composer
 {
+    private static int $prefixCount = 0;
+
     /**
      * @var array
      */
@@ -27,11 +29,11 @@ class DajnatoCta extends Composer
 
         return [
             'dajnato_cta_form_url' => $this->dajnato->formUrl($campaign->id),
-            'dajnato_cta_title' => $attributes['title'] ?? 'Chcem podporiť Daj na to!',
+            'dajnato_cta_title' => $attributes['title'] ?? 'Mesačne budem prispievať do Daj na to!',
             'dajnato_cta_button' => $attributes['button'] ?? 'Pokračovať',
             'dajnato_cta_values' => $this->dajnato->campaignValues($campaign),
 
-            'prefix' => rand(1, 100)
+            'prefix' => 'p' . (++self::$prefixCount),
         ];
     }
 }

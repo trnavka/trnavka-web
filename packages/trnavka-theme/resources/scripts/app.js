@@ -9,12 +9,18 @@ $(document).ready(function () {
     $('body')
         .on('click', '.btn-dajnato-cta', function () {
             const $button = $(this);
-            const url = $button.data('form-url');
+            let url = $button.data('form-url');
             const dialog = $('#dajnato-cta-modal .modal-dialog');
             const buttonText = $button.text();
 
             if ('BUTTON' === $button.prop('tagName')) {
                 $button.text('Čakajte...').prop('disabled', true);
+            }
+
+            const $formWidget = $button.closest('.form-widget');
+
+            if ($formWidget.length > 0) {
+                url += (url.indexOf('?') === -1 ? '?' : '&') + 'campaign_value=' + $formWidget.find('input[type=radio]:checked').val()
             }
 
             $.get(url).then((response) => {

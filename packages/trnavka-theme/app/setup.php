@@ -11,7 +11,6 @@ use App\Metabox\CampaignMetabox;
 use App\Metabox\FinancialSubjectMetabox;
 use App\Metabox\SmallThumbnailMetabox;
 use App\Repositories\CampaignRepository;
-use Log1x\SageDirectives\Directives;
 use function Roots\bundle;
 use function Roots\view;
 
@@ -322,6 +321,7 @@ add_filter('query_vars', function (
 ) {
     $queryVars[] = 'static_template';
     $queryVars[] = 'campaign_id';
+    $queryVars[] = 'campaign_value';
 
     return $queryVars;
 });

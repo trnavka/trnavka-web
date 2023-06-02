@@ -4,7 +4,34 @@
     padding-right: 32px;
 
     @include media-breakpoint-down(md) {
-        padding: 32px;
+        padding-left: 0;
+        padding-right: 0;
+        padding-bottom: 0;
+
+        .container-fluid {
+            //padding: 0;
+        }
+
+        .donate-form-block {
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+
+        .subscription-widget-holder {
+            padding: 0;
+        }
+
+        h2,
+        .donate-content {
+            padding-left: 32px;
+            padding-right: 32px;
+        }
+
+        //.col,
+        //.col-md-6 {
+        //    padding-left: 0;
+        //    padding-right: 0;
+        //}
     }
 
     background-color: #f4f4f4;

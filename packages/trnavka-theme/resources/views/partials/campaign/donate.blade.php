@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="col-md-6 subscription-widget-holder">
-                @include('partials.campaign.subscription-widget', ['prefix' => 'top', 'emphasize_background' => true])
+                @include('blocks.dajnato-cta')
             </div>
         </div>
     </div>
