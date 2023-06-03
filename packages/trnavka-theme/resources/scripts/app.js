@@ -7,6 +7,9 @@ $(document).ready(function () {
     const dajnatoCTAModal = new Modal('#dajnato-cta-modal');
 
     $('body')
+        .on('hidden.bs.modal', '#dajnato-cta-modal', function() {
+            $('#dajnato-cta-modal form').remove();
+        })
         .on('click', '.btn-dajnato-cta', function () {
             const $button = $(this);
             let url = $button.data('form-url');

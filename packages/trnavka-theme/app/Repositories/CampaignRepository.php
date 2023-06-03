@@ -55,8 +55,8 @@ class CampaignRepository
         $args = array(
             'post_type' => 'campaign',
             'posts_per_page' => 1000,
-            'orderby' => 'title',
-            'order' => 'ASC',
+            'orderby' => 'post_date',
+            'order' => 'DESC',
         );
 
         if (null !== $status) {
