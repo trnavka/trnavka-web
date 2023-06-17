@@ -284,6 +284,10 @@ add_action('init', function () {
                     'type' => 'string',
                     'default' => 'Pokračovať'
                 ],
+                'button_url' => [
+                    'type' => 'string',
+                    'default' => ''
+                ],
                 'campaign_id' => [
                     'type' => 'string',
                     'default' => '',

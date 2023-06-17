@@ -26,10 +26,14 @@ class DajnatoCta extends Composer
     {
         $campaign = $this->dajnato->campaign();
         $attributes = $this->view->getData()['attributes'] ?? [];
+        $buttonUrl = $attributes['button_url'] ?? '';
+        $hasOnlyButton = 'button' === ($attributes['campaign_id'] ?? '') && !empty($buttonUrl);
 
         return [
             'dajnato_cta_form_url' => $this->dajnato->formUrl($campaign->id, true),
             'dajnato_cta_title' => $attributes['title'] ?? 'Mesačne budem prispievať do Daj na to!',
+            'dajnato_cta_has_only_button' => $hasOnlyButton,
+            'dajnato_cta_button_url' => $buttonUrl,
             'dajnato_cta_button' => $attributes['button'] ?? 'Pokračovať',
             'dajnato_cta_values' => $this->dajnato->campaignValues($campaign),
 

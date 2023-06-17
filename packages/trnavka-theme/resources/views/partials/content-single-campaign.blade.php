@@ -38,7 +38,7 @@
             @if($campaign->active)
                 @if($campaign->dajnatoAmount > 0)
                     <div class="dajnato-amount">
-                        Vďaka pravidelným darcom mohlo DAJ NA TO prispieť na túto zbierku sumou {!! $campaign->getDajnatoAmountFormatted() !!}.
+                        Z grantového fondu Daj na to!, ktorý tvoria pravidelní darcovia, bola na túto zbierku poskytnutá suma {!! $campaign->getDajnatoAmountFormatted() !!}.
                     </div>
                 @endif
 
@@ -62,7 +62,7 @@
             @endif
         </div>
     </div>
-    <div class="embedded-dajnato-form">
+    <div class="embedded-dajnato-form" id="darovaci-formular">
         <div class="container-fluid">
             @if($campaign->active)
                 <div class="embedded-dajnato-form-holder">

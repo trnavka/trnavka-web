@@ -26,12 +26,27 @@ export default {
                                 });
                     }} value={props.attributes.campaign_id}>
                         <option>automaticky zvolená kampaň</option>
+                        <option value={'button'}>len CTA tlačidlo</option>
                         {props.attributes.campaigns.map(
                                 (campaign,
                                         index) =>
                                         <option key={index} value={campaign['id']}>{campaign['title']}</option>)}
                     </select>
                 </div>
+                {'button' === props.attributes.campaign_id && <div className={'button-url'}>
+                    Url tlačidla: <input
+                            type="text"
+                            className={'regular-text'}
+                            onChange={event => {
+                                props.setAttributes(
+                                        {
+                                            ...props.attributes,
+                                            button_url: event.target.value
+                                        });
+                            }}
+                            value={props.attributes.button_url}
+                    />
+                </div>}
                 <input
                         type="text"
                         className={'regular-text dajnato-button'}
