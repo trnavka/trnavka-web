@@ -24,7 +24,7 @@
             @endif
 
             @if($show_only_form)
-                <a href="{{ $campaign->slug }}/">Zobraziť detaily kampane</a>
+                <a href="../{{ $campaign->slug }}/">Zobraziť detaily kampane</a>
             @else
                 @php(the_content())
             @endif
