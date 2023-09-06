@@ -9,7 +9,7 @@
                     </p>
 
                     <div class="header-dajnato-button">
-                        <button type="button" class="btn-donate" data-bs-toggle="modal" data-bs-target="#donationModal">Podporiť</button>
+                        <button type="button" class="btn-donate btn-dajnato-cta" data-form-url="{{ $dajnato_cta_form_url }}">Podporiť</button>
                     </div>
                 </div>
             </div>

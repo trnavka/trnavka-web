@@ -14,6 +14,23 @@
     }
 }
 
+.subscription-widget-holder {
+    .donate-form-block,
+    .donate-form-widget {
+        background-color: #e4e4e4;
+    }
+
+    .donate-form-block {
+        margin: 0;
+    }
+}
+
+.donate-form-widget {
+    .donate-form-block {
+        margin: 0;
+    }
+}
+
 .donate-form-block {
     @include section-margin(48px, 70px);
 
@@ -24,6 +41,12 @@
 
 .btn-dajnato-cta {
     cursor: pointer;
+    transition: background-color 150ms;
+
+    &:disabled {
+        background-color: #e8938e;
+        opacity: 1;
+    }
 }
 
 .dajnato-payment-type {

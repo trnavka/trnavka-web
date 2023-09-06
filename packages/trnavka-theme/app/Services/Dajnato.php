@@ -100,11 +100,11 @@ class Dajnato
         ];
 
         if ($recurring) {
-            $result['recurringAmount'] = $campaign->recurringOptions[(int)ceil(count($campaign->recurringOptions) / 2) - 1];
+            $result['recurringAmount'] = $this->request->get('campaign_value') ?? $campaign->recurringOptions[(int)ceil(count($campaign->recurringOptions) / 2) - 1];
         }
 
         if ($onetime) {
-            $result['onetimeAmount'] = $campaign->options[(int)ceil(count($campaign->options) / 2) - 1];
+            $result['onetimeAmount'] = $this->request->get('campaign_value') ?? $campaign->options[(int)ceil(count($campaign->options) / 2) - 1];
         }
 
         return $result;
@@ -112,11 +112,19 @@ class Dajnato
 
     public function darujmeData(Campaign $campaign, array $data): array
     {
-        dd($data);
+        if ('recurring' === $data['onetimeOrRecurring']) {
+            $value = $data['recurringAmount'] ?? null;
+            $paymentType = $data['recurringPaymentType'];
+        }
+        else {
+            $value = $data['onetimeAmount'] ?? null;
+            $paymentType = $data['onetimePaymentType'];
+        }
+
         return [
             'campaign_id' => $campaign->darujmeId,
-            'value' => empty($data['amount']) ? $data['otherAmount'] : $data['amount'],
-            'payment_method_id' => $data['paymentType'],
+            'value' => empty($value) ? $data['otherAmount'] : $value,
+            'payment_method_id' => $paymentType,
             'first_name' => $data['firstName'],
             'last_name' => $data['lastName'],
             'email' => $data['email'],

@@ -6,25 +6,33 @@
     }
 </style>
 
-<div @if($campaign->active)class="btn-dajnato-cta" data-form-url="{{ $dajnato_cta_form_url }}"@endif>
-    @php(the_post_thumbnail())
-</div>
+@if(!$show_only_form)
+    <div @if($campaign->active)class="btn-dajnato-cta" data-form-url="{{ $dajnato_cta_form_url }}"@endif>
+        @php(the_post_thumbnail())
+    </div>
+@endif
 
 <div class="bg-white">
-    <div class="detail-page">
+    <div class="detail-page" @if($show_only_form) style="margin-bottom: 0; padding-bottom: 0;"@endif>
         <div class="container-fluid">
             <a class="back-btn" href=".."><span>&larr;</span>späť na Daj na to</a>
-            @if($campaign->titleShown)
+            @if($campaign->titleShown || $show_only_form)
                 <h1>
                         <?php /** @var \App\Entity\Campaign $campaign */ ?>
                     {!! $campaign->title !!}
                 </h1>
             @endif
 
-            @php(the_content())
+            @if($show_only_form)
+                <a href="{{ $campaign->slug }}/">Zobraziť detaily kampane</a>
+            @else
+                @php(the_content())
+            @endif
 
             <div class="description">
-                {!! $campaign->content  !!}
+                @if(!$show_only_form)
+                    {!! $campaign->content !!}
+                @endif
 
                 @if(!$campaign->active)
                     <p class="pt-3">
@@ -35,10 +43,10 @@
                 @endif
             </div>
 
-            @if($campaign->active)
+            @if($campaign->active && !$show_only_form)
                 @if($campaign->dajnatoAmount > 0)
                     <div class="dajnato-amount">
-                        Vďaka pravidelným darcom mohlo DAJ NA TO prispieť na túto zbierku sumou {!! $campaign->getDajnatoAmountFormatted() !!}.
+                        Z grantového fondu Daj na to!, ktorý tvoria pravidelní darcovia, bola na túto zbierku poskytnutá suma {!! $campaign->getDajnatoAmountFormatted() !!}.
                     </div>
                 @endif
 
@@ -62,7 +70,7 @@
             @endif
         </div>
     </div>
-    <div class="embedded-dajnato-form">
+    <div class="embedded-dajnato-form" id="darovaci-formular">
         <div class="container-fluid">
             @if($campaign->active)
                 <div class="embedded-dajnato-form-holder">

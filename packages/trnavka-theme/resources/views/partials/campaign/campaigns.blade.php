@@ -25,7 +25,7 @@
                         <div class="card-actions">
                             @if($campaign->dajnatoAmount > 0)
                                 <div class="dajnato-amount">
-                                    Vďaka pravidelným darcom mohlo DAJ NA TO! prispieť na túto zbierku sumou {!! $campaign->getDajnatoAmountFormatted() !!}.
+                                    Z grantového fondu Daj na to!, ktorý tvoria pravidelní darcovia, bola na túto zbierku poskytnutá suma {!! $campaign->getDajnatoAmountFormatted() !!}.
                                 </div>
                             @endif
                             <div class="collection-progress">

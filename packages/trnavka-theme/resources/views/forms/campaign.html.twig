@@ -1,5 +1,4 @@
 {% set isCampaignForm = donation_form.isCampaignForm is defined %}
-<div class="d-none js-darujme-form-holder"></div>
 <div class="modal-content donation-form js-donation-form">
     {{ form_start(donation_form, {attr: {novalidate: 'novalidate'}}) }}
     <div class="modal-header">
@@ -104,12 +103,12 @@
             </button>
             <p class="small text-muted mb-0 mt-3">
                 Potvrdením údajov súhlasím s <a href="https://darujme.sk/pravidla-a-podmienky/" target="_blank">pravidlami</a>
-                používania systému <a href="https://darujme.sk/pre-darcov/" target="_blank">DARUJME.sk</a>, cez ktorý je
+                používania systému <a href="https://darujme.sk/pre-darcov/" target="_blank">DARUJME.sk</a>, cez ktorý
                 {% if canBeOnetime %}
-                    <span class="onetime-or-recurring onetime{% if isRecurring %} d-none{% endif %}">platba realizovaná.</span>
+                    <span class="onetime-or-recurring onetime{% if isRecurring %} d-none{% endif %}">je platba realizovaná.</span>
                 {% endif %}
                 {% if canBeRecurring %}
-                    <span class="onetime-or-recurring recurring{% if not isRecurring %} d-none{% endif %}">platby realizované.</span>
+                    <span class="onetime-or-recurring recurring{% if not isRecurring %} d-none{% endif %}">sú platby realizované.</span>
                 {% endif %}
 
 
