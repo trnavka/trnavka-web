@@ -1,4 +1,4 @@
-<!doctype html>
+<?php $content = view(app('sage.view'), app('sage.data'))->render(); ?><!doctype html>
 <html <?php language_attributes(); ?>>
     <head>
         <!--<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="d9135c82-8787-4c6a-9dcd-c53b31e191a4" data-blockingmode="auto" type="text/javascript"></script>-->
@@ -25,7 +25,7 @@
         <?php do_action('get_header'); ?>
 
         <div id="app">
-            <?php echo view(app('sage.view'), app('sage.data'))->render(); ?>
+            <?php echo $content; ?>
         </div>
 
         <?php do_action('get_footer'); ?>
