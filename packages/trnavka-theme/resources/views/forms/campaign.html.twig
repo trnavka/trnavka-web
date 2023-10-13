@@ -23,11 +23,11 @@
             {% set showOtherAmount = false %}
         {% endif %}
 
-        {% set recurringAmountValue = showOtherAmount ? donation_form.otherAmount.vars.value * 1 : donation_form.recurringAmount.vars.value %}
+        {% set recurringAmountValue = showOtherAmount ? donation_form.otherAmount.vars.data : donation_form.recurringAmount.vars.data %}
         {% set recurringAmountValueTotal = (recurringAmountValue * (isExpensesChecboxChecked ? 1.039 : 1)) | round %}
         {% set recurringAmount = recurringAmountValueTotal ~ '&nbsp;€' %}
 
-        {% set oneTimeAmountValue = showOtherAmount ? donation_form.otherAmount.vars.value * 1 : donation_form.onetimeAmount.vars.value %}
+        {% set oneTimeAmountValue = showOtherAmount ? donation_form.otherAmount.vars.data : donation_form.onetimeAmount.vars.data %}
         {% set oneTimeAmountValueTotal = (oneTimeAmountValue * (isExpensesChecboxChecked ? 1.039 : 1)) | round %}
         {% set oneTimeAmount = oneTimeAmountValueTotal ~ '&nbsp;€' %}
 

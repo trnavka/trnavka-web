@@ -21,6 +21,7 @@ use Symfony\Component\Form\Forms;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Validation;
 use Twig\Environment;
+use Twig\Extension\DebugExtension;
 use Twig\Loader\ChainLoader;
 use Twig\Loader\FilesystemLoader;
 use Twig\RuntimeLoader\FactoryRuntimeLoader;
@@ -83,6 +84,10 @@ class ThemeServiceProvider extends SageServiceProvider
 //        $formEngine = new TwigRendererEngine(array(DEFAULT_FORM_THEME), $twig);
 //        $twig->addExtension(new TranslationExtension($translator));
         $twig->addExtension(new FormExtension());
+
+        if ('development' === $this->app->environment()) {
+            $twig->addExtension(new DebugExtension());
+        }
     }
 
     public function register()
