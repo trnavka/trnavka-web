@@ -141,6 +141,8 @@ class Dajnato
             'email' => $data['email'],
             'expenses' => 'yes' === $expenses,
             'info' => 'yes' === $info,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
         ]);
 
         return [
