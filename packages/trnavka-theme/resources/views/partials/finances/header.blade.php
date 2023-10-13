@@ -16,7 +16,7 @@
                     </p>
                     <p>
                         <strong>Je dôležité finančne prispievať pravidelne, aby Saleziánske dielo mohlo fungovať. Ďakujeme.</strong>
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#donationModal">Chcem prispieť</a>
+                        <a href="#chcem-prispiet">Chcem prispieť</a>
                     </p>
                     <div class="collection-progress">
                         <div class="collection-progress-bar">

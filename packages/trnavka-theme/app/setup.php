@@ -14,13 +14,20 @@ use App\Repositories\CampaignRepository;
 use function Roots\bundle;
 use function Roots\view;
 
+$template = wp_get_theme()->get_template();
+$assets = 'app/themes/' . $template . '/public/';
+$manifest = json_decode(file_get_contents(__DIR__ . '/../../../web/' . $assets . 'manifest.json'), true);
+
 /**
  * Register the theme assets.
  *
  * @return void
  */
-add_action('wp_enqueue_scripts', function () {
-    bundle('app')->enqueue();
+add_action('wp_enqueue_scripts', function () use ($assets, $manifest) {
+//    bundle('app')->enqueue();
+
+    wp_enqueue_style('app', home_url() . $manifest[$assets . 'app.css']);
+    wp_enqueue_script('app', home_url() . $manifest[$assets . 'app.js']);
 
 //    wp_dequeue_style('wp-block-library');
 //    wp_dequeue_style('wp-block-library-theme');

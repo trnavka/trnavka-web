@@ -36,15 +36,17 @@ class DajnatoForm extends Composer
         $campaign = $this->dajnato->campaign();
         $defaultFormData = $this->dajnato->defaultFormData($campaign);
 
+        $formName = $this->request->get('modal') ? 'donation_modal' : 'donation';
+
         $form = $this->formFactory
-            ->createNamedBuilder('donation', DonationType::class, $defaultFormData, [
+            ->createNamedBuilder($formName, DonationType::class, $defaultFormData, [
                 'campaign' => $campaign,
                 'action' => $this->dajnato->formUrl($campaign->id, 'T' === $this->request->get('modal')),
             ])
             ->getForm();
 
         if ($this->request->isMethod('POST')) {
-            $form->submit($this->request->get('donation'));
+            $form->submit($this->request->get($formName));
 
             if ($form->isValid()) {
                 $data = $form->getData();
@@ -55,7 +57,7 @@ class DajnatoForm extends Composer
                     ])
                     ->getForm();
 
-                // returns hidden form that autosubmits itself to POST date to darujme.sk system
+                // returns hidden form that autosubmits itself to POST data to darujme.sk system
                 return [
                     'form' => preg_replace('/donation\\[([a-zA-Z_]*)]/ms', '$1', $this->twig->render('darujmeForm.html.twig', array(
                         'form' => $form->createView(),

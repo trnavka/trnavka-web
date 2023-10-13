@@ -42,6 +42,9 @@ class DonationType extends AbstractType
                     'label' => false,
                     'expanded' => true,
                     'choices' => $this->amountChoices($campaign->options),
+                    'attr' => [
+                        'class' => 'js-onetimeAmount'
+                    ],
                     'choice_attr' => function (
                         $choice,
                         $key
@@ -75,6 +78,9 @@ class DonationType extends AbstractType
                     'label' => false,
                     'expanded' => true,
                     'choices' => $this->amountChoices($campaign->recurringOptions),
+                    'attr' => [
+                        'class' => 'js-recurringAmount'
+                    ],
                     'choice_attr' => function (
                         $choice,
                         $key
@@ -107,13 +113,17 @@ class DonationType extends AbstractType
                     'Každý mesiac' => 'recurring',
                     'Jednorazovo' => 'onetime',
                 ],
+                'attr' => [
+                    'class' => 'js-onetimeOrRecurring'
+                ]
             ])
             ->add('otherAmount', NumberType::class, [
                 'label' => 'Iná suma',
                 'html5' => true,
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'Iná suma'
+                    'placeholder' => 'Iná suma',
+                    'class' => 'js-otherAmount',
                 ],
                 'constraints' => [
                     new NotBlank([
@@ -163,6 +173,17 @@ class DonationType extends AbstractType
                 'constraints' => [
                     new IsTrue()
                 ]
+            ])
+            ->add('info', CheckboxType::class, [
+                'label' => 'Súhlasím so spracúvaním osobných údajov <a href="/suhlas-so-spracuvanim-osobnych-udajov/" target="_blank">na účely informovania o aktivitách</a> Saleziánskeho diela na Trnávke. Emaily posielame len občas a hocikedy sa môžeš odhlásiť.',
+                'label_html' => true,
+            ])
+            ->add('expenses', CheckboxType::class, [
+                'label' => 'Pošlem navyše 3,9&nbsp;%<div class="dajnato-expenses-info small">Z každého daru platíme poplatky vo výške 3,9&nbsp;% za platobný systém. Prosím, pomôž nám ich zaplatiť.</div>',
+                'label_html' => true,
+                'attr' => [
+                    'class' => 'js-expenses'
+                ],
             ]);
     }
 

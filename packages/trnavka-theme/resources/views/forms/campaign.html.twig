@@ -13,6 +13,7 @@
         {% set canBeRecurring = donation_form.recurringAmount is defined %}
         {% set canBeOnetime = donation_form.onetimeAmount is defined %}
         {% set isRecurring = canBeRecurring and donation_form.onetimeOrRecurring.vars.data == 'recurring' %}
+        {% set isExpensesChecboxChecked = donation_form.expenses.vars.data %}
 
         {% if canBeRecurring %}
             {% set showOtherAmount = donation_form.recurringAmount.vars.data is empty %}
@@ -21,6 +22,14 @@
         {% else %}
             {% set showOtherAmount = false %}
         {% endif %}
+
+        {% set recurringAmountValue = showOtherAmount ? donation_form.otherAmount.vars.value * 1 : donation_form.recurringAmount.vars.value %}
+        {% set recurringAmountValueTotal = (recurringAmountValue * (isExpensesChecboxChecked ? 1.039 : 1)) | round %}
+        {% set recurringAmount = recurringAmountValueTotal ~ '&nbsp;€' %}
+
+        {% set oneTimeAmountValue = showOtherAmount ? donation_form.otherAmount.vars.value : donation_form.onetimeAmount.vars.value %}
+        {% set oneTimeAmountValueTotal = (oneTimeAmountValue * (isExpensesChecboxChecked ? 1.039 : 1)) | round %}
+        {% set oneTimeAmount = oneTimeAmountValueTotal ~ '&nbsp;€' %}
 
         <div class="field-group mb-4{% if not canBeRecurring or not canBeOnetime %} d-none{% endif %}">
             {{ form_row(donation_form.onetimeOrRecurring) }}
@@ -84,21 +93,29 @@
             <div class="mb-4 small">
                 {{ form_widget(donation_form.gdpr) }}
             </div>
+
+            <div class="mb-4 small">
+                {{ form_widget(donation_form.info) }}
+            </div>
         </div>
     </div>
     <div class="modal-footer justify-content-center">
-        <div class="text-center w-100 mt-3">
+        <div class="text-center w-100">
             {% if not donation_form.vars.valid %}
                 <p class="small mb-2 text-danger">
                     Formulár sa neodoslal. Prosím, skontrolujte a opravte zadané údaje.
                 </p>
             {% endif %}
+            <hr/>
+            <div class="dajnato-expenses field-group mb-2 py-3 small" data-onetime-amount="{{ oneTimeAmountValue }}" data-recurring-amount="{{ recurringAmountValue }}">
+                {{ form_widget(donation_form.expenses) }}
+            </div>
             <button type="submit" class="submit-form-btn">
                 {% if canBeOnetime %}
-                    <span class="onetime-or-recurring onetime{% if isRecurring %} d-none{% endif %}">Darovať teraz</span>
+                    <span class="onetime-or-recurring onetime{% if isRecurring %} d-none{% endif %}">Darovať <span class="button-onetime-amount">{{ oneTimeAmount | raw }}</span></span>
                 {% endif %}
                 {% if canBeRecurring %}
-                    <span class="onetime-or-recurring recurring{% if not isRecurring %} d-none{% endif %}">Začať prispievať</span>
+                    <span class="onetime-or-recurring recurring{% if not isRecurring %} d-none{% endif %}">Darovať <span class="button-recurring-amount">{{ recurringAmount | raw }}</span> mesačne</span>
                 {% endif %}
             </button>
             <p class="small text-muted mb-0 mt-3">

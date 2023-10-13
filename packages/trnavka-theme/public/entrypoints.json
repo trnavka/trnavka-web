@@ -1,38 +1,12 @@
 {
-  "app": {
-    "js": [
-      "js/runtime.16273f.js",
-      "js/310.17b1b5.js",
-      "js/app.5be429.js"
-    ],
-    "css": [
-      "css/app.d66af9.css"
-    ],
-    "dependencies": [
-      "jquery"
-    ]
-  },
-  "editor": {
-    "js": [
-      "js/runtime.16273f.js",
-      "js/760.c284d3.js",
-      "js/editor.9a38a6.js"
-    ],
-    "css": [
-      "css/editor.08a44c.css"
-    ],
-    "dependencies": [
-      "react",
-      "wp-data",
-      "wp-blocks",
-      "wp-hooks"
-    ]
-  },
-  "media": {
-    "js": [
-      "js/runtime.16273f.js",
-      "js/media.9f5c79.js"
-    ],
-    "dependencies": []
+  "entrypoints": {
+    "app": {
+      "css": [
+        "/app/themes/theme/public/app.6423cc9d.css"
+      ],
+      "js": [
+        "/app/themes/theme/public/app.33062fa8.js"
+      ]
+    }
   }
 }

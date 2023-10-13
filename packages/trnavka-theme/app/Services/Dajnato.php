@@ -3,8 +3,10 @@
 namespace App\Services;
 
 use App\Entity\Campaign;
+use App\Form\Type\DarujmeDonationType;
 use App\Repositories\CampaignRepository;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -121,13 +123,33 @@ class Dajnato
             $paymentType = $data['onetimePaymentType'];
         }
 
-        return [
+        $value = empty($value) ? $data['otherAmount'] : $value;
+        $value = round($value * ($data['expenses'] ? 1.039 : 1));
+        $expenses = $data['expenses'] ? 'yes' : 'no';
+        $info = $data['info'] ? 'yes' : 'no';
+
+        DB::table('dajnato_form_submissions')->insert([
             'campaign_id' => $campaign->darujmeId,
-            'value' => empty($value) ? $data['otherAmount'] : $value,
+            'value' => $value,
             'payment_method_id' => $paymentType,
             'first_name' => $data['firstName'],
             'last_name' => $data['lastName'],
             'email' => $data['email'],
+            'expenses' => 'yes' === $expenses,
+            'info' => 'yes' === $info,
+        ]);
+
+        return [
+            'campaign_id' => $campaign->darujmeId,
+            'value' => $value,
+            'payment_method_id' => $paymentType,
+            'first_name' => $data['firstName'],
+            'last_name' => $data['lastName'],
+            'email' => $data['email'],
+            'additional_data' => [
+                DarujmeDonationType::EXPENSES_FIELD_ID => $expenses,
+                DarujmeDonationType::TRNAVKA_INFO_FIELD_ID => $info,
+            ]
         ];
     }
 }

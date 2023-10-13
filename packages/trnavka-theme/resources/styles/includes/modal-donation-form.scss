@@ -127,19 +127,6 @@
             }
         }
 
-        .form-check {
-            margin-bottom: 10px;
-
-            .form-check-input {
-                width: 18px;
-                height: 18px;
-            }
-
-            label {
-                padding-left: 13px;
-            }
-        }
-
         .form-row {
             margin-left: -8px;
             margin-right: -8px;
@@ -174,6 +161,19 @@
         }
     }
 
+    .form-check {
+        margin-bottom: 10px;
+
+        label {
+            padding-left: 13px;
+        }
+    }
+
+    .form-check-input {
+        width: 18px;
+        height: 18px;
+        margin-top: 0.2em;
+    }
 }
 
 
