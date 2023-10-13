@@ -102,14 +102,15 @@ class Dajnato
         ];
 
         $campaignValue = $this->request->get('campaign_value');
-        $campaignValue = in_array($campaignValue, $campaign->recurringOptions) ? $campaignValue : null;
+        $onetimeCampaignValue = in_array($campaignValue, $campaign->options) ? $campaignValue : null;
+        $recurringCampaignValue = in_array($campaignValue, $campaign->recurringOptions) ? $campaignValue : null;
 
         if ($recurring) {
-            $result['recurringAmount'] = $campaignValue ?? $campaign->recurringOptions[(int)ceil(count($campaign->recurringOptions) / 2) - 1];
+            $result['recurringAmount'] = $recurringCampaignValue ?? $campaign->recurringOptions[(int)ceil(count($campaign->recurringOptions) / 2) - 1];
         }
 
         if ($onetime) {
-            $result['onetimeAmount'] = $campaignValue ?? $campaign->options[(int)ceil(count($campaign->options) / 2) - 1];
+            $result['onetimeAmount'] = $onetimeCampaignValue ?? $campaign->options[(int)ceil(count($campaign->options) / 2) - 1];
         }
 
         return $result;
