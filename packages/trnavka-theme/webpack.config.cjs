@@ -19,16 +19,29 @@ Encore
         .enableVersioning(
                 true)
         .copyFiles(
-                [
-                    {
-                        from: 'resources/images/',
-                        to: './images/[path][name].[ext]'
-                    }
-                ]
-        )
+                [{
+                    from: 'resources/images/',
+                    to: './images/[path][name].[ext]'
+                }])
         .setOutputPath(
                 '../../web/app/themes/theme/public')
         .setPublicPath(
                 '/app/themes/theme/public');
+
+if (Encore.isProduction()) {
+    Encore
+            .configureBabel(
+                    null,
+                    {
+                        includeNodeModules: ['jquery',
+                            'bootstrap']
+                    })
+            .configureBabelPresetEnv(
+                    (config) => {
+                        config.useBuiltIns = 'usage';
+                        config.corejs = 2;
+                        config.forceAllTransforms = true;
+                    });
+}
 
 module.exports = Encore.getWebpackConfig();

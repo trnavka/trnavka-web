@@ -1,12 +1,12 @@
 //import './styles/app.scss';
-import 'bootstrap';
+// import 'bootstrap';
 import $ from 'jquery';
 import {Modal} from 'bootstrap';
 
 class DajnatoForm {
     $form;
-    recurringAmout;
-    onetimeAmout;
+    recurringAmount;
+    onetimeAmount;
     expenses;
 
     updateButtonAmount() {
