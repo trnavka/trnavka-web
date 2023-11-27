@@ -11,6 +11,12 @@ Encore
         .addEntry(
                 'app',
                 './resources/app.js')
+        .addEntry(
+                'media',
+                './resources/media.js')
+        .addEntry(
+                'editor',
+                './resources/editor.js')
         .cleanupOutputBeforeBuild()
         .disableSingleRuntimeChunk()
         .enableSassLoader()
@@ -18,6 +24,7 @@ Encore
                 !Encore.isProduction())
         .enableVersioning(
                 true)
+        .enableReactPreset()
         .copyFiles(
                 [{
                     from: 'resources/images/',

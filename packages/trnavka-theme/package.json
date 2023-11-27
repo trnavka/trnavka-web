@@ -22,6 +22,7 @@
         "react-textarea-autosize": "^8.4.1"
     },
     "devDependencies": {
+        "@roots/sage": "^6.17.0",
         "@symfony/webpack-encore": "^4.4.0",
         "babel-preset-env": "^1.7.0",
         "webpack-notifier": "^1.15.0"

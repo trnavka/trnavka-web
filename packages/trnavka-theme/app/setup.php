@@ -34,8 +34,10 @@ add_action('wp_enqueue_scripts', function () use ($assets, $manifest) {
 //    wp_dequeue_style('wc-blocks-style'); // Remove WooCommerce block CSS
 }, 100);
 
-add_action('admin_enqueue_scripts', function (): void {
-    bundle('media')->enqueue();
+add_action('admin_enqueue_scripts', function () use ($assets, $manifest): void {
+    wp_enqueue_script('media', home_url() . $manifest[$assets . 'media.js'], [], false, ['in_footer' => true]);
+
+//    bundle('media')->enqueue();
 }, 100);
 
 /**
@@ -43,8 +45,11 @@ add_action('admin_enqueue_scripts', function (): void {
  *
  * @return void
  */
-add_action('enqueue_block_editor_assets', function () {
-    bundle('editor')->enqueue();
+add_action('enqueue_block_editor_assets', function () use ($assets, $manifest) {
+    wp_enqueue_script('editor2', home_url() . $manifest[$assets . 'editor.js'], ['wp-blocks', 'wp-components', 'wp-data', 'wp-edit-post', 'wp-element', 'wp-hooks', 'wp-plugins', 'wp-server-side-render'], false, ['in_footer' => true]);
+    wp_enqueue_style('editor2', home_url() . $manifest[$assets . 'editor.css']);
+
+//    bundle('editor')->enqueue();
 }, 100);
 
 /**

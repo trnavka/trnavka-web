@@ -6,7 +6,7 @@ export default {
     category: 'theme',
     edit: (props) =>
             <div className={'dajnato-cta-block-editor'}>
-                <TextareaAutosize
+                <textarea
                         className={'regular-text dajnato-title'}
                         onChange={event => {
                             props.setAttributes(
