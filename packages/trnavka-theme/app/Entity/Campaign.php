@@ -141,7 +141,12 @@ class Campaign
 
     public function getDajnatoAmountFormatted(): string
     {
-        return $this->formattedCurrency(($this->sources['__fund'] ?? 0) / 100);
+        return $this->formattedCurrency(round(($this->sources['__fund'] ?? 0) / 100));
+    }
+
+    public function getCurrentDajnatoAmountFormatted(): string
+    {
+        return $this->formattedCurrency(round((($this->sources['__fund'] ?? 0) + ($this->sources['__self'] ?? 0)) / 100));
     }
 
     private function formattedCurrency(int $amount): string

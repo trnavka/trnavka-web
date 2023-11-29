@@ -30,11 +30,11 @@ class CampaignPost extends Composer
         $showOnlyForm = 'T' === $this->request->query->get('of', 'F');
         $showOnlyShare = 'T' === $this->request->query->get('share', 'F');
         $view = $this->request->query->get('view');
+        $views = ['current' => 'Aktuálna suma', 'dajnato-current' => 'Aktuálna suma (iba Dajnato)'];
 
-        switch ($view) {
-            case 'current':
-                echo $this->handleCampaignView($view, $campaign);
-                exit;
+        if (isset($views[$view])) {
+            echo $this->handleCampaignView($view, $campaign);
+            exit;
         };
 
         if ($showOnlyForm || $showOnlyShare) {
@@ -42,6 +42,7 @@ class CampaignPost extends Composer
         }
 
         return [
+            'views' => $views,
             'view' => $view,
             'dev_share_javascript' => $GLOBALS['SHARE_JAVASCRIPT'],
             'share_javascript' => Config::get('WP_HOME') . preg_replace('/share.[a-z0-9]+\.js$/', 'share.js', $GLOBALS['SHARE_JAVASCRIPT']),
@@ -61,6 +62,8 @@ class CampaignPost extends Composer
         switch ($view) {
             case 'current':
                 return $campaign->getCurrentAmountFormatted();
+            case 'dajnato-current':
+                return $campaign->getCurrentDajnatoAmountFormatted();
         }
 
         return '';

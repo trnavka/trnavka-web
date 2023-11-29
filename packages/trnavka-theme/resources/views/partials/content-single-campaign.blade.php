@@ -32,14 +32,26 @@
             @if($show_only_form)
                 <a href="../{{ $campaign->slug }}/">Zobraziť detaily kampane</a>
             @elseif($show_only_share)
-                <div>...</div>
-                <script src="{{$share_javascript}}" data-url="{{$campaign_url}}" data-view="current"></script>
-                <textarea style='
-                    width: 100%;
-                    height: 100px;
-                    font-family: "Courier New", Courier, monospace;
-                    font-size: 15px;
-                    line-height: 17px;'><div></div><script src="{{$share_javascript}}" data-url="{{$campaign_url}}" data-view="current"></script></textarea>
+                @foreach($views as $thisView => $viewLabel)
+                    <h2 class="wp-block-heading mt-5">{{$viewLabel}}</h2>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div>...</div>
+                            <script src="{{$share_javascript}}" data-url="{{$campaign_url}}" data-view="{{$thisView}}"></script>
+                        </div>
+                        <div class="col-md-8">
+                            <textarea style='
+                                width: 100%;
+                                height: 150px;
+                                font-family: "Courier New", Courier, monospace;
+                                font-size: 15px;
+                                line-height: 17px;'><!-- Daj na to! START -->
+<div></div><script src="{{$share_javascript}}" data-url="{{$campaign_url}}" data-view="{{$thisView}}"></script>
+<!-- Daj na to! END --></textarea>
+                        </div>
+                    </div>
+                @endforeach
             @else
                 @php(the_content())
             @endif
