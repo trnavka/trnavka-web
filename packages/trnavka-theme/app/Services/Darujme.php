@@ -41,13 +41,8 @@ class Darujme
                 $selfSource = $sourceDefinition;
                 $selfSource['__label'] = '__self';
 
-                if ('__self' === $sourceCampaignId || null === $sourceCampaignId) {
+                if ('__self' === $sourceCampaignId) {
                     $selfSource['campaign_id'] = $campaign->darujmeId;
-                }
-
-                // add startAmount to the first __self source
-                if (empty($selfSources) && $campaign->startAmount > 0) {
-                    $selfSource['value'] = $campaign->startAmount + (int)$sourceDefinition['value'];
                 }
 
                 $selfSources[] = $selfSource;
@@ -65,7 +60,7 @@ class Darujme
             $selfSources = [[
                 'label' => '__self',
                 'campaign_id' => $campaign->darujmeId,
-                'value' => $campaign->startAmount,
+                'value' => 0,
             ]];
         }
 

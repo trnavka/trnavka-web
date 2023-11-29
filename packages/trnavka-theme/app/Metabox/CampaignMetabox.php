@@ -70,11 +70,6 @@ class CampaignMetabox extends AbstractMetabox
         </div>
 
         <div class="form-group">
-            <label for="<?php $this->fieldName('start_amount') ?>">Úvodná suma</label>
-            <input type="number" name="<?php $this->fieldName('start_amount') ?>" id="<?php $this->fieldName('start_amount') ?>" class="regular-text" value="<?php echo esc_html($meta['start_amount'] ?? 0); ?>">
-        </div>
-
-        <div class="form-group">
             <label for="<?php $this->fieldName('dajnato_amount') ?>">Príspevok z Daj na to</label>
             <input type="number" name="<?php $this->fieldName('dajnato_amount') ?>" id="<?php $this->fieldName('dajnato_amount') ?>" class="regular-text" value="<?php echo esc_html($meta['dajnato_amount'] ?? 0); ?>">
         </div>

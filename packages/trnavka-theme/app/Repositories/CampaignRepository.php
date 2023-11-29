@@ -105,7 +105,6 @@ class CampaignRepository
             ->setActive($post->post_status === 'publish')
             ->setPublished('T' === ($data['published'] ?? 'T'))
             ->setTitleShown('T' === ($data['title_shown'] ?? 'T'))
-            ->setStartAmount((int)round((float)($data['start_amount'] ?? 0)))
             ->setCurrentAmount((int)round((float)($currentAmount ?? 0)));
     }
 }

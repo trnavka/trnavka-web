@@ -16,7 +16,6 @@ class Campaign
     public null|int $goalAmount = null;
     public int $currentAmount = 0;
     public int $dajnatoAmount = 0;
-    public int $startAmount = 0;
     public bool $active = true;
     public bool $published = false;
     public bool $titleShown = false;
@@ -127,12 +126,6 @@ class Campaign
     public function setSources(?array $sources): self
     {
         $this->sources = $sources;
-        return $this;
-    }
-
-    public function setStartAmount(int $startAmount): self
-    {
-        $this->startAmount = $startAmount;
         return $this;
     }
 
