@@ -104,7 +104,7 @@
                             <h3>Zdravotné stredisko</h3>
                         </div>
                         <div class="text">
-                            <p>V zdravotnom stredisku sa nachádza niekoľko ambulancií a lekáreň. Všeobecná ambulancia pre dospelých, pediatrická, gynekologická, psychologická, endokrinologická, zubná a ortopedická ambulancia slúžia všetkým pacientom z Trnávky ale aj mimo nej. Odborníci radi poskytnú zdravotnú starostlivosť pre dospelých, deti a mládež.</p>
+                            <p>V zdravotnom stredisku sa nachádza lekáreň, všeobecná ambulancia pre dospelých, pediatrická, gynekologická, psychologická, endokrinologická, zubná a ortopedická ambulancia.</p>
                         </div>
                     </div>
                 </div>
