@@ -12,9 +12,10 @@
     "type": "module",
     "scripts": {
         "dev-server": "encore dev-server",
+        "build:share": "node build-share.js",
         "dev": "encore dev",
         "watch": "encore dev --watch",
-        "build": "encore production --progress"
+        "build": "encore production --progress && npm run build:share"
     },
     "dependencies": {
         "bootstrap": "^5.1.3",

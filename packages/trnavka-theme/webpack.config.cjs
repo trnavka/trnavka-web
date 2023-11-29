@@ -9,6 +9,9 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 
 Encore
         .addEntry(
+                'share',
+                './resources/share.js')
+        .addEntry(
                 'app',
                 './resources/app.js')
         .addEntry(

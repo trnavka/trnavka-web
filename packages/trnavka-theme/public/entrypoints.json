@@ -1,5 +1,10 @@
 {
   "entrypoints": {
+    "share": {
+      "js": [
+        "/app/themes/theme/public/share.1259b705.js"
+      ]
+    },
     "app": {
       "css": [
         "/app/themes/theme/public/app.a096548e.css"

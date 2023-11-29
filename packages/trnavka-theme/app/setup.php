@@ -18,6 +18,8 @@ $template = wp_get_theme()->get_template();
 $assets = 'app/themes/' . $template . '/public/';
 $manifest = json_decode(file_get_contents(__DIR__ . '/../../../web/' . $assets . 'manifest.json'), true);
 
+$GLOBALS['SHARE_JAVASCRIPT'] = $manifest[$assets . 'share.js'];
+
 /**
  * Register the theme assets.
  *

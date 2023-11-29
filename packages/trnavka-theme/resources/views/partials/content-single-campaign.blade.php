@@ -6,17 +6,23 @@
     }
 </style>
 
-@if(!$show_only_form)
+@php
+    $show_only_share = $show_only_share ?? false;
+    $show_only_form = $show_only_form ?? false;
+	$show_content = !$show_only_share && !$show_only_form;
+@endphp
+
+@if($show_content)
     <div @if($campaign->active)class="btn-dajnato-cta" data-form-url="{{ $dajnato_cta_form_url }}"@endif>
         @php(the_post_thumbnail())
     </div>
 @endif
 
 <div class="bg-white">
-    <div class="detail-page" @if($show_only_form) style="margin-bottom: 0; padding-bottom: 0;"@endif>
+    <div class="detail-page" @if(!$show_content) style="margin-bottom: 0; padding-bottom: 0;"@endif>
         <div class="container-fluid">
             <a class="back-btn" href=".."><span>&larr;</span>späť na Daj na to</a>
-            @if($campaign->titleShown || $show_only_form)
+            @if($campaign->titleShown || !$show_content)
                 <h1>
                         <?php /** @var \App\Entity\Campaign $campaign */ ?>
                     {!! $campaign->title !!}
@@ -25,12 +31,24 @@
 
             @if($show_only_form)
                 <a href="../{{ $campaign->slug }}/">Zobraziť detaily kampane</a>
+            @elseif($show_only_share)
+                <div>ufo</div>
+                <script src="{{$dev_share_javascript}}" data-url="{{$campaign_url}}" data-view="current"></script>
+                <textarea style='
+                    width: 100%;
+                    height: 100px;
+                    font-family: "Courier New", Courier, monospace;
+                    font-size: 15px;
+                    line-height: 17px;'><div></div><script src="{{$share_javascript}}" data-url="{{$campaign_url}}" data-view="current"></script></textarea>
+                {{--                <script src="{{$dev_share_javascript}}">--}}
+                {{--                </script>--}}
+                {{$share_javascript}}
             @else
                 @php(the_content())
             @endif
 
             <div class="description">
-                @if(!$show_only_form)
+                @if($show_content)
                     {!! $campaign->content !!}
                 @endif
 
@@ -39,11 +57,12 @@
                         <strong>Táto zbierka je už ukončená. Vyzbieralo sa {!! $campaign->getCurrentAmountFormatted() !!}.</strong>
                     </p>
                     <p class="pt-3">Ak chceš prispieť, tak sa môžeš
-                        <a href="..">zapojiť do Daj na to!</a> a podporovať Trnávku pravidelne a dlhodobo.</p>
+                        <a href="..">zapojiť do Daj na to!</a> a podporovať Trnávku pravidelne a dlhodobo.
+                    </p>
                 @endif
             </div>
 
-            @if(!$show_only_form)
+            @if($show_content)
                 <h2 class="wp-block-heading">Zdroje darov</h2>
 
                 <table class="table table-borderless table-sm mb-5">
@@ -83,7 +102,7 @@
                 </table>
             @endif
 
-            @if($campaign->active && !$show_only_form)
+            @if($campaign->active && $show_content)
                 @if(null !== $campaign->goalAmount)
                     <div class="detail-progress">
                         <div class="detail-progress-bar">
@@ -104,20 +123,22 @@
             @endif
         </div>
     </div>
-    <div class="embedded-dajnato-form" id="darovaci-formular">
-        <div class="container-fluid">
-            @if($campaign->active)
-                <div class="embedded-dajnato-form-holder">
-                    {!! $form !!}
-                </div>
-            @endif
-        </div>
+    @if(!$show_only_share)
+        <div class="embedded-dajnato-form" id="darovaci-formular">
+            <div class="container-fluid">
+                @if($campaign->active)
+                    <div class="embedded-dajnato-form-holder">
+                        {!! $form !!}
+                    </div>
+                @endif
+            </div>
 
-        <div class="container-fluid">
-            <div class="thank-you">
-                <div>Ďakujeme</div>
+            <div class="container-fluid">
+                <div class="thank-you">
+                    <div>Ďakujeme</div>
+                </div>
             </div>
         </div>
-    </div>
+    @endif
 </div>
 
