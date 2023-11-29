@@ -32,14 +32,19 @@ class CampaignPost extends Composer
         $view = $this->request->query->get('view');
         $views = [
             'current' => 'Aktuálna suma',
+            'rest' => 'Chýbajúca suma',
             'dajnato-current' => 'Aktuálna suma (iba Dajnato)',
-            'dajnato-rest' => 'Chýbajúca suma (iba Dajnato)',
         ];
 
-        if (isset($views[$view])) {
-            echo $this->handleCampaignView($view, $campaign);
+        if (!empty($view)) {
+            if (isset($views[$view]))  {
+                echo $this->handleCampaignView($view, $campaign);
+                exit;
+            }
+
+            echo '';
             exit;
-        };
+        }
 
         if ($showOnlyForm || $showOnlyShare) {
             add_filter('wp_robots', 'wp_robots_no_robots');
@@ -66,10 +71,10 @@ class CampaignPost extends Composer
         switch ($view) {
             case 'current':
                 return $campaign->getCurrentAmountFormatted();
+            case 'rest':
+                return $campaign->getDajnatoRestAmountFormatted();
             case 'dajnato-current':
                 return $campaign->getCurrentDajnatoAmountFormatted();
-            case 'dajnato-rest':
-                return $campaign->getDajnatoRestAmountFormatted();
         }
 
         return '';
