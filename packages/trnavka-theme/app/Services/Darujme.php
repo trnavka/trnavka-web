@@ -2,8 +2,10 @@
 
 namespace App\Services;
 
+use App\Entity\Campaign;
 use App\Repositories\CampaignRepository;
 use DateTimeImmutable;
+use DateTimeZone;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
@@ -16,9 +18,102 @@ class Darujme
     public function updateCampaigns(): void
     {
         foreach ($this->campaignRepository->findAllPublished() as $campaign) {
-            $response = json_decode(file_get_contents(sprintf('https://api.darujme.sk/v1/feeds/%s/donations/?per_page=1', $campaign->darujmeFeedId)), true);
-            update_post_meta($campaign->id, 'dajnato_campaign_current_amount', (float)((($response['response'] ?? [])['metadata'] ?? [])['total_amount'] ?? 0));
+            $this->updateCampaignSources($campaign);
         }
+    }
+
+    private function updateCampaignSources(Campaign $campaign): void
+    {
+        $sources = [];
+        $selfSources = [];
+        $fundSource = null;
+        $campaigns = [];
+
+        $sum = 0;
+
+        $sourceDefinitions = [];
+
+        foreach (($campaign->getConfig()['sources'] ?? []) as $sourceDefinition) {
+            $sourceCampaignId = $sourceDefinition['campaign_id'] ?? null;
+            $sourceLabel = $sourceDefinition['label'] ?? null;
+
+            if (in_array($sourceCampaignId, ['__self', $campaign->darujmeId]) || $sourceLabel === '__self') {
+                $selfSource = $sourceDefinition;
+                $selfSource['__label'] = '__self';
+
+                if ('__self' === $sourceCampaignId || null === $sourceCampaignId) {
+                    $selfSource['campaign_id'] = $campaign->darujmeId;
+                }
+
+                // add startAmount to the first __self source
+                if (empty($selfSources) && $campaign->startAmount > 0) {
+                    $selfSource['value'] = $campaign->startAmount + (int)$sourceDefinition['value'];
+                }
+
+                $selfSources[] = $selfSource;
+            } elseif ($sourceCampaignId === '__fund') {
+                $fundSource = [
+                    'label' => '__fund',
+                    'value' => empty($sourceDefinition['value']) ? $campaign->dajnatoAmount : $sourceDefinition['value'],
+                ];
+            } else {
+                $sourceDefinitions[] = $sourceDefinition;
+            }
+        }
+
+        if (empty($selfSources)) {
+            $selfSources = [[
+                'label' => '__self',
+                'campaign_id' => $campaign->darujmeId,
+                'value' => $campaign->startAmount,
+            ]];
+        }
+
+        if (null === $fundSource && $campaign->dajnatoAmount > 0) {
+            $fundSource = [
+                'label' => '__fund',
+                'value' => $campaign->dajnatoAmount,
+            ];
+        }
+
+        $sourceDefinitions = [...$selfSources, ...(null === $fundSource ? [] : [$fundSource]), ...$sourceDefinitions];
+
+        foreach ($sourceDefinitions as $sourceDefinition) {
+            $value = ($sourceDefinition['value'] ?? 0) * 100;
+
+            if (isset($sourceDefinition['campaign_id'])) {
+                $value = $value + $this->calculatePaymentsSum($sourceDefinition);
+                $campaigns[$sourceDefinition['campaign_id']] = $value;
+            }
+
+            $sources[$sourceDefinition['label']] = ($sources[$sourceDefinition['label']] ?? 0) + $value;
+            $sum += $value;
+        }
+
+        $campaign->setSources([
+            'sources' => $sources,
+            'campaigns' => $campaigns,
+            'sum' => $sum,
+            '__self' => $sources['__self'] ?? 0,
+            '__fund' => $sources['__fund'] ?? 0,
+        ]);
+
+        update_post_meta($campaign->id, 'dajnato_campaign_sources', json_encode($campaign->sources, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+    }
+
+    private function calculatePaymentsSum(array $source): int
+    {
+        $query = DB::table('darujme_payments')->where('campaign_id', '=', $source['campaign_id']);
+
+        if (isset($source['since'])) {
+            $query->where('received_at', '>=', $source['since']);
+        }
+
+        if (isset($source['until'])) {
+            $query->where('received_at', '<', $source['until']);
+        }
+
+        return (int)$query->sum('value');
     }
 
     public function updatePayments(): void
@@ -27,10 +122,10 @@ class Darujme
             $page = 1;
             $token = $this->auth($this->parameter('DARUJME_API_USERNAME'), $this->parameter('DARUJME_API_PASSWORD'));
 
-            $payments = DB::table('darujme_payments')->select('received_at')
-                ->orderByDesc('received_at')->limit(1)->get()->first();
+            $timezone = new DateTimeZone('Europe/Bratislava');
+            $now = (new DateTimeImmutable('30 minutes ago'))->setTimezone($timezone)->format('Y-m-d H:i:s');
 
-            $lastReceivedAt = (new DateTimeImmutable($payments?->received_at ?? '2019-01-01', new \DateTimeZone('UTC')))->format(DateTimeImmutable::RFC3339);
+            $lastReceivedAt = (new DateTimeImmutable(get_option('last_import_from_darujme_at') ?? '2019-01-01 00:00:00', $timezone))->setTimezone(new DateTimeZone('UTC'))->format("Y-m-d\TH:i:s\Z");
 
             do {
                 $response = $this->request('GET', '/v1/payments/', $token, null, [
@@ -43,11 +138,10 @@ class Darujme
                 print_r($response['metadata']);
 
                 foreach ($response['items'] ?? [] as $payment) {
+
                     if ('successful' !== $payment['status']) {
                         continue;
                     }
-
-                    $now = (new DateTimeImmutable())->setTimezone(new \DateTimeZone('Europe/Bratislava'))->format('Y-m-d H:i:s');
 
                     $updateFields = [
                         'payment_id' => $payment['id'],
@@ -59,8 +153,9 @@ class Darujme
                         'value' => (int)round($payment['value'] * 100),
                         'payment_type' => $payment['donation']['payment_method']['handle'],
                         'campaign' => $payment['donation']['campaign']['note'],
-                        'received_at' => new DateTimeImmutable($payment['happened_at']),
-                        'registered_at' => new DateTimeImmutable($payment['created_at']),
+                        'campaign_id' => $payment['donation']['campaign']['id'],
+                        'received_at' => (new DateTimeImmutable($payment['happened_at']))->setTimezone($timezone)->format('Y-m-d H:i:s'),
+                        'registered_at' => (new DateTimeImmutable($payment['created_at']))->setTimezone($timezone)->format('Y-m-d H:i:s'),
                         'updated_at' => $now,
                     ];
 
@@ -72,6 +167,8 @@ class Darujme
                 }
                 $page++;
             } while ($page <= ($response['metadata'] ?? [])['pages'] ?? 0);
+
+            update_option('last_import_from_darujme_at', $now, false);
         } catch (Exception $e) {
             echo sprintf('Error: %s', $e->getMessage());
             exit;
@@ -105,12 +202,16 @@ class Darujme
         ];
     }
 
-    private function statsPayments(array|null $campaigns = null, string $groupBy = 'YEAR(p.received_at)'): array
+    private function statsPayments(
+        array|null $campaigns = null,
+        string     $groupBy = 'YEAR(p.received_at)'
+    ): array
     {
         $campaignsCondition = '';
 
         if (is_array($campaigns)) {
-            $campaignsCondition = 'WHERE p.campaign IN (' . implode(',', array_map(fn($campaign
+            $campaignsCondition = 'WHERE p.campaign IN (' . implode(',', array_map(fn(
+                    $campaign
                 ) => "'$campaign'", $campaigns)) . ')';
         }
 
@@ -139,9 +240,9 @@ class Darujme
                     p.email = u.email
                 %s
                 GROUP BY
-                    year
+                    YEAR
                 ORDER BY
-                    year DESC
+                    YEAR DESC
                 ', $groupBy, $campaignsCondition))),
         ];
     }

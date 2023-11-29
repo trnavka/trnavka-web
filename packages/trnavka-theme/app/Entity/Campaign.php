@@ -16,9 +16,12 @@ class Campaign
     public null|int $goalAmount = null;
     public int $currentAmount = 0;
     public int $dajnatoAmount = 0;
+    public int $startAmount = 0;
     public bool $active = true;
     public bool $published = false;
     public bool $titleShown = false;
+    public array|null $config = null;
+    public ?array $sources = null;
 
     public function setId(int $id): self
     {
@@ -110,6 +113,29 @@ class Campaign
         return $this;
     }
 
+    public function getConfig(): ?array
+    {
+        return $this->config;
+    }
+
+    public function setConfig(array|null $config): self
+    {
+        $this->config = $config;
+        return $this;
+    }
+
+    public function setSources(?array $sources): self
+    {
+        $this->sources = $sources;
+        return $this;
+    }
+
+    public function setStartAmount(int $startAmount): self
+    {
+        $this->startAmount = $startAmount;
+        return $this;
+    }
+
     public function getCurrentAmountFormatted(): string
     {
         return $this->formattedCurrency($this->currentAmount);
@@ -122,7 +148,7 @@ class Campaign
 
     public function getDajnatoAmountFormatted(): string
     {
-        return $this->formattedCurrency($this->dajnatoAmount);
+        return $this->formattedCurrency(($this->sources['__fund'] ?? 0) / 100);
     }
 
     private function formattedCurrency(int $amount): string

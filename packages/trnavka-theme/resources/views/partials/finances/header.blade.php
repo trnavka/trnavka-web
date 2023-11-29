@@ -20,7 +20,7 @@
                     </p>
                     <div class="collection-progress">
                         <div class="collection-progress-bar">
-                            <span class="done" style="width: {{31263 / ($trnavka_financial_subject->getLoss() * -1) * 100}}%"></span>
+                            <span class="done" style="width: {{$subscription_amount / ($trnavka_financial_subject->getLoss() * -1) * 100}}%"></span>
                         </div>
                         <div class="row">
                             <div class="col-6">

@@ -43,13 +43,47 @@
                 @endif
             </div>
 
-            @if($campaign->active && !$show_only_form)
-                @if($campaign->dajnatoAmount > 0)
-                    <div class="dajnato-amount">
-                        Z grantového fondu Daj na to!, ktorý tvoria pravidelní darcovia, bola na túto zbierku poskytnutá suma {!! $campaign->getDajnatoAmountFormatted() !!}.
-                    </div>
-                @endif
+            @if(!$show_only_form)
+                <h2 class="wp-block-heading">Zdroje darov</h2>
 
+                <table class="table table-borderless table-sm mb-5">
+                    <tbody>
+                        @foreach($campaign->sources['sources'] ?? [] as $sourceName => $sourceValue)
+                            <tr>
+                                <td class="ps-0">
+                                    @if('__self' === $sourceName)
+                                        Daj na to! - táto zbierka
+                                    @elseif('__fund' === $sourceName)
+                                        Daj na to! - štartovací príspevok
+                                    @else
+                                        {{ $sourceName }}
+                                    @endif
+                                </td>
+                                <td class="pe-0" style="text-align: right">
+                                    @euro($sourceValue / 100)
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2" class="p-0">
+                                <hr class="mt-2 mb-2"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ps-0">
+                                <em>Spolu</em>
+                            </td>
+                            <td class="pe-0" style="text-align: right">
+                                <em>@euro(($campaign->sources['sum'] ?? 0) / 100)</em>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            @endif
+
+            @if($campaign->active && !$show_only_form)
                 @if(null !== $campaign->goalAmount)
                     <div class="detail-progress">
                         <div class="detail-progress-bar">

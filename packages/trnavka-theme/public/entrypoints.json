@@ -2,23 +2,23 @@
   "entrypoints": {
     "app": {
       "css": [
-        "/app/themes/theme/public/app.f7be9adc.css"
+        "/app/themes/theme/public/app.a096548e.css"
       ],
       "js": [
-        "/app/themes/theme/public/app.766ced39.js"
+        "/app/themes/theme/public/app.9514fcef.js"
       ]
     },
     "media": {
       "js": [
-        "/app/themes/theme/public/media.ae4f2f9c.js"
+        "/app/themes/theme/public/media.3a1bde0a.js"
       ]
     },
     "editor": {
       "css": [
-        "/app/themes/theme/public/editor.9c92f79e.css"
+        "/app/themes/theme/public/editor.2e5cdb5f.css"
       ],
       "js": [
-        "/app/themes/theme/public/editor.4ad10391.js"
+        "/app/themes/theme/public/editor.d6d5aedc.js"
       ]
     }
   }

@@ -95,6 +95,11 @@ class CampaignMetabox extends AbstractMetabox
         </div>
 
         <div class="form-group">
+            <label for="<?php $this->fieldName('json_config') ?>">JSON config</label>
+            <textarea name="<?php $this->fieldName('json_config') ?>" id="<?php $this->fieldName('json_config') ?>" style="width: 100%;" rows="10"><?php echo esc_html($meta['json_config'] ?? ''); ?></textarea>
+        </div>
+
+        <div class="form-group">
             <label for="<?php $this->fieldName('content') ?>">Detailný popis</label>
             <?php
             wp_editor($meta['content'] ?? '', 'dajnato_campaign_content_editor', array(

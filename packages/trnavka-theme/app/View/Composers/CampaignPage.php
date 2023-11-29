@@ -2,6 +2,7 @@
 
 namespace App\View\Composers;
 
+use App\Entity\Campaign;
 use App\Entity\FinancialSubject;
 use App\Repositories\CampaignRepository;
 use App\Repositories\FinancialSubjectRepository;

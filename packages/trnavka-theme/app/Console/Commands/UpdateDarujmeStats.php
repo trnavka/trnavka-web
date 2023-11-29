@@ -16,6 +16,7 @@ class UpdateDarujmeStats extends Command
         $this->info('Updating Darujme.sk stats');
 
         $darujme->updatePayments();
+        $darujme->updateCampaigns();
 
         $this->info('DONE.');
     }
