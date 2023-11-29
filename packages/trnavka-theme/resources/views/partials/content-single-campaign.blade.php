@@ -32,17 +32,14 @@
             @if($show_only_form)
                 <a href="../{{ $campaign->slug }}/">Zobraziť detaily kampane</a>
             @elseif($show_only_share)
-                <div>ufo</div>
-                <script src="{{$dev_share_javascript}}" data-url="{{$campaign_url}}" data-view="current"></script>
+                <div>...</div>
+                <script src="{{$share_javascript}}" data-url="{{$campaign_url}}" data-view="current"></script>
                 <textarea style='
                     width: 100%;
                     height: 100px;
                     font-family: "Courier New", Courier, monospace;
                     font-size: 15px;
                     line-height: 17px;'><div></div><script src="{{$share_javascript}}" data-url="{{$campaign_url}}" data-view="current"></script></textarea>
-                {{--                <script src="{{$dev_share_javascript}}">--}}
-                {{--                </script>--}}
-                {{$share_javascript}}
             @else
                 @php(the_content())
             @endif
