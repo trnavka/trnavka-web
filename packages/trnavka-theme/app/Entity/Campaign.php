@@ -144,6 +144,11 @@ class Campaign
         return $this->formattedCurrency(round(($this->sources['__fund'] ?? 0) / 100));
     }
 
+    public function getDajnatoRestAmountFormatted(): string
+    {
+        return $this->formattedCurrency(max(0, round($this->goalAmount - ($this->sources['sum'] ?? 0) / 100)));
+    }
+
     public function getCurrentDajnatoAmountFormatted(): string
     {
         return $this->formattedCurrency(round((($this->sources['__fund'] ?? 0) + ($this->sources['__self'] ?? 0)) / 100));
