@@ -16,7 +16,7 @@
                             <h3>Farnosť</h3>
                         </div>
                         <div class="text">
-                            <p>Naša farnosť sa nachádza na okraji mesta v mestskej časti Ružinov. Jej územie tvoria sídliská Trnávka, Ostredky, Mierová kolónia, Štrkovec, Zlaté piesky a Letisko. Má najväčšiu rozlohu v Bratislave a počet farníkov stále rastie. Spravujú ju Saleziáni don Bosca. Patrónom kostola je sv. Ján Bosco. </p>
+                            <p>Naša farnosť sa nachádza na okraji mesta v mestskej časti Ružinov. Jej územie tvoria sídliská Trnávka, Ostredky, Mierová kolónia, Štrkovec, Zlaté piesky a Letisko. Spravujú ju saleziáni a patrónom kostola je sv. Ján Bosco.</p>
                         </div>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
                             <h3>Futbalový klub</h3>
                         </div>
                         <div class="text">
-                            <p>SDM DOMINO je najväčší mládežnícky futbalový klub na Slovensku. Pôsobí v ňom vyše 500 hráčov, 50 trénerov, 1000 rodičov. Týždenne je na hracích plochách približne 60 tréningov. Tréneri, futbalisti, rodičia a všetci sympatizanti sa snažia budovať spoločne jeden klub. Chceme vytvárať spoločenstvo, kde si vieme reálne pomôcť a vzájomne sa podporovať.</p>
+                            <p>SDM DOMINO je najväčší mládežnícky futbalový klub na Slovensku. Pôsobí v ňom vyše 500 hráčov, 50 trénerov, 1000 rodičov. Tréneri, futbalisti, rodičia a všetci sympatizanti sa snažia budovať spoločne jeden klub.</p>
                         </div>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                             <h3>Oratko</h3>
                         </div>
                         <div class="text">
-                            <p>Oratko vytvára priestor na stretávanie sa rovesníckych skupín pre mládež na základnej, strednej a vysokej školy, mladých pracujúcich. Vyrastajú v ňom animátori, ktorí sa vo voľnom čase aktívne venujú deťom. Pripravujú pre nich rôzne zážitkové akcie, výlety a letné tábory. Chcú využívať čas naplno a dávaním sa pre mladých. Je to pre nich veľká skúsenosť nie len pre prácu v oratóriu ale najmä do života.</p>
+                            <p>Oratko vytvára priestor na stretávanie sa rovesníckych skupín pre deti a mládež. Vyrastajú v ňom animátori, ktorí sa vo voľnom čase aktívne venujú deťom. Pripravujú pre nich rôzne zážitkové akcie, výlety a letné tábory.</p>
                         </div>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                             <h3>Rodinná poradňa</h3>
                         </div>
                         <div class="text">
-                            <p>Family Garden je poradenské centrum pre rodiny, ktoré sa venuje podpore zdravého fungovania rodín. Zameriava sa v prvom rade na manželov. Ak manželia majú zdravý a vyzretý vzťah, vytvárajú predpoklady pre zdravú a fungujúcu rodinu. V oblasti poradenstva je priestor pre osobné stretnutie s odborníkom. V oblasti prevencie je k dispozícii množstvo prednášok, vzdelávacích programov a školení.</p>
+                            <p>Family Garden je poradenské centrum pre rodiny. V oblasti poradenstva je priestor pre osobné stretnutie s odborníkom. V oblasti prevencie je k dispozícii množstvo prednášok, vzdelávacích programov a školení.</p>
                         </div>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                             <h3>Materské centrum</h3>
                         </div>
                         <div class="text">
-                            <p>Materské centrum Margarétka je miesto pre celú rodinu. Rozvíja zručnosti detí predškolského veku, socializuje matky a ženy. Vytvára priestor na stretávanie sa celých rodín s cieľom zabezpečiť harmonický vývoj detí a ich prípravu na život. Riadi sa myšlienkami a charizmou don Bosca a pomáha tak saleziánom don Bosca venovať sa tým najmenším. </p>
+                            <p>Materské centrum Margarétka rozvíja zručnosti detí predškolského veku, socializuje matky a ženy. Vytvára priestor na stretávanie sa celých rodín a pomáha tak saleziánom venovať sa tým najmenším.</p>
                         </div>
                     </div>
                 </div>
@@ -71,7 +71,7 @@
                             <h3>Škôlka</h3>
                         </div>
                         <div class="text">
-                            <p>Materská škola Mamy Margity je trojtriedna škôlka s celodennou starostlivosťou. Je to miesto, kde tvoríme, objavujeme, rastieme a rešpektujeme sa navzájom. Pomáhame deťom vytvárať podnetné rozvíjajúce prostredie. Materská škola je súčasťou rodinného centra a má k dispozícii aj vonkajšie priestory pre pohybové aktivity s deťmi.</p>
+                            <p>Materská škola Mamy Margity je trojtriedna škôlka s celodennou starostlivosťou. Materská škola je súčasťou Rodinného centra a má k dispozícii aj vonkajšie priestory pre pohybové aktivity s deťmi.</p>
                         </div>
                     </div>
                 </div>
@@ -82,7 +82,7 @@
                             <h3>Skauting</h3>
                         </div>
                         <div class="text">
-                            <p>Dobrodružstvo, služba, odvaha a sila spoločenstva - charakterizujú skauting nie len v našom stredisku. Na Trnávke môžete zažiť 1000 osobonocí v lone prírody, 300 družinoviek ročne pre viac ako 140 mladých. Skauting dopĺňa aktivity saleziánov a pomáha vytvárať prostredie, kde môže mládež vyrásť v zodpovedných a zrelých dospelých.</p>
+                            <p>Na Trnávke môžete zažiť 1000 osobonocí v lone prírody, 300 družinoviek ročne pre viac ako 140 mladých. Skauting pomáha vytvárať prostredie, kde môže mládež vyrásť v zodpovedných a zrelých dospelých.</p>
                         </div>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
                             <h3>Futbalové ihrisko a bežecká dráha</h3>
                         </div>
                         <div class="text">
-                            <p>Futbalové ihrisko na veľkom umelom trávniku je k dispozícii verejnosti vždy, keď na ňom nie je tréning futbalového klubu SDM DOMINO. Tvorí ho okrem trávnatej plochy aj bežecká dráha, ktorá z ihriska pokračuje v okolí Rodinného centra. Na nej si môžete zabehať v ktoromkoľvek čase aj počas víkendov. Slúži pre jednotlivcov ale aj celé rodiny.</p>
+                            <p>Futbalové ihrisko na veľkom umelom trávniku je k dispozícii verejnosti vždy, keď na ňom nie je tréning futbalového klubu. Tvorí ho okrem trávnatej plochy aj bežecká dráha, ktorá z ihriska pokračuje v okolí Rodinného centra.</p>
                         </div>
                     </div>
                 </div>
