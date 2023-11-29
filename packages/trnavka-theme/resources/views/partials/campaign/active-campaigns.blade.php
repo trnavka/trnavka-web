@@ -11,23 +11,25 @@
 <div class="collections">
     <div class="container-fluid ">
         <div class="row @if(count($active_campaigns) > 2 && (count($active_campaigns) + 1) % 3 === 2) justify-content-center @endif gy-4">
-            <div class="col-md-6 col-lg-4">
-                <div class="collection-card" style="background-color: #e4e4e4;">
-                    <div class="card-description">
-                        <h4>Saleziánske dielo na Trnávke</h4>
-                        <p>
-                            Pravidelné finančné dary pre celé Saleziánske dielo na Trnávke sú určené na vytváranie grantového fondu, z ktorého sa
-                            poskytuje štartovací príspevok pre zbierky na konkrétne projekty.
-                        </p>
-                        <p class="mt-2">
-                            Takto môžeš pomôcť udržať a rozvíjať športové, kultúrne, sociálne a duchovné aktivity pre deti, mladých, rodičov aj seniorov.
-                        </p>
-                    </div>
-                    <div class="card-actions">
-                        <button class="btn-donate btn-dajnato-cta stretched-link" data-form-url="/dajnato-form/?modal=T">Chcem pravidelne podporiť</button>
+            @if(isset($dajnato_cta_form_url))
+                <div class="col-md-6 col-lg-4">
+                    <div class="collection-card" style="background-color: #e4e4e4;">
+                        <div class="card-description">
+                            <h4>Saleziánske dielo na Trnávke</h4>
+                            <p>
+                                Pravidelné finančné dary pre celé Saleziánske dielo na Trnávke sú určené na vytváranie grantového fondu, z ktorého sa
+                                poskytuje štartovací príspevok pre zbierky na konkrétne projekty.
+                            </p>
+                            <p class="mt-2">
+                                Takto môžeš pomôcť udržať a rozvíjať športové, kultúrne, sociálne a duchovné aktivity pre deti, mladých, rodičov aj seniorov.
+                            </p>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-donate btn-dajnato-cta stretched-link" data-form-url="{{$dajnato_cta_form_url}}">Chcem pravidelne podporiť</button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endif
             <?php /** @var \App\Entity\Campaign $campaign */ ?>
             @foreach($active_campaigns as $campaign)
                 <div class="col-md-6 col-lg-4">
