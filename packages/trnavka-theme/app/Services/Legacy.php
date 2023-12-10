@@ -14,6 +14,8 @@ class Legacy
     {
         $statement = $this->connection()->prepare('
             SELECT p.*, pm1.meta_value AS mv1, pm2.meta_value AS attachment_metadata, pm3.meta_value AS attachment_url FROM wp_posts AS p
+                INNER JOIN wp_term_relationships tr ON p.ID = tr.object_id
+                INNER JOIN wp_term_taxonomy tt ON tr.term_taxonomy_id = tt.term_taxonomy_id
                      LEFT JOIN
             wp_postmeta pm1 ON p.ID = pm1.post_id AND pm1.meta_key = \'_thumbnail_id\'
         LEFT JOIN
@@ -22,7 +24,7 @@ class Legacy
             wp_postmeta pm3 ON pm1.meta_value = pm3.post_id AND pm3.meta_key = \'_wp_attached_file\'
 
 
-             WHERE post_type = "post" AND post_status = "publish" ORDER BY post_date DESC LIMIT 3');
+             WHERE tt.term_id = 66 AND p.post_type = "post" AND p.post_status = "publish" ORDER BY post_date DESC LIMIT 3');
         $statement->execute();
 
         $legacyBaseUrl = env('HTML_HEADER_URL') . 'wp-content/uploads/';
