@@ -16,7 +16,7 @@ class HtmlHeader
 
     public function loadAndCache(): string
     {
-        $content = file_get_contents(Config::get('HTML_HEADER_URL') . "/?hide-daj-na-to=T&cb=" . rand(1, 100000000), false, stream_context_create(array(
+        $content = file_get_contents(Config::get('HTML_HEADER_URL') . "/404-menu/?hide-daj-na-to=T&cb=" . rand(1, 100000000), false, stream_context_create(array(
             "ssl" => array(
                 "verify_peer" => false,
                 "verify_peer_name" => false,
