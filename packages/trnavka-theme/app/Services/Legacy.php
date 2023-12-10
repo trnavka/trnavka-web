@@ -42,7 +42,7 @@ class Legacy
         $fourHoursAgo = new DateTimeImmutable('4 hour ago');
 
         foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $post) {
-            $post['excerpt'] = wp_trim_words(strip_tags($post['post_content']));
+            $post['excerpt'] = wp_trim_words(strip_tags($post['post_content']), 35);
             $attachment = unserialize($post['attachment_metadata']);
             $post['attchment'] = $attachment;
             $file = '';
