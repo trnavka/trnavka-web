@@ -63,7 +63,7 @@
     <div class="footer-newsletter wp-block-template-part">
         <div class="wp-block-saleziani-newsletter-form">
             <h3>Chcete sledovať, čo máme nové? Pridajte sa do trnávkového newslettra</h3>
-            <form method="post" action="https://sdbsk.ecomailapp.cz/public/subscribe/1/43c2cd496486bcc27217c3e790fb4088?source=web-web-saleziani-sk">
+            <form method="post" action="https://trnavka.ecomailapp.cz/public/subscribe/1/43c2cd496486bcc27217c3e790fb4088?source=web-trnavka-sk">
                 <input type="email" name="email" placeholder="Vaša emailová adresa" required="required">
                 <label class="input-checkbox">
                     <input type="checkbox" name="gdpr" required="required">
