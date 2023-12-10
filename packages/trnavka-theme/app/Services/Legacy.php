@@ -24,7 +24,7 @@ class Legacy
             wp_postmeta pm3 ON pm1.meta_value = pm3.post_id AND pm3.meta_key = \'_wp_attached_file\'
 
 
-             WHERE tt.term_id = 66 AND p.post_type = "post" AND p.post_status = "publish" ORDER BY post_date DESC LIMIT 3');
+             WHERE tt.term_id = 66 AND p.post_type = "post" AND p.post_status = "publish" ORDER BY post_date DESC LIMIT 6');
         $statement->execute();
 
         $legacyBaseUrl = env('HTML_HEADER_URL') . 'wp-content/uploads/';
