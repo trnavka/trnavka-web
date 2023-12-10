@@ -98,7 +98,7 @@
                                 @if(($show_service_links ?? false) && isset($service['links']))
                                     <p class="mt-3">
                                         @foreach($service['links'] as $link)
-                                            <a href="{{$link[0]}}" target="_blank">{{$link[1]}}</a>
+                                            <a href="{{$link[0]}}"@if(str_starts_with($link[0], 'http')) target="_blank"@endif>{{$link[1]}}</a>
                                         @endforeach
                                     </p>
                                 @endif
