@@ -105,6 +105,10 @@ class Legacy
                 $this->saveFile($missingFilePath, date('Y-m-d H:i:s'));
             }
 
+            if (!empty($post['thumbnail_url'])) {
+                $post['thumbnail_url'] = env('WP_HOME') . $post['thumbnail_url'];
+            }
+
             yield $post;
         }
     }
