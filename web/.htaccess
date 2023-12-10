@@ -15,7 +15,7 @@ RewriteRule . /index.php [L]
 
 # END WordPress
 
-<FilesMatch ".*\.ttf$">
+<FilesMatch ".*\.(ttf|woff2)$">
     <IfModule mod_headers.c>
         Header set Access-Control-Allow-Origin "*"
     </IfModule>
