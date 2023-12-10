@@ -1,0 +1,16 @@
+.bootstrap-columns-container {
+  max-width: var(--wp--style--global--content-size) !important;
+  .row {
+      --bs-gutter-y: 3rem;
+
+      @include media-breakpoint-down(md) {
+          > [class*='col-'] {
+              max-width: 30rem;
+          }
+      }
+  }
+
+    .bootstrap-column-inner {
+        position: relative;
+    }
+}

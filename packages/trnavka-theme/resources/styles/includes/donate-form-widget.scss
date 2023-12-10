@@ -1,6 +1,6 @@
 .donate-form-block,
 .donate-form-widget{
-    background-color: #f4f4f4;
+    background-color: #f9f6f4;
     @include section-margin(96px, 0);
 
     .form-widget-wrapper {
@@ -17,7 +17,7 @@
 .subscription-widget-holder {
     .donate-form-block,
     .donate-form-widget {
-        background-color: #e4e4e4;
+        background-color: #efe9e5;
     }
 
     .donate-form-block {
@@ -63,6 +63,14 @@
 
         .dajnato-expenses-info {
             font-weight: 300;
+        }
+    }
+}
+
+.page-template-homepage {
+    .donate-form-widget {
+        @include media-breakpoint-down(md) {
+            margin-bottom: 3rem;
         }
     }
 }

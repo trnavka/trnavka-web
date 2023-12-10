@@ -22,23 +22,23 @@
             }
         }
 
-        h2 {
-            @include title-size(40px, 48px, 48px);
-        }
+
         .feature-card{
             padding-top: 48px;
             padding-bottom: 48px;
             border-bottom: 1px solid rgba(196, 197, 198, 0.4);
             height: 100%;
+            padding-right: 30px;
 
             @include media-breakpoint-down(md) {
                 padding-top: 24px;
                 padding-bottom: 24px;
+                padding-right: 0;
             }
 
             .text {
                 p {
-                    @include content-size(15px, 24px, 0);
+                    @include content-size(16px, 24px, 0);
                 }
             }
 

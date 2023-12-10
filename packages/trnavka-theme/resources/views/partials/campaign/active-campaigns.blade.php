@@ -13,7 +13,7 @@
         <div class="row @if(count($active_campaigns) > 2 && (count($active_campaigns) + 1) % 3 === 2) justify-content-center @endif gy-4">
             @if(isset($dajnato_cta_form_url))
                 <div class="col-md-6 col-lg-4">
-                    <div class="collection-card" style="background-color: #e4e4e4;">
+                    <div class="collection-card" style="background-color: #efe9e5;">
                         <div class="card-description">
                             <h4>Saleziánske dielo na Trnávke</h4>
                             <p>

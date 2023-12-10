@@ -1,20 +1,27 @@
+@import 'colors';
+@import 'mixins';
 @import 'config';
-@import "~bootstrap/scss/bootstrap";
-@import 'fonts';
+@import '~bootstrap/scss/bootstrap';
+//@import 'fonts';
+
+@import 'typography';
+
 @import 'includes/form-widget';
 @import 'includes/modal-donation-form';
 @import 'includes/header';
 @import 'includes/features';
+@import 'includes/latest-posts';
 @import 'includes/service-finances';
 @import 'includes/donate-section';
 @import 'includes/donate-form-widget';
 @import 'includes/collections';
 @import 'includes/detail-page';
+@import 'fonts/all';
 
 @import 'wp/blocks';
 
 body{
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Fira Sans', sans-serif;
     font-weight: $font-weight-normal;
     color: #3B3B42;
     background-color: #ffffff;
@@ -46,4 +53,52 @@ body{
 
 code {
     color: inherit;
+}
+
+h2 {
+    @include display-reg-xl;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: $primary;
+    @include media-breakpoint-down(md) {
+        @include display-reg-l;
+    }
+}
+
+.lead{
+    @include body-l;
+    margin-bottom: 1rem;
+    @include media-breakpoint-down(md) {
+        @include body-m;
+    }
+}
+
+.section-header {
+    @include section-padding(96px, 0);
+}
+
+.footer {
+    background-color: #f9f6f4;
+    margin-top: 6rem;
+
+    .container-fluid > .form-widget-wrapper {
+        border-bottom: 1px solid rgba(39, 39, 39, 0.20);
+        margin-bottom: 3rem;
+    }
+
+    @include media-breakpoint-down(md) {
+        margin-top: 3rem;
+    }
+
+    .post-content-holder {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.875rem 8rem 1.875rem;
+    }
+}
+
+.is-layout-flex {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
 }

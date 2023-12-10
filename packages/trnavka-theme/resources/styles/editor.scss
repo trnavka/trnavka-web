@@ -1,3 +1,5 @@
+@import 'colors';
+@import 'mixins';
 @import 'config';
 @import "~bootstrap/scss/bootstrap";
 @import 'fonts';
@@ -19,7 +21,7 @@
 }
 
 .dajnato-cta-block-editor {
-    background-color: #F4F4F4;
+    background-color: #f9f6f4;
     padding: 38px 48px 48px 48px;
     max-width: 540px;
     margin: 30px auto;
@@ -59,8 +61,8 @@
             }
 
             &.dajnato-value-selected {
-                background-color: #F4524D;
-                border-color: #F4524D;
+                background-color: #cf3942;
+                border-color: #cf3942;
                 z-index: 1000;
 
                 input[type=number] {
@@ -93,7 +95,7 @@
         text-align: center;
 
         &.dajnato-button {
-            background: #f4524d;
+            background: #cf3942;
             border: 0;
             border-radius: 0;
             color: #fff;

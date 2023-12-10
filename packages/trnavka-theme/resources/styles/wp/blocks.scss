@@ -1,4 +1,8 @@
 @import 'wp-block-pullquote';
+@import 'bootstrap-columns';
+@import 'icon-columns';
+@import 'organization-columns';
+@import 'newsletter-form';
 
 @media (min-width: 782px) {
     .wp-block-columns {

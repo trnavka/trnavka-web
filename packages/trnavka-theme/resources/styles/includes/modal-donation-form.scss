@@ -8,7 +8,7 @@
 .donation-form {
     padding: 40px;
     color: #3B3B42;
-    //background-color: #f4f4f4;
+    //background-color: #f9f6f4;
     border: 0;
 
     .donation-form-amount {
@@ -93,12 +93,12 @@
 
             .btn-check:checked + label,
             .btn-check:hover + label {
-                border-color: #F4524D;
+                border-color: #cf3942;
                 color: $white;
                 &:hover{
 
-                    background-color: #e0423d;
-                    border-color: #e0423d;
+                    background-color: #ba323a;
+                    border-color: #ba323a;
                 }
             }
 
@@ -109,7 +109,7 @@
             input[type=email],
             input[type=number] {
                 border: 2px solid #C4C5C6;
-                //background-color: #f4f4f4;
+                //background-color: #f9f6f4;
                 border-radius: 0;
 
                 &:active,
@@ -147,7 +147,7 @@
         .submit-form-btn {
             width: 100%;
             font-weight: $font-weight-bold;
-            background-color: #F4524D;
+            background-color: #cf3942;
             color: $white;
             font-size: 19px;
             line-height: 19px;
@@ -155,7 +155,7 @@
             border: 0;
             margin-bottom: 16px;
             &:hover{
-                background-color: #e0423d;
+                background-color: #ba323a;
             }
 
         }

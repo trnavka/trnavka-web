@@ -1,0 +1,44 @@
+@mixin svgBackground($svgImage, $color: '', $size: '', $position: top left, $repeat: no-repeat) {
+    background-image: url($svgImage);
+    background-color: inherit;
+
+    @if $size != '' {
+        background-size: $size;
+    }
+
+    @if $position {
+        background-position: $position
+    }
+
+    @if $repeat {
+        background-repeat: $repeat
+    }
+}
+
+@mixin link-with-icon() {
+    color: $red;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    flex-direction: row-reverse;
+
+    &:before {
+        @include svgBackground('../images/arrow-right.svg', $red);
+
+        content: '';
+        display: inline-block;
+        height: 1.25rem;
+        margin-left: 0.5rem;
+        width: 1.25rem;
+    }
+    &[href*='//'] {
+        &:before {
+            background-image: url('../images/external-link.svg');
+        }
+    }
+}

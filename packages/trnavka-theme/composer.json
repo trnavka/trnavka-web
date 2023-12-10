@@ -13,5 +13,8 @@
                 "App\\Providers\\ThemeServiceProvider"
             ]
         }
+    },
+    "require": {
+        "ext-pdo": "*"
     }
 }

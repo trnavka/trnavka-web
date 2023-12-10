@@ -1,5 +1,5 @@
 .form-widget {
-    background-color: #e4e4e4;
+    background-color: #efe9e5;
     padding: 48px;
 
     @include media-breakpoint-down(md) {
@@ -62,14 +62,14 @@
 
                     &:checked {
                         + span {
-                            background: #f4524d;
+                            background: #cf3942;
                             color: $white;
-                            border: 4px solid #f4524d;
+                            border: 4px solid #cf3942;
                             z-index: 100;
 
                             &:hover {
-                                background: #e0423d;
-                                border: 4px solid #e0423d;
+                                background: #ba323a;
+                                border: 4px solid #ba323a;
                             }
                         }
                     }
@@ -95,7 +95,7 @@
     text-align: center;
     text-decoration: none;
     width: 100%;
-    background: #f4524d;
+    background: #cf3942;
     @include title-size(18px, 22px, 32px);
     font-weight: $font-weight-bold;
     color: $white;
@@ -117,7 +117,7 @@
     }
 
     &:hover {
-        background: #e0423d;
+        background: #ba323a;
     }
 }
 
