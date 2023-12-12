@@ -50,6 +50,12 @@ class CampaignPost extends Composer
             add_filter('wp_robots', 'wp_robots_no_robots');
         }
 
+        add_action( 'wp_head', function() use ($campaign) {
+            if (str_contains($campaign->title, 'hranolov')) {
+                echo '<meta name="og-image" content="' . get_template_directory_uri() . '/public/static/dajnato-hranoly-share-image.png" />';
+            }
+        });
+
         return [
             'views' => $views,
             'view' => $view,
