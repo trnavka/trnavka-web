@@ -90,7 +90,7 @@
             padding: 1.5rem;
             width: 100%;
             @include media-breakpoint-down(lg) {
-                padding: 1.5rem 0.75rem 0 0.75rem;
+                padding: 1.5rem 0.75rem 1rem 0.75rem;
             }
         }
 
@@ -166,16 +166,16 @@
             list-style: none;
             padding-left: 0;
             @include media-breakpoint-down(lg) {
-                display: flex;
-                flex-wrap: wrap;
+                //display: flex;
+                //flex-wrap: wrap;
             }
 
             li {
                 padding-bottom: 0.5rem;
                 @include media-breakpoint-down(lg) {
                     padding-right: 2rem;
-                    padding-bottom: 2rem;
-                    flex: 33.33%;
+                    padding-bottom: 1rem;
+                    //flex: 33.33%;
                 }
             }
 

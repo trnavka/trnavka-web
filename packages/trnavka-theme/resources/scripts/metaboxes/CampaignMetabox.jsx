@@ -18,4 +18,4 @@ const MyMetaBox = () => {
     );
 };
 
-render(<MyMetaBox />, document.getElementById("App_Metabox_CampaignMetabox"));
+// render(<MyMetaBox />, document.getElementById("App_Metabox_CampaignMetabox"));
