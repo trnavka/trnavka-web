@@ -13,7 +13,7 @@ class CampaignMetabox extends AbstractMetabox
                 'add_new' => _x('Pridať novú kampaň', 'Daj na to campaign add button'),
             ],
             'show_in_rest' => true,
-            'supports' => ['title', 'editor', /*'custom-fields', */ 'thumbnail'],
+            'supports' => ['title', 'editor', 'custom-fields', 'thumbnail'],
             'hierarchical' => false,
             'public' => true,
             'has_archive' => false,
@@ -22,6 +22,11 @@ class CampaignMetabox extends AbstractMetabox
                 'with_front' => false,
             ],
         ]);
+    }
+
+    public function renderMetaBox($post): void
+    {
+        echo '<div id="' . $this->metaboxId . '">Javascript required.</div>';
     }
 
     protected function formToModelData(array $postData): array

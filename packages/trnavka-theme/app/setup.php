@@ -332,6 +332,17 @@ add_action('init', function () {
             ]);
         }
     }
+
+    register_post_meta(
+        '',
+        '_better_meta_box_value',
+        array(
+            'show_in_rest' => true,
+            'type' => 'boolean',
+            'single' => true,
+            'default' => false
+        )
+    );
 });
 
 add_filter('query_vars', function (
@@ -396,5 +407,4 @@ $addArchivedPostStatus = function () {
 add_action('post_submitbox_misc_actions', $addArchivedPostStatus, 0);
 
 new CampaignMetabox();
-new SmallThumbnailMetabox();
 new FinancialSubjectMetabox();

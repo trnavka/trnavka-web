@@ -1,14 +1,13 @@
-.features{
+.features {
     background-color: $white;
     @include section-padding(96px, 0);
     padding-left: 32px;
     padding-right: 32px;
-
     @include media-breakpoint-down(md) {
         padding: 32px;
     }
 
-    .content{
+    .content {
         position: relative;
 
         .services-row {
@@ -22,14 +21,12 @@
             }
         }
 
-
-        .feature-card{
+        .feature-card {
             padding-top: 48px;
             padding-bottom: 48px;
             border-bottom: 1px solid rgba(196, 197, 198, 0.4);
             height: 100%;
             padding-right: 30px;
-
             @include media-breakpoint-down(md) {
                 padding-top: 24px;
                 padding-bottom: 24px;
@@ -42,22 +39,155 @@
                 }
             }
 
-            .title{
+            .title {
                 display: flex;
                 align-items: center;
                 margin-bottom: 24px;
-
                 @include media-breakpoint-down(md) {
                     margin-bottom: 12px;
                 }
 
-                img{
+                img {
                     max-width: 48px;
                     margin-right: 22px;
                 }
-                h3{
+
+                h3 {
                     @include title-size(22px, 26px, 0);
                     font-weight: $font-weight-bold;
+                }
+            }
+        }
+    }
+}
+
+.report-features {
+    .bootstrap-icon-columns .bootstrap-column-inner {
+        .wp-block-heading {
+            //@include display-reg-m;
+            //font-weight: 700;
+        }
+    }
+}
+
+.report-features-dicaprio {
+    padding-left: 30px;
+    padding-right: 30px;
+    @include media-breakpoint-down(lg) {
+        max-width: 550px;
+    }
+
+    .report-features-item {
+        margin-bottom: 6rem;
+        @include media-breakpoint-down(lg) {
+            margin-bottom: 3rem;
+            background-color: #f9f6f4;
+            //padding: 1.5rem 0.75rem 1.5rem 0.75rem;
+            border-radius: 0.5rem;
+        }
+
+        .content {
+            padding: 1.5rem;
+            width: 100%;
+            @include media-breakpoint-down(lg) {
+                padding: 1.5rem 0.75rem 0 0.75rem;
+            }
+        }
+
+        .item-image {
+            img {
+                width: 100%;
+                border-radius: 0.5rem;
+            }
+
+            @include media-breakpoint-down(lg) {
+                padding-left: 0;
+                padding-right: 0;
+                img {
+                    border-radius: 0.5rem 0.5rem 0 0;
+                }
+            }
+        }
+
+        .wp-block-heading {
+            font-size: 1.3125rem;
+            line-height: 1.8125rem;
+            margin: 0 0 1rem;
+            color: $dark;
+            @include display-reg-m;
+
+            @include media-breakpoint-up(lg) {
+                @include display-reg-l;
+                font-weight: 700;
+            }
+        }
+
+        .wp-block-saleziani-icon {
+            margin-bottom: 1rem;
+
+            &,
+            svg {
+                width: 3rem;
+                height: 3rem;
+                fill: $green;
+            }
+        }
+
+        ul,
+        div.service-content,
+        p {
+            @include body-m;
+            margin: 0 0 1rem 0;
+            color: rgba(39, 39, 39, 0.80);
+
+            @include media-breakpoint-down(lg) {
+                @include body-s;
+            }
+
+            a {
+                @include link-with-icon;
+            }
+
+            &:last-child {
+                margin: 0;
+            }
+        }
+
+        @include media-breakpoint-up(lg) {
+            .content-left {
+                padding-right: 4rem !important;
+            }
+            .content-right {
+                padding-left: 4rem !important;
+            }
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+            @include media-breakpoint-down(lg) {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            li {
+                padding-bottom: 0.5rem;
+                @include media-breakpoint-down(lg) {
+                    padding-right: 2rem;
+                    padding-bottom: 2rem;
+                    flex: 33.33%;
+                }
+            }
+
+            strong {
+                color: $primary;
+                @include display-reg-l;
+                font-size: 1.75rem;
+                line-height: 2.5rem;
+                display: block;
+
+                @include media-breakpoint-down(lg) {
+                    @include display-reg-m;
                 }
             }
         }

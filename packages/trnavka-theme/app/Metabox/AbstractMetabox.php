@@ -7,7 +7,7 @@ use Exception;
 class AbstractMetabox
 {
     private string $postTypeId;
-    private string $metaboxId;
+    public string $metaboxId;
 
     public function __construct(
         string $postTypeId,

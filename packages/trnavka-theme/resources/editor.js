@@ -1,5 +1,6 @@
 import './styles/editor.scss'
 import ctaBlock from './scripts/blocks/dajnato-cta.block.jsx'
+import './scripts/metaboxes/CampaignMetabox.jsx'
 
 const {registerBlockType} = window.wp.blocks;
 

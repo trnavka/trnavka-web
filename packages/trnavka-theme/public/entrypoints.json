@@ -7,7 +7,7 @@
     },
     "app": {
       "css": [
-        "/app/themes/theme/public/app.36ba65cb.css"
+        "/app/themes/theme/public/app.ebc12eff.css"
       ],
       "js": [
         "/app/themes/theme/public/app.9514fcef.js"
@@ -23,7 +23,7 @@
         "/app/themes/theme/public/editor.961f6cf6.css"
       ],
       "js": [
-        "/app/themes/theme/public/editor.d6d5aedc.js"
+        "/app/themes/theme/public/editor.48237a96.js"
       ]
     }
   }
