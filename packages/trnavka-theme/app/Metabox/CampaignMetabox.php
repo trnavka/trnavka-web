@@ -24,10 +24,10 @@ class CampaignMetabox extends AbstractMetabox
         ]);
     }
 
-    public function renderMetaBox($post): void
-    {
-        echo '<div id="' . $this->metaboxId . '">Javascript required.</div>';
-    }
+//    public function renderMetaBox($post): void
+//    {
+//        echo '<div id="' . $this->metaboxId . '">Javascript required.</div>';
+//    }
 
     protected function formToModelData(array $postData): array
     {
