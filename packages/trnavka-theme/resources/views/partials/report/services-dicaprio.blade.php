@@ -6,9 +6,9 @@
             'title' => 'Farnosť',
             'image' => '01-farnost.jpg',
             'content' => '<ul>
-                <li><strong>890</strong> svätých omší</li>
-                <li><strong>35</strong> birmovancov</li>
                 <li><strong>76</strong> prvopríjmajúcich</li>
+                <li><strong>35</strong> birmovancov</li>
+                <li><strong>890</strong> svätých omší</li>
                 <!--<li><strong>1000+</strong> spovedí a duchovných rozhovorov</li>-->
             </ul>',
             'links' => [['/farske-oznamy/', 'Farské oznamy'], ['/informacie/', 'Bohoslužby a spovedanie']]
@@ -31,8 +31,8 @@
             'title' => 'Oratko',
             'content' => '<ul>
                 <li><strong>440</strong> detí na letných táboroch</li>
-                <li><strong>1060</strong> stretiek detí a mladých</li>
                 <li><strong>120</strong> animátorov</li>
+                <li><strong>1060</strong> stretiek detí a mladých</li>
                 <!--<li><strong>1&nbsp;000&nbsp;000</strong> zážitkov</li>-->
             </ul>',
             'links' => [['/oratko/', 'Viac informácií']]
@@ -77,9 +77,9 @@
 		   'image' => '07-skauti.jpg',
 		   'title' => 'Skauti',
 		   'content' => '<ul>
-                <li><strong>300</strong> družinoviek (stretiek)</li>
                 <li><strong>110</strong> detí a mladých na letnom tábore</li>
                 <li><strong>25</strong> animátorov (radcov + vodcov)</li>
+                <li><strong>300</strong> družinoviek (stretiek)</li>
                 <!--<li><strong>1000</strong> osobonocí strávených v lone prírody</li>-->
             </ul>',
 		   'links' => [

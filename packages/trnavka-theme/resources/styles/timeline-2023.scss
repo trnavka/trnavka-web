@@ -11,7 +11,8 @@
     margin: 0 auto;
     padding-left: 30px;
     padding-right: 30px;
-    margin-top: 2rem;
+    margin-top: 4rem;
+    margin-bottom: 8rem;
 
     h1 {
         font-size: 4rem;
@@ -23,7 +24,7 @@
     }
 
     .lead {
-        margin-bottom: 6rem;
+        margin-bottom: 3rem;
     }
 
 
@@ -56,7 +57,7 @@
     /* End basic CSS override */
     .timeline {
         //width: 85%;
-        max-width: 700px;
+        max-width: 900px;
         //margin-left: auto;
         //margin-right: auto;
         display: flex;
@@ -69,8 +70,8 @@
 
     .timeline-item {
         display: flex;
-        gap: 24px;
-        align-items: center;
+        gap: 16px;
+        //align-items: center;
 
         & + * {
             margin-top: 24px;
@@ -107,13 +108,17 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 50px;
-        height: 50px;
+        width: 60px;
+        height: 60px;
         border-radius: 50%;
-        margin-left: -57px;
+        margin-left: -63px;
         flex-shrink: 0;
         overflow: hidden;
         box-shadow: 0 0 0 6px #fff;
+
+        img {
+            width: 65%;
+        }
 
         svg {
             width: 30px;
@@ -180,9 +185,18 @@
         color: var(--c-grey-500);
         border: 1px solid var(--c-grey-200);
         box-shadow: 0 4px 4px 0 var(--c-grey-100);
-        border-radius: 6px;
-        padding: 16px;
+        border-radius: 8px;
+        padding: 0;
         font-size: 1rem;
+
+        img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        p {
+            margin: 16px;
+        }
     }
 
     .button {
