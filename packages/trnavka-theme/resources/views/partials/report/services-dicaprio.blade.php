@@ -123,7 +123,7 @@
                     <div class="col-lg-8 item-image @if(($i + 1) % 2 === 0) order-lg-last
 @endif">
                         @if(isset($service['image']))
-                            <img src="@asset('images/2023/' . $service['image'])"/>
+                            <img src="@asset('images/2023/' . $service['image'])?cb=1"/>
                         @endif
                     </div>
                     <div class="col-lg-4 d-flex align-self-center">
