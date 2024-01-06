@@ -1,6 +1,6 @@
 {
   "app/themes/theme/public/share.js": "/app/themes/theme/public/share.1259b705.js",
-  "app/themes/theme/public/app.css": "/app/themes/theme/public/app.65e99a0e.css",
+  "app/themes/theme/public/app.css": "/app/themes/theme/public/app.82d533a0.css",
   "app/themes/theme/public/app.js": "/app/themes/theme/public/app.9514fcef.js",
   "app/themes/theme/public/media.js": "/app/themes/theme/public/media.3a1bde0a.js",
   "app/themes/theme/public/editor.css": "/app/themes/theme/public/editor.961f6cf6.css",
@@ -34,6 +34,7 @@
   "app/themes/theme/public/fonts/Montserrat-Regular.ttf": "/app/themes/theme/public/fonts/Montserrat-Regular.ceb11275.ttf",
   "app/themes/theme/public/images/2023/09-zdravotne-stredisko.jpg": "/app/themes/theme/public/./images/2023/09-zdravotne-stredisko.jpg",
   "app/themes/theme/public/images/2023/events/divadlo.jpg": "/app/themes/theme/public/./images/2023/events/divadlo.jpg",
+  "app/themes/theme/public/images/2023/events/skautsky-tabor.jpg": "/app/themes/theme/public/./images/2023/events/skautsky-tabor.jpg",
   "app/themes/theme/public/images/2023/events/homepage-banner.jpg": "/app/themes/theme/public/./images/2023/events/homepage-banner.jpg",
   "app/themes/theme/public/fonts/fira-sans-v17-latin-ext-800italic.woff2": "/app/themes/theme/public/fonts/fira-sans-v17-latin-ext-800italic.a0a5efb4.woff2",
   "app/themes/theme/public/fonts/fira-sans-v17-latin-ext-700italic.woff2": "/app/themes/theme/public/fonts/fira-sans-v17-latin-ext-700italic.04d92e32.woff2",

@@ -53,7 +53,9 @@
             'image' => '05-materske-centrum.jpg',
             'title' => 'Materské centrum',
             'content' => '<ul>
-                <li><strong>100+</strong> rodiniek s deťmi navštívilo materské centrum a rôzne akcie materského centra</li>
+                <li><strong>281</strong> krúžkových hodín pre najmenších</li>
+                <li><strong>15</strong> prednášok pre rodičov</li>
+                <li><strong>12</strong> dobrovoľníčiek, ktoré to celé organizovali</li>
             </ul>',
             'links' => [
                 ['https://www.facebook.com/MCMargaretka', 'Facebook MC Margarétka']
@@ -64,7 +66,7 @@
             'image' => '06-skolka.jpg',
             'title' => 'Škôlka',
             'content' => '<ul>
-                <li><strong>55</strong> detí v troch triedach</li>
+                <li><strong>60</strong> detí v troch triedach</li>
                 <li><strong>13</strong> učiteliek a ďalšieho personálu</li>
             </ul>',
             'links' => [

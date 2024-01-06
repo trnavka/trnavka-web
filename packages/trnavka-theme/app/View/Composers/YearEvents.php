@@ -42,13 +42,13 @@ class YearEvents extends Composer
             }
 
             yield [
-                'date' => $this->formatDate($data[0], $data[1]),
-                'subject' => $data[2],
-                'action' => ($data[3][0] ?? '') === ',' ? $data[3] : (' ' . $data[3]),
-                'icon' => $this->svgIconName($data[4]),
-                'emphasize' => 'áno' === $data[5],
-                'comment' => nl2br($data[6]),
-                'image' => $data[7],
+                'date' => $this->formatDate($data[0], $data[1], $data[2]),
+                'subject' => $data[3],
+                'action' => ($data[4][0] ?? '') === ',' ? $data[4] : (' ' . $data[4]),
+                'icon' => $this->svgIconName($data[5]),
+                'emphasize' => 'áno' === $data[6],
+                'comment' => nl2br($data[7]),
+                'image' => $data[8],
             ];
         }
     }
@@ -68,7 +68,8 @@ class YearEvents extends Composer
 
     private function formatDate(
         string $dateFrom,
-        string $dateTo
+        string $dateTo,
+        string $dateRelation
     ): string
     {
         $dateFromParts = explode('-', $dateFrom);
@@ -84,11 +85,23 @@ class YearEvents extends Composer
         $dateToDay = ltrim($dateToParts[1], '0');
         $dateToMonth = $this->monthName($dateToParts[0]);
 
-        if ($dateFromMonth === $dateToMonth) {
-            return 'od&nbsp;' . $dateFromDay . '.&nbsp;do ' . $dateToDay . '.&nbsp;' . $dateFromMonth;
+        if ('a' === $dateRelation) {
+            $pattern = '$from a $to';
+        }
+        else {
+            $pattern = 'od&nbsp;$from do&nbsp;$to';
         }
 
-        return 'od&nbsp;' . $dateFromDay . '.&nbsp;' . $dateFromMonth . ' do&nbsp;' . $dateToDay . '.&nbsp;' . $dateToMonth;
+        if ($dateFromMonth === $dateToMonth) {
+            $from = $dateFromDay . '.';
+            $to = $dateToDay . '.&nbsp;' . $dateFromMonth;
+        }
+        else {
+            $from = $dateFromDay . '.&nbsp;' . $dateFromMonth;
+            $to = $dateToDay . '.&nbsp;' . $dateFromMonth;
+        }
+
+        return str_replace('$from', $from, str_replace('$to', $to, $pattern));
     }
 
     private function monthName(string $month): string
