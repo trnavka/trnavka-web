@@ -6,8 +6,8 @@
             'title' => 'Farnosť',
             'image' => '01-farnost.jpg',
             'content' => '<ul>
-                <li><strong>76</strong> prvopríjmajúcich</li>
-                <li><strong>35</strong> birmovancov</li>
+                <li><strong>111</strong> prvoprijímajúcich + birmovancov</li>
+                <li><strong>34</strong> animátorov pripravujúcich deti a mladých na sviatosti</li>
                 <li><strong>890</strong> svätých omší</li>
                 <!--<li><strong>1000+</strong> spovedí a duchovných rozhovorov</li>-->
             </ul>',
@@ -53,8 +53,7 @@
             'image' => '05-materske-centrum.jpg',
             'title' => 'Materské centrum',
             'content' => '<ul>
-                <li><strong>265</strong> mám s deťmi navštívilo materské centrum</li>
-                <li><strong>43</strong> akcií pre rodinky</li>
+                <li><strong>100+</strong> rodiniek s deťmi navštívilo materské centrum a rôzne akcie materského centra</li>
             </ul>',
             'links' => [
                 ['https://www.facebook.com/MCMargaretka', 'Facebook MC Margarétka']
@@ -65,7 +64,7 @@
             'image' => '06-skolka.jpg',
             'title' => 'Škôlka',
             'content' => '<ul>
-                <li><strong>115</strong> detí v troch triedach</li>
+                <li><strong>55</strong> detí v troch triedach</li>
                 <li><strong>13</strong> učiteliek a ďalšieho personálu</li>
             </ul>',
             'links' => [
@@ -79,7 +78,7 @@
 		   'content' => '<ul>
                 <li><strong>110</strong> detí a mladých na letnom tábore</li>
                 <li><strong>25</strong> animátorov (radcov + vodcov)</li>
-                <li><strong>300</strong> družinoviek (stretiek)</li>
+                <li><strong>300</strong> stretiek (družinoviek)</li>
                 <!--<li><strong>1000</strong> osobonocí strávených v lone prírody</li>-->
             </ul>',
 		   'links' => [

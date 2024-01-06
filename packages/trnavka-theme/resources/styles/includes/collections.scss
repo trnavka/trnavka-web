@@ -131,4 +131,9 @@
              right: 0;
          }
     }
+
+    p {
+        margin-top: 2rem;
+        @include body-xl;
+    }
 }

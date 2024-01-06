@@ -15,10 +15,7 @@
 
         <ol class="timeline">
             @foreach($events as $event)
-                <li class="timeline-item
-                @if(!empty($event['image']) || !empty($event['comment'])) | extra-space
-                @endif
-                ">
+                <li class="timeline-item">
                                     <span class="timeline-item-icon | faded-icon">
                                         <img src="@asset('images/' . $event['icon'])" alt="">
                                     </span>

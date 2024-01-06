@@ -17,6 +17,30 @@
 @section('content')
     @include('partials.campaign.header')
 
+{{--    <div class="container-fluid">--}}
+{{--        <div class="wp-block-group wp-pattern-saleziani-call-to-action is-layout-flow wp-block-group-is-layout-flow has-yellow-background-color">--}}
+{{--            <div class="wp-block-group row is-layout-flow wp-block-group-is-layout-flow">--}}
+{{--                <div class="wp-block-group col-sm-7 is-layout-flow wp-block-group-is-layout-flow">--}}
+{{--                    <div class="wp-block-group content is-layout-flow wp-block-group-is-layout-flow">--}}
+{{--                        <h2 class="wp-block-heading">Prehľad roka 2023</h2>--}}
+
+{{--                        <p>Každý rok sa v Saleziánskom diele na Trnávke deje množstvo aktivít, ktoré spolu so saleziánmi pripravuje veľa ľudí. Pozrite si, čo sa u nás dialo v roku 2023.</p>--}}
+
+{{--                        <div class="wp-block-buttons is-layout-flex wp-block-buttons-is-layout-flex">--}}
+{{--                            <div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/rok-2023/">Zobraziť prehľad</a></div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+
+
+
+{{--                <div class="wp-block-group col-sm-5 is-layout-flow wp-block-group-is-layout-flow">--}}
+{{--                    <figure class="wp-block-image size-full"><img decoding="async" src="@asset('images/2023/events/homepage-banner.jpg')" /></figure>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+
     <div class="latest-posts">
         <div class="container-fluid section-header">
             <div class="content">
@@ -59,23 +83,7 @@
         </div>
     </div>
 
-
-    <div class="footer-newsletter wp-block-template-part">
-        <div class="wp-block-saleziani-newsletter-form">
-            <h3>Chcete sledovať, čo máme nové? Pridajte sa do trnávkového newslettra</h3>
-            <form method="post" action="https://trnavka.ecomailapp.cz/public/subscribe/1/43c2cd496486bcc27217c3e790fb4088?source=web-trnavka-sk">
-                <input type="email" name="email" placeholder="Vaša emailová adresa" required="required">
-                <label class="input-checkbox">
-                    <input type="checkbox" name="gdpr" required="required">
-                    <span class="label"><span>Súhlasím so spracúvaním osobných údajov <a href="/suhlas-so-spracuvanim-osobnych-udajov/" target="_blank">na účely informovania o aktivitách</a> Saleziánskeho diela na Trnávke</span></span>
-                </label>
-                <p class="opacity-50">
-                    Emaily posielame len občas a hocikedy sa môžete odhlásiť.
-                </p>
-                <button type="submit" name="submit">Registrovať</button>
-            </form>
-        </div>
-    </div>
+    @include('partials.newsletter')
 
     @include('partials.campaign.services')
 
