@@ -94,11 +94,11 @@ class YearEvents extends Composer
 
         if ($dateFromMonth === $dateToMonth) {
             $from = $dateFromDay . '.';
-            $to = $dateToDay . '.&nbsp;' . $dateFromMonth;
+            $to = $dateToDay . '.&nbsp;' . $dateToMonth;
         }
         else {
             $from = $dateFromDay . '.&nbsp;' . $dateFromMonth;
-            $to = $dateToDay . '.&nbsp;' . $dateFromMonth;
+            $to = $dateToDay . '.&nbsp;' . $dateToMonth;
         }
 
         return str_replace('$from', $from, str_replace('$to', $to, $pattern));
