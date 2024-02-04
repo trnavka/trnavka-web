@@ -419,6 +419,7 @@ add_action('post_submitbox_misc_actions', $addArchivedPostStatus, 0);
 new CampaignMetabox();
 new FinancialSubjectMetabox();
 
+
 add_action('wp_head', function () {
     if (defined('WP_ENV') && WP_ENV === 'production') {
         echo <<<TRACKING
