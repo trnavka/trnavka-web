@@ -25,7 +25,11 @@ $GLOBALS['SHARE_JAVASCRIPT'] = $manifest[$assets . 'share.js'];
  *
  * @return void
  */
-add_action('wp_enqueue_scripts', function () use ($assets, $manifest) {
+add_action('wp_enqueue_scripts', function () use
+(
+    $assets,
+    $manifest
+) {
 //    bundle('app')->enqueue();
 
     wp_enqueue_style('app', home_url() . $manifest[$assets . 'app.css']);
@@ -36,9 +40,12 @@ add_action('wp_enqueue_scripts', function () use ($assets, $manifest) {
 //    wp_dequeue_style('wc-blocks-style'); // Remove WooCommerce block CSS
 }, 100);
 
-add_action('admin_enqueue_scripts', function () use ($assets, $manifest): void {
+add_action('admin_enqueue_scripts', function () use
+(
+    $assets,
+    $manifest
+): void {
     wp_enqueue_script('media', home_url() . $manifest[$assets . 'media.js'], [], false, ['in_footer' => true]);
-
 //    bundle('media')->enqueue();
 }, 100);
 
@@ -47,10 +54,13 @@ add_action('admin_enqueue_scripts', function () use ($assets, $manifest): void {
  *
  * @return void
  */
-add_action('enqueue_block_editor_assets', function () use ($assets, $manifest) {
+add_action('enqueue_block_editor_assets', function () use
+(
+    $assets,
+    $manifest
+) {
     wp_enqueue_script('editor2', home_url() . $manifest[$assets . 'editor.js'], ['wp-blocks', 'wp-components', 'wp-data', 'wp-edit-post', 'wp-element', 'wp-hooks', 'wp-plugins', 'wp-server-side-render'], false, ['in_footer' => true]);
     wp_enqueue_style('editor2', home_url() . $manifest[$assets . 'editor.css']);
-
 //    bundle('editor')->enqueue();
 }, 100);
 
@@ -408,3 +418,22 @@ add_action('post_submitbox_misc_actions', $addArchivedPostStatus, 0);
 
 new CampaignMetabox();
 new FinancialSubjectMetabox();
+
+add_action('wp_head', function () {
+    if (defined('WP_ENV') && WP_ENV === 'production') {
+        echo <<<TRACKING
+        <script>
+          var _paq = window._paq = window._paq || [];
+          _paq.push(['trackPageView']);
+          _paq.push(['enableLinkTracking']);
+          (function() {
+            var u="//matomo.saleziani.sk/";
+            _paq.push(['setTrackerUrl', u+'matomo.php']);
+            _paq.push(['setSiteId', '2']);
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+          })();
+        </script>
+TRACKING;
+    }
+});
