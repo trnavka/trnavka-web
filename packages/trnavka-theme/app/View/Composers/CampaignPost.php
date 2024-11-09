@@ -34,6 +34,7 @@ class CampaignPost extends Composer
             'current' => 'Aktuálna suma',
             'rest' => 'Chýbajúca suma',
             'dajnato-current' => 'Aktuálna suma (iba Dajnato)',
+            'dajnato-current-month' => 'Aktuálna suma za tento mesiac (iba Dajnato)',
         ];
 
         if (!empty($view)) {
@@ -81,6 +82,8 @@ class CampaignPost extends Composer
                 return $campaign->getDajnatoRestAmountFormatted();
             case 'dajnato-current':
                 return $campaign->getCurrentDajnatoAmountFormatted();
+            case 'dajnato-current-month':
+                return $campaign->getCurrentMonthDajnatoAmountFormatted();
         }
 
         return '';

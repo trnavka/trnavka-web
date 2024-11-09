@@ -7,6 +7,7 @@ use App\Repositories\CampaignRepository;
 use DateTimeImmutable;
 use DateTimeZone;
 use Exception;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class Darujme
@@ -72,12 +73,16 @@ class Darujme
         }
 
         $sourceDefinitions = [...$selfSources, ...(null === $fundSource ? [] : [$fundSource]), ...$sourceDefinitions];
+        $currentMonthValue = 0;
+        $currentMonth = date('Y-m');
 
         foreach ($sourceDefinitions as $sourceDefinition) {
             $value = ($sourceDefinition['value'] ?? 0) * 100;
 
             if (isset($sourceDefinition['campaign_id'])) {
-                $value = $value + $this->calculatePaymentsSum($sourceDefinition);
+                $monthlyValues = $this->calculatePaymentsSum($sourceDefinition);
+                $currentMonthValue += $monthlyValues->filter(fn($monthlyValue) => $monthlyValue->month === $currentMonth)->pluck('value')->sum();
+                $value += $monthlyValues->pluck('value', 'month')->sum();
                 $campaigns[$sourceDefinition['campaign_id']] = $value;
             }
 
@@ -90,13 +95,14 @@ class Darujme
             'campaigns' => $campaigns,
             'sum' => $sum,
             '__self' => $sources['__self'] ?? 0,
+            '__self_current_month' => $currentMonthValue,
             '__fund' => $sources['__fund'] ?? 0,
         ]);
 
         update_post_meta($campaign->id, 'dajnato_campaign_sources', json_encode($campaign->sources, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
     }
 
-    private function calculatePaymentsSum(array $source): int
+    private function calculatePaymentsSum(array $source): Collection
     {
         $query = DB::table('darujme_payments')->where('campaign_id', '=', $source['campaign_id']);
 
@@ -108,7 +114,10 @@ class Darujme
             $query->where('received_at', '<', $source['until']);
         }
 
-        return (int)$query->sum('value');
+        return $query
+            ->groupByRaw('month')
+            ->selectRaw("DATE_FORMAT(received_at, '%Y-%m') AS month, SUM(value) AS value")
+            ->get(['month', 'value']);
     }
 
     public function updatePayments(): void

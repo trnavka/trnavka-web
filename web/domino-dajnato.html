@@ -1,0 +1,101 @@
+<style>
+    #main {
+        padding-top: 140px !important;
+    }
+
+    .dajnato-bar-container {
+        height: unset;
+        background-color: #F9F9F9;
+        padding: 30px;
+        margin: 10px 10px 0 10px;
+        line-height: 1.3;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .dajnato-bar-container .inner-container {
+        height: unset;
+        color: black;
+        font-size: 18px;
+        margin: 0 auto;
+        max-width: 1310px;
+    }
+
+    .dajnato-bar-title {
+        margin-bottom: 20px;
+    }
+
+    .dajnato-bar-title a {
+        color: black;
+    }
+
+    .dajnato-bar-title a:hover {
+        color: #93D60E;
+    }
+
+    .dajnato-bar-container a.dajnato-bar-button {
+        background-color: #93D60E;
+        display: inline-block;
+        padding: 20px 30px;
+        color: white;
+        box-shadow: 2px 2px 5px 5px rgba(255, 255, 255, 0.63);
+        font-weight: bold;
+        border-radius: 10px;
+        text-decoration: none;
+        transition: box-shadow 0.3s;
+        white-space: nowrap;
+    }
+
+    .dajnato-bar-container a.dajnato-bar-button:hover {
+        background-color: #8fcd11;
+    }
+
+    .dajnato-bar-numbers {
+    }
+
+    .dajnato-bar-progress {
+        display: inline-block;
+        position: relative;
+        max-width: 700px;
+        width: 100%;
+        height: 25px;
+        background-color: #F2F2F2;
+        border-radius: 30px;
+        margin-bottom: 20px;
+        overflow: hidden;
+    }
+
+    .dajnato-bar-progress-inner {
+        position: absolute;
+        width: 0;
+        height: 100%;
+        background-color: #FBD413;
+    }
+</style>
+<div class="dajnato-bar-container">
+    <script>
+        function renderProgressBar(response) {
+            var amount = parseInt(response.replace(/[ ]/g, '').replace('&nbsp;€', ''));
+
+            var progress = document.querySelector('.dajnato-bar-progress-inner');
+            progress.style.width = (amount / 6000 * 100) + '%';
+        }
+    </script>
+    <div class="inner-container">
+        <div class="dajnato-bar-title">
+            Tento mesiac ste darovali <strong></strong><script src="https://new.trnavka.sk/app/themes/theme/public/share.js" data-url="/dajnato/rekonstrukcia-kostola/" data-view="dajnato-current-month" data-onload="renderProgressBar"></script>
+             z <strong>6000 €</strong> na splátku úveru. <a href="https://www.sdmdomino.sk/daj-na-to/">Viac info</a>
+        </div>
+        <div class="dajnato-bar-button-numbers">
+            <div class="dajnato-bar-numbers">
+                <div class="dajnato-bar-progress">
+                    <div class="dajnato-bar-progress-inner">
+                    </div>
+                </div>
+                <div>
+                    <a href="https://trnavka.sk/dajnato/nove-satne-a-zazemie-futbaloveho-klubu/?of=T" class="dajnato-bar-button">Pomôž splácať</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

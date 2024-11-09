@@ -154,6 +154,11 @@ class Campaign
         return $this->formattedCurrency(round((($this->sources['__fund'] ?? 0) + ($this->sources['__self'] ?? 0)) / 100));
     }
 
+    public function getCurrentMonthDajnatoAmountFormatted(): string
+    {
+        return $this->formattedCurrency(round(($this->sources['__self_current_month'] ?? 0) / 100));
+    }
+
     private function formattedCurrency(int $amount): string
     {
         return number_format($amount, 0, ',', '&nbsp;') . '&nbsp;€';
