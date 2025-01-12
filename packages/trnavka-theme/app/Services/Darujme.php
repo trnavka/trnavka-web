@@ -131,21 +131,28 @@ class Darujme
 
             $lastReceivedAt = (new DateTimeImmutable(get_option('last_import_from_darujme_at') ?? '2019-01-01 00:00:00', $timezone))->setTimezone(new DateTimeZone('UTC'))->format("Y-m-d\TH:i:s\Z");
 
+            $lastReceivedAt = '2024-12-18T00:00:00Z';
+
             do {
                 $response = $this->request('GET', '/v1/payments/', $token, null, [
-                    'status' => 'successful',
-                    'limit' => 1000,
-                    'page' => $page,
-                    'updated_gte' => $lastReceivedAt
+//                    'status' => 'successful',
+                    'limit' => 10,
+                    'page' => 1,
+                    'created_gte' => $lastReceivedAt
                 ]);
 
                 print_r($response['metadata']);
 
                 foreach ($response['items'] ?? [] as $payment) {
 
-                    if ('successful' !== $payment['status']) {
-                        continue;
+//                    if ('successful' !== $payment['status']) {
+//                        continue;
+//                    }
+
+                    if ('klarik.zatkuliakova@gmail.com' === $payment['donation']['donor']['email']) {
+                        dump($payment);
                     }
+                    continue;
 
                     $updateFields = [
                         'payment_id' => $payment['id'],
@@ -169,6 +176,7 @@ class Darujme
 
                     DB::table('darujme_payments')->upsert($updateFields + $createFields, 'payment_id', array_keys($updateFields));
                 }
+                dd('----');
                 $page++;
             } while ($page <= ($response['metadata'] ?? [])['pages'] ?? 0);
 

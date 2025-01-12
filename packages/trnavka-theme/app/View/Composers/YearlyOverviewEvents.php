@@ -12,7 +12,7 @@ use Generator;
 use Roots\Acorn\View\Composer;
 use Symfony\Component\HttpFoundation\Request;
 
-class YearEvents extends Composer
+class YearlyOverviewEvents extends Composer
 {
     /**
      * List of views served by this composer.
@@ -20,19 +20,32 @@ class YearEvents extends Composer
      * @var array
      */
     protected static $views = [
-        '2023',
+        'yearly-overview',
     ];
+
+    public function __construct(private WordPress $wp)
+    {
+    }
 
     public function with(): array
     {
+        $events = iterator_to_array($this->loadCsv());
+
+        usort($events, function ($a, $b) {
+            return $a['from_date'] <=> $b['from_date'];
+        });
+
         return [
-            'events' => $this->loadCsv(),
+            'year' => $this->wp->currentPost()->post_title,
+            'events' => $events,
         ];
     }
 
     private function loadCsv(): Generator
     {
-        $handle = fopen(resource_path('data/rok-2023-akcie.csv'), 'r');
+        $year = $this->wp->currentPost()->post_title;
+
+        $handle = fopen(resource_path('data/rok-' . $year . '-akcie.csv'), 'r');
         $first = true;
 
         while (($data = fgetcsv($handle, 0, ',')) !== false) {
@@ -42,13 +55,18 @@ class YearEvents extends Composer
             }
 
             yield [
+                'from_date' => $data[0],
+                'month' => ucfirst($this->monthName(substr($data[0], 0, 2))),
                 'date' => $this->formatDate($data[0], $data[1], $data[2]),
                 'subject' => $data[3],
                 'action' => ($data[4][0] ?? '') === ',' ? $data[4] : (' ' . $data[4]),
+                'service' => $this->serviceName($data[5]),
                 'icon' => $this->svgIconName($data[5]),
                 'emphasize' => 'áno' === $data[6],
                 'comment' => nl2br($data[7]),
                 'image' => $data[8],
+                'link_label' => $data[9] ?? null,
+                'link_url' => $data[10] ?? null,
             ];
         }
     }
@@ -61,6 +79,7 @@ class YearEvents extends Composer
             'mc' => 'materske-centrum.svg',
             'skauti' => 'skauti.svg',
             'farnosť' => 'church.svg',
+            'fg' => 'family-garden.svg',
         ];
 
         return $iconNames[$service] ?? 'trnavka-logo.svg';
@@ -89,7 +108,7 @@ class YearEvents extends Composer
             $pattern = '$from a $to';
         }
         else {
-            $pattern = 'od&nbsp;$from do&nbsp;$to';
+            $pattern = '$from - $to';
         }
 
         if ($dateFromMonth === $dateToMonth) {
@@ -107,20 +126,34 @@ class YearEvents extends Composer
     private function monthName(string $month): string
     {
         $monthNames = [
-            '01' => 'januára',
-            '02' => 'februára',
-            '03' => 'marca',
-            '04' => 'apríla',
-            '05' => 'mája',
-            '06' => 'júna',
-            '07' => 'júla',
-            '08' => 'augusta',
-            '09' => 'septembra',
-            '10' => 'októbra',
-            '11' => 'novembra',
-            '12' => 'decembra',
+            '01' => 'január',
+            '02' => 'február',
+            '03' => 'marec',
+            '04' => 'apríl',
+            '05' => 'máj',
+            '06' => 'jún',
+            '07' => 'júl',
+            '08' => 'august',
+            '09' => 'september',
+            '10' => 'október',
+            '11' => 'november',
+            '12' => 'december',
         ];
 
         return $monthNames[$month];
+    }
+
+    private function serviceName(string $serviceCode)
+    {
+        $serviceNames = [
+            'domino' => 'Futbalový klub SDM Domino',
+            'oratko' => 'Oratko',
+            'mc' => 'Materské centrum',
+            'skauti' => 'Skauti',
+            'farnosť' => 'Farnosť',
+            'fg' => 'Poradenské centrum Family Garden',
+        ];
+
+        return $serviceNames[$serviceCode] ?? 'Saleziánske dielo na Trnávke';
     }
 }
