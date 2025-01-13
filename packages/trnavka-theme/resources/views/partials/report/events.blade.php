@@ -7,7 +7,7 @@
                 </div>
                 <div class="col-lg-8">
                     <p class="lead">
-                        Ak ste to zažili, tak si môžete pripomenúť jednotlivé akcie. Ak ste to nezažili, tak vás pozývame to zažiť v roku 2024.
+                        Ak ste to zažili, tak si môžete pripomenúť jednotlivé akcie. Ak ste to nezažili, tak vás pozývame to zažiť v roku {{$year+1}}.
                     </p>
                 </div>
             </div>

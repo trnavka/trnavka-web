@@ -2,15 +2,9 @@
 
 namespace App\View\Composers;
 
-use App\Entity\FinancialSubject;
-use App\Repositories\CampaignRepository;
-use App\Repositories\FinancialSubjectRepository;
-use App\Services\Dajnato;
-use App\Services\Darujme;
 use App\Services\WordPress;
 use Generator;
 use Roots\Acorn\View\Composer;
-use Symfony\Component\HttpFoundation\Request;
 
 class YearlyOverviewEvents extends Composer
 {
@@ -31,12 +25,18 @@ class YearlyOverviewEvents extends Composer
     {
         $events = iterator_to_array($this->loadCsv());
 
-        usort($events, function ($a, $b) {
+        usort($events, function (
+            $a,
+            $b
+        ) {
             return $a['from_date'] <=> $b['from_date'];
         });
 
+        $year = $this->wp->currentPost()->post_title;
+
         return [
-            'year' => $this->wp->currentPost()->post_title,
+            'year' => $year,
+            'services' => $this->services($year),
             'events' => $events,
         ];
     }
@@ -106,16 +106,14 @@ class YearlyOverviewEvents extends Composer
 
         if ('a' === $dateRelation) {
             $pattern = '$from a $to';
-        }
-        else {
+        } else {
             $pattern = '$from - $to';
         }
 
         if ($dateFromMonth === $dateToMonth) {
             $from = $dateFromDay . '.';
             $to = $dateToDay . '.&nbsp;' . $dateToMonth;
-        }
-        else {
+        } else {
             $from = $dateFromDay . '.&nbsp;' . $dateFromMonth;
             $to = $dateToDay . '.&nbsp;' . $dateToMonth;
         }
@@ -155,5 +153,171 @@ class YearlyOverviewEvents extends Composer
         ];
 
         return $serviceNames[$serviceCode] ?? 'Saleziánske dielo na Trnávke';
+    }
+
+    private function services(string $year): array
+    {
+        return match ($year) {
+            '2023' => [
+                [
+                    'title' => 'Farnosť',
+                    'image' => '01-farnost.jpg',
+                    'numbers' => [
+                        [111, 'prvoprijímajúcich + birmovancov'],
+                        [34, 'animátorov pripravujúcich deti a mladých na sviatosti'],
+                        [890, 'svätých omší'],
+                    ]
+                ],
+                [
+                    'title' => 'Futbalový klub',
+                    'image' => '02-futbalovy-klub.jpg',
+                    'numbers' => [
+                        [851, 'detí na letných kempoch a sústredeniach'],
+                        [550, 'hráčov od 6 do 19 rokov'],
+                        [72, 'trénerov a dobrovoľníkov'],
+                    ]
+                ],
+                [
+                    'title' => 'Oratko',
+                    'image' => '03-oratko.jpg',
+                    'numbers' => [
+                        [440, 'detí na letných táboroch'],
+                        [120, 'animátorov'],
+                        [1060, 'stretiek detí a mladých'],
+                    ]
+                ],
+                [
+                    'title' => 'Poradenské centrum',
+                    'image' => '04-rodinna-poradna.jpg',
+                    'numbers' => [
+                        [320, 'účastníkov vzdelávaní'],
+                        [184, 'stretnutí s pármi či jednotlivcami'],
+                        [13, 'kurzov a workshopov'],
+                    ]
+                ],
+                [
+                    'title' => 'Materské centrum',
+                    'image' => '05-materske-centrum.jpg',
+                    'numbers' => [
+                        [281, 'krúžkových hodín pre najmenších'],
+                        [15, 'prednášok pre rodičov'],
+                        [12, 'dobrovoľníčiek, ktoré to celé organizovali'],
+                    ]
+                ],
+                [
+                    'title' => 'Škôlka',
+                    'image' => '06-skolka.jpg',
+                    'numbers' => [
+                        [60, 'detí v troch triedach'],
+                        [13, 'učiteliek a ďalšieho personálu'],
+                    ]
+                ],
+                [
+                    'title' => 'Skauti',
+                    'image' => '07-skauti.jpg',
+                    'numbers' => [
+                        [110, 'detí a mladých na letnom tábore'],
+                        [25, 'animátorov (radcov + vodcov)'],
+                        [300, 'stretiek (družinoviek)'],
+                    ]
+                ],
+                [
+                    'title' => 'Futbalové ihrisko a bežecká dráha',
+                    'image' => '08-ihrisko-a-draha.jpg',
+                    'numbers' => [
+                        ['500+', 'detí a dospelých využili ihrisko a dráhu v čase, keď tam netrénoval futbalový klub'],
+                    ]
+                ],
+                [
+                    'title' => 'Zdravotné stredisko',
+                    'image' => '09-zdravotne-stredisko.jpg',
+                    'numbers' => [
+                        [17, 'lekárov'],
+                        [8, 'ambulancíí'],
+                    ]
+                ]
+            ],
+            '2024' => [
+                [
+                    'title' => 'Farnosť',
+                    'image' => '01-farnost.jpg',
+                    'numbers' => [
+                        [48, 'pokrstených'],
+                        [111, 'prvoprijímajúcich'],
+                        [53, 'birmovancov'],
+                    ]
+                ],
+                [
+                    'title' => 'Futbalový klub',
+                    'image' => '02-futbalovy-klub.jpg',
+                    'numbers' => [
+                        [851, 'detí na letných kempoch a sústredeniach'],
+                        [610, 'hráčov od 6 do 19 rokov'],
+                        [72, 'trénerov a dobrovoľníkov'],
+                    ]
+                ],
+                [
+                    'title' => 'Oratko',
+                    'image' => '03-oratko.jpg',
+                    'numbers' => [
+                        [519, 'detí na letných táboroch'],
+                        [131, 'animátorov'],
+                        [1100, 'stretiek detí a mladých'],
+                    ]
+                ],
+                [
+                    'title' => 'Poradenské centrum',
+                    'image' => '04-rodinna-poradna.jpg',
+                    'numbers' => [
+                        [605, 'účastníkov vzdelávaní'],
+                        [160, 'stretnutí s pármi či jednotlivcami'],
+                        [11, 'kurzov a workshopov'],
+                    ]
+                ],
+                [
+                    'title' => 'Materské centrum',
+                    'image' => '05-materske-centrum.jpg',
+                    'numbers' => [
+                        [324, 'krúžkových hodín pre najmenších'],
+                        [8, 'prednášok pre rodičov'],
+                        [12, 'dobrovoľníčiek, ktoré to celé organizovali'],
+                    ]
+                ],
+                [
+                    'title' => 'Škôlka',
+                    'image' => '06-skolka.jpg',
+                    'numbers' => [
+                        [64, 'detí v troch triedach'],
+                        [14, 'učiteliek a ďalšieho personálu'],
+                        [53, 'duchovných, kultúrnych, vzdelávacích a spoločenských aktivít pre deti a ich rodinu'],
+                    ]
+                ],
+                [
+                    'title' => 'Skauti',
+                    'image' => '07-skauti.jpg',
+                    'numbers' => [
+                        [110, 'detí a mladých na letnom tábore'],
+                        [25, 'animátorov (radcov + vodcov)'],
+                        [300, 'stretiek (družinoviek)'],
+                    ]
+                ],
+                [
+                    'title' => 'Futbalové ihrisko a bežecká dráha',
+                    'image' => '08-ihrisko-a-draha.jpg',
+                    'numbers' => [
+                        ['500+', 'detí a dospelých využili ihrisko a dráhu v čase, keď tam netrénoval futbalový klub'],
+                    ]
+                ],
+                [
+                    'title' => 'Zdravotné stredisko',
+                    'image' => '09-zdravotne-stredisko.jpg',
+                    'numbers' => [
+                        [17, 'lekárov'],
+                        [8, 'ambulancíí'],
+                    ]
+                ]
+            ],
+            default => []
+        };
     }
 }
