@@ -239,6 +239,15 @@ class YearlyOverviewEvents extends Composer
             ],
             '2024' => [
                 [
+                    'title' => 'Oratko',
+                    'image' => '03-oratko.jpg',
+                    'numbers' => [
+                        [519, 'detí na letných táboroch'],
+                        [131, 'animátorov'],
+                        [1100, 'stretiek detí a mladých'],
+                    ]
+                ],
+                [
                     'title' => 'Farnosť',
                     'image' => '01-farnost.jpg',
                     'numbers' => [
@@ -257,39 +266,12 @@ class YearlyOverviewEvents extends Composer
                     ]
                 ],
                 [
-                    'title' => 'Oratko',
-                    'image' => '03-oratko.jpg',
-                    'numbers' => [
-                        [519, 'detí na letných táboroch'],
-                        [131, 'animátorov'],
-                        [1100, 'stretiek detí a mladých'],
-                    ]
-                ],
-                [
-                    'title' => 'Poradenské centrum',
-                    'image' => '04-rodinna-poradna.jpg',
-                    'numbers' => [
-                        [605, 'účastníkov vzdelávaní'],
-                        [160, 'stretnutí s pármi či jednotlivcami'],
-                        [11, 'kurzov a workshopov'],
-                    ]
-                ],
-                [
                     'title' => 'Materské centrum',
                     'image' => '05-materske-centrum.jpg',
                     'numbers' => [
                         [324, 'krúžkových hodín pre najmenších'],
                         [8, 'prednášok pre rodičov'],
                         [12, 'dobrovoľníčiek, ktoré to celé organizovali'],
-                    ]
-                ],
-                [
-                    'title' => 'Škôlka',
-                    'image' => '06-skolka.jpg',
-                    'numbers' => [
-                        [64, 'detí v troch triedach'],
-                        [14, 'učiteliek a ďalšieho personálu'],
-                        [53, 'duchovných, kultúrnych, vzdelávacích a spoločenských aktivít pre deti a ich rodinu'],
                     ]
                 ],
                 [
@@ -302,20 +284,38 @@ class YearlyOverviewEvents extends Composer
                     ]
                 ],
                 [
-                    'title' => 'Futbalové ihrisko a bežecká dráha',
-                    'image' => '08-ihrisko-a-draha.jpg',
+                    'title' => 'Škôlka',
+                    'image' => '06-skolka.jpg',
                     'numbers' => [
-                        ['500+', 'detí a dospelých využili ihrisko a dráhu v čase, keď tam netrénoval futbalový klub'],
+                        [64, 'detí v troch triedach'],
+                        [14, 'učiteliek a ďalšieho personálu'],
+                        [53, 'duchovných, kultúrnych, vzdelávacích a spoločenských aktivít pre deti a ich rodinu'],
                     ]
                 ],
                 [
-                    'title' => 'Zdravotné stredisko',
-                    'image' => '09-zdravotne-stredisko.jpg',
+                    'title' => 'Poradenské centrum',
+                    'image' => '04-rodinna-poradna.jpg',
                     'numbers' => [
-                        [17, 'lekárov'],
-                        [8, 'ambulancíí'],
+                        [605, 'účastníkov vzdelávaní'],
+                        [160, 'stretnutí s pármi či jednotlivcami'],
+                        [11, 'kurzov a workshopov'],
                     ]
-                ]
+                ],
+//                [
+//                    'title' => 'Futbalové ihrisko a bežecká dráha',
+//                    'image' => '08-ihrisko-a-draha.jpg',
+//                    'numbers' => [
+//                        ['500+', 'detí a dospelých využili ihrisko a dráhu v čase, keď tam netrénoval futbalový klub'],
+//                    ]
+//                ],
+//                [
+//                    'title' => 'Zdravotné stredisko',
+//                    'image' => '09-zdravotne-stredisko.jpg',
+//                    'numbers' => [
+//                        [17, 'lekárov'],
+//                        [8, 'ambulancíí'],
+//                    ]
+//                ]
             ],
             default => []
         };

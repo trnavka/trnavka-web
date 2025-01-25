@@ -134,14 +134,19 @@ class Darujme
             $lastReceivedAt = '2024-12-18T00:00:00Z';
 
             do {
-                $response = $this->request('GET', '/v1/payments/', $token, null, [
+                $response = $this->request('GET', '/v1/donors/f2a2cf98-96cd-4260-9d19-2b05caf9e038/', $token, null, [
 //                    'status' => 'successful',
-                    'limit' => 10,
+                    'limit' => 20,
                     'page' => 1,
+//                    'email' => 'filip@bratia.sk',
+                    'email' => 'filip.likavcan@gmail.com',
                     'created_gte' => $lastReceivedAt
                 ]);
 
-                print_r($response['metadata']);
+//                echo json_encode($response);
+//                die;
+
+                dd($response);
 
                 foreach ($response['items'] ?? [] as $payment) {
 
@@ -149,9 +154,9 @@ class Darujme
 //                        continue;
 //                    }
 
-                    if ('klarik.zatkuliakova@gmail.com' === $payment['donation']['donor']['email']) {
-                        dump($payment);
-                    }
+//                    if ('klarik.zatkuliakova@gmail.com' === $payment['donation']['donor']['email']) {
+//                        dump($payment);
+//                    }
                     continue;
 
                     $updateFields = [
