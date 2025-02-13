@@ -59,7 +59,7 @@ class Dajnato
         $campaignId = ($view?->getData()['attributes'] ?? [])['campaign_id'] ?? $this->request->get('campaign_id');
         $post = empty($campaignId) ? $this->wp->currentPost() : get_post($campaignId);
 
-        if ($post->post_type !== 'campaign') {
+        if ($post?->post_type !== 'campaign') {
             $post = null;
         }
 
