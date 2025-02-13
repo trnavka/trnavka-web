@@ -98,6 +98,7 @@
             img {
                 width: 100%;
                 border-radius: 0.5rem;
+                //box-shadow: 0 1.25rem 6rem -2.5rem rgba(49, 37, 14, 0.3);
             }
 
             @include media-breakpoint-down(lg) {
@@ -115,9 +116,12 @@
             margin: 0 0 1rem;
             color: $dark;
             @include display-reg-m;
+            font-weight: 700;
 
             @include media-breakpoint-up(lg) {
                 @include display-reg-l;
+                font-size: 2.7rem;
+                line-height: 3rem;
                 font-weight: 700;
             }
         }

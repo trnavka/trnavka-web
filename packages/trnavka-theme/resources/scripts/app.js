@@ -111,6 +111,10 @@ class DajnatoForm {
 }
 
 $(document).ready(function () {
+    $('.timeline-service-picker h2').on('click', function () {
+        $(this).closest('.timeline-service-picker').toggleClass('timeline-service-picker-open');
+    });
+
     $('form[name=donation]').each(function () {
         const form = new DajnatoForm($(this));
     });
