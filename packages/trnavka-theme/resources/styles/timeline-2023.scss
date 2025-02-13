@@ -1,3 +1,76 @@
+.timeline-service-picker {
+    cursor: pointer;
+
+    .timeline-service-picker-header-suffix {
+        white-space: nowrap;
+    }
+
+    .timeline-chevron {
+        display: inline-block;
+
+        svg {
+            transition: transform 0.3s;
+        }
+    }
+
+    @include media-breakpoint-down(sm) {
+        .timeline-chevron {
+            width: 32px;
+            height: 32px;
+
+            svg {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+    h2 {
+        display: inline-block;
+
+        @include media-breakpoint-down(sm) {
+            font-size: 1.5rem;
+            line-height: 2.1rem
+        }
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    .timeline-services {
+        display: none;
+        max-width: 400px;
+    }
+
+    .timeline-show-all {
+        display: inline-block;
+        a {
+            color: #aeaeae;
+
+            &:hover {
+                color: gray;
+            }
+        }
+    }
+
+    &.timeline-service-picker-open {
+        .timeline-chevron {
+            svg {
+                transform: scaleY(-1);
+            }
+        }
+
+        .timeline-show-all {
+            display: none;
+        }
+
+        .timeline-services {
+            display: block;
+        }
+    }
+}
+
 .timeline-2023 {
     --c-grey-100: #f9f6f4;
     --c-grey-200: #e3e3e3;
@@ -204,6 +277,16 @@
         &.timeline-item-emphasized {
             background-color: #f9f6f4;
         }
+    }
+
+    .timeline-month {
+        @include media-breakpoint-down(sm) {
+            top: 45px;
+        }
+    }
+
+    .timeline-cta {
+        color: $brown;
     }
 
     .comment {

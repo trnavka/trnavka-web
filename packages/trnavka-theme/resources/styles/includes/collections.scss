@@ -104,6 +104,8 @@
 .thank-you{
     @include section-padding(128px, 128px);
     text-align: center;
+    padding-left: 30px;
+    padding-right: 30px;
     div{
         @include title-size(40px, 48px,0);
         font-weight: 800;

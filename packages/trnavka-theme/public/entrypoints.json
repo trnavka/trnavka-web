@@ -2,28 +2,28 @@
   "entrypoints": {
     "share": {
       "js": [
-        "/app/themes/theme/public/share.6efec822.js"
+        "/app/themes/theme/public/share.793b67d8.js"
       ]
     },
     "app": {
       "css": [
-        "/app/themes/theme/public/app.187e28f2.css"
+        "/app/themes/theme/public/app.1e48fd5d.css"
       ],
       "js": [
-        "/app/themes/theme/public/app.766ced39.js"
+        "/app/themes/theme/public/app.0fba507f.js"
       ]
     },
     "media": {
       "js": [
-        "/app/themes/theme/public/media.ae4f2f9c.js"
+        "/app/themes/theme/public/media.3a1bde0a.js"
       ]
     },
     "editor": {
       "css": [
-        "/app/themes/theme/public/editor.d242d080.css"
+        "/app/themes/theme/public/editor.961f6cf6.css"
       ],
       "js": [
-        "/app/themes/theme/public/editor.36b60d26.js"
+        "/app/themes/theme/public/editor.1d1d9683.js"
       ]
     }
   }
