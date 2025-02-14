@@ -437,4 +437,10 @@ add_action('wp_head', function () {
         </script>
 TRACKING;
     }
+
+    global $post;
+
+    if ('homepage' === $post?->post_name) {
+        echo '<meta name="description" content="Saleziánske dielo na Trnávke je komunitné centrum, v ktorom stovky ľudí denne trávia zmysluplný čas.">';
+    }
 });
