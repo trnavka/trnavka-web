@@ -4,7 +4,7 @@
             <div class="content">
                 <div class="row">
                     <div class="col-12">
-                        <h2 class="wp-block-heading mb-3">Čo sme zažili</h2>
+                        <h2 class="wp-block-heading mb-3">Aktivity v roku {{ $year }}</h2>
                     </div>
                     <div class="col-lg-8">
                         <p class="lead">

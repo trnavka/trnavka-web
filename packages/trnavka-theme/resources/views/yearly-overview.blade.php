@@ -7,6 +7,7 @@
 @php
     $titleHead = (null === $selectedService ? 'v Saleziánskom diele na Trnávke' : $selectedService['title_main']);
     $description = (null === $selectedService ? 'v Saleziánskom diele na Trnávke' : $selectedService['title_description']);
+    $twoPercentUrl = (null === $selectedService ? 'https://trnavka.sk/dvepercenta/' : ($selectedService['2%'] ?? null));
 @endphp
 
 @section('content')
@@ -35,7 +36,9 @@
                             @foreach($allServices as $service)
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     <a href="?sluzba={{$service['id']}}">{{$service['title']}}</a>
-                                    @if(isset($service['event_count']))<span class="badge bg-primary rounded-pill">{{$service['event_count']}}</span>@endif
+                                    @if(isset($service['event_count']))
+                                        <span class="badge bg-primary rounded-pill">{{$service['event_count']}}</span>
+                                    @endif
                                 </li>
                             @endforeach
                         </ul>
@@ -51,6 +54,12 @@
                         <p class="lead text-muted">
                             Ak by ste sa chceli zapojiť aj vy, ozvite sa nám. Hľadáme každého.
                         </p>
+
+                        @if($show2PercentMessage && !empty($twoPercentUrl))
+                            <p class="lead two-percent-message">
+                                Môžete nás <a href="{{ $twoPercentUrl }}">podporiť poukázaním 2 % z daní</a>.
+                            </p>
+                        @endif
                     </div>
                 </div>
             </div>

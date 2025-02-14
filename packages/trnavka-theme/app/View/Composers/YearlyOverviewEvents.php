@@ -3,6 +3,7 @@
 namespace App\View\Composers;
 
 use App\Services\WordPress;
+use DateTimeImmutable;
 use Generator;
 use Roots\Acorn\View\Composer;
 use Symfony\Component\HttpFoundation\Request;
@@ -48,7 +49,7 @@ class YearlyOverviewEvents extends Composer
 
         $selectedService = $services[$serviceIdIndex[$this->request->query->get('sluzba', '')] ?? null] ?? null;
 
-        $filteredEvents = [];
+	    $filteredEvents = [];
         $globalEventCount = 0;
 
         foreach ($events as $event) {
@@ -72,12 +73,15 @@ class YearlyOverviewEvents extends Composer
             $services[$index]['event_count'] = ($service['event_count'] ?? 0) + $globalEventCount;
         }
 
+	    $now = new DateTimeImmutable();
+
         return [
             'year' => $year,
             'allServices' => $services,
             'services' => null === $selectedService ? $services : [$selectedService],
             'events' => $filteredEvents,
             'selectedService' => $selectedService,
+            'show2PercentMessage' => $now->format('m-d') > '01-14' && $now->format('m-d') < '03-15',
         ];
     }
 
@@ -205,7 +209,8 @@ class YearlyOverviewEvents extends Composer
                 'title_main' => 'v Oratku na&nbsp;Trnávke',
                 'title_description' => 'v Oratku/Domke na Trnávke',
                 'id' => 'oratko',
-                'image' => '03-oratko.jpg'
+                'image' => '03-oratko.jpg',
+                '2%' => 'https://trnavka.sk/dvepercentadomke/'
             ],
             [
                 'title' => 'Farnosť',
@@ -220,6 +225,7 @@ class YearlyOverviewEvents extends Composer
                 'title_description' => 'vo futbalovom klube SDM Domino na Trnávke',
                 'id' => 'domino',
                 'image' => '02-futbalovy-klub.jpg',
+                '2%' => 'https://www.sdmdomino.sk/darujte-nam-2/'
             ],
             [
                 'title' => 'Materské centrum',
@@ -241,6 +247,7 @@ class YearlyOverviewEvents extends Composer
                 'title_main' => 'v saleziánskej škôlke na Trnávke',
                 'title_description' => 'v škôlke Mamy Margit na Trnávkey',
                 'image' => '06-skolka.jpg',
+                '2%' => 'https://msmamymargity.sk/percenta2/'
             ],
             [
                 'title' => 'Poradenské centrum',
@@ -248,6 +255,7 @@ class YearlyOverviewEvents extends Composer
                 'title_description' => 'v poradenskom centre Family Garden na Trnávke',
                 'id' => 'fg',
                 'image' => '04-rodinna-poradna.jpg',
+                '2%' => 'https://familygarden.sk/vase-2-pre-zdravsie-vztahy-v-rodinach/'
             ],
         ];
 
