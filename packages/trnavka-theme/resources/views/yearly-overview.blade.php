@@ -17,8 +17,7 @@
                 <h1>Rok {{$year}}</h1>
                 <div class="timeline-service-picker mb-5">
                     <h2>
-                        {!! $titleHead !!}
-                        <span class="timeline-service-picker-header-suffix"> <span class="timeline-chevron"><svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#cf3942"><path d="m480-346.5-237-237 41.5-41L480-429l195.5-195.5 41.5 41-237 237Z"/></svg></span></span>
+                        <span>{!! $titleHead !!}<span class="timeline-service-picker-header-suffix"> <span class="timeline-chevron"><svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#cf3942"><path d="m480-346.5-237-237 41.5-41L480-429l195.5-195.5 41.5 41-237 237Z"/></svg></span></span></span>
                     </h2>
 
                     @if(null !== $selectedService)
@@ -57,7 +56,8 @@
 
                         @if($show2PercentMessage && !empty($twoPercentUrl))
                             <p class="lead two-percent-message">
-                                Môžete nás <a href="{{ $twoPercentUrl }}">podporiť poukázaním 2 % z daní</a>.
+                                Môžete nás
+                                <a href="{{ $twoPercentUrl }}">podporiť poukázaním 2 % z daní</a>.
                             </p>
                         @endif
                     </div>
