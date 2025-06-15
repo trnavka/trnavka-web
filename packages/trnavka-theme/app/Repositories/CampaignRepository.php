@@ -100,8 +100,8 @@ class CampaignRepository
                 (int)($data['recurring_option_2'] ?? null),
                 (int)($data['recurring_option_3'] ?? null),
             ])
-            ->setGoalAmount((int)round($data['goal_amount'] ?? 0))
-            ->setDajnatoAmount((int)round((int)$data['dajnato_amount'] ?? 0))
+            ->setGoalAmount((int)round((float)($data['goal_amount'] ?? 0)))
+            ->setDajnatoAmount((int)round((float)$data['dajnato_amount'] ?? 0))
             ->setActive($post->post_status === 'publish')
             ->setPublished('T' === ($data['published'] ?? 'T'))
             ->setTitleShown('T' === ($data['title_shown'] ?? 'T'))
