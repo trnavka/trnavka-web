@@ -1,0 +1,83 @@
+.quiz {
+    .person-name {
+        font-size: 21px;
+        font-weight: bold;
+    }
+
+    .success-title {
+        font-size: 21px;
+        font-weight: bold;
+    }
+
+    .success-box {
+        font-size: 19px;
+        border: 3px dotted #2a9a2a;
+        color: #1b831b;
+        padding: 16px;
+        border-radius: 10px;
+        max-width: 250px;
+
+        img {
+            filter: grayscale(100%);
+        }
+    }
+
+    .wrong-answer-box {
+        border: 2px solid #e61010;
+        color: #e61010;
+        padding: 16px;
+        border-radius: 10px;
+    }
+
+    label {
+        color: #0059FF;
+        font-size: 17px;
+        border: 1px solid #f8fafc;
+        background-color: #f8fafc;
+        border-radius: 8px;
+        padding: 4px 16px;
+        margin-bottom: 8px;
+        max-width: 320px;
+        width: 100%;
+    }
+
+    input[type="radio"] {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    /* Tvoj vlastný kruh */
+    .custom-radio {
+        width: 24px;
+        height: 24px;
+        border: 2px solid #bbc9d6;
+        border-radius: 50%;
+        display: inline-block;
+        position: relative;
+        transition: 0.2s;
+    }
+
+    /* Vyplnený stred, keď je checked */
+    .custom-radio::after {
+        content: "";
+        width: 14px;
+        height: 14px;
+        background: #0059FF;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        transition: 0.2s;
+    }
+
+    /* Aktivovaný stav */
+    input[type="radio"]:checked + .custom-radio {
+        border-color: #0059FF;
+
+        &::after {
+            transform: translate(-50%, -50%) scale(1);
+        }
+    }
+}

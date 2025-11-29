@@ -2,6 +2,7 @@
 // import 'bootstrap';
 import $ from 'jquery';
 import {Modal} from 'bootstrap';
+import initializeQuiz from "./quiz.js";
 
 class DajnatoForm {
     $form;
@@ -111,6 +112,8 @@ class DajnatoForm {
 }
 
 $(document).ready(function () {
+    initializeQuiz($);
+
     $('.timeline-service-picker h2').on('click', function () {
         $(this).closest('.timeline-service-picker').toggleClass('timeline-service-picker-open');
     });
