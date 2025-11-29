@@ -14,7 +14,7 @@
 
     $categories = [
         'jedlo' => [
-            'rezne' => ['label' => 'rezne', 'success' => 'na rezňoch', 'icon' => 'images/icons/rezen.svg'],
+            'rezne' => ['label' => 'rezne', 'success' => 'rezňoch', 'icon' => 'images/icons/rezen.svg'],
             'kapor' => ['label' => 'kapor', 'success' => 'podkovičkách z kapra', 'icon' => 'images/icons/kapor.svg'],
             'kapustnica' => ['label' => 'kapustnica', 'success' => 'kapustnici', 'icon' => 'images/icons/kapustnica.svg'],
             'losos' => ['label' => 'losos', 'success' => 'lososovi', 'icon' => 'images/icons/losos.svg'],
@@ -60,7 +60,7 @@
     ];
 
     $verbs = [
-        'jedlo' => 'si rád pochutí ná',
+        'jedlo' => 'si rád pochutí na',
         'pitie' => 'si rád štrngne',
         'praca' => 'na Štedrý deň',
     ];
