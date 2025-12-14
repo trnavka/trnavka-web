@@ -6,7 +6,6 @@
 
 @php
     $header_title = 'Poznáme našich saleziánov?';
-    $header_description = 'Začalo sa obdobie adventu a s ním aj čas obdarúvať našich blízkych. Keď niekoho poznáme a máme radi, vieme, čo mu chutí, po čom siahne na štedrovečernom stole a pri čom sa mu rozžiaria oči. ';
     $show_service_links = true;
 	$dajnato_cta_title = 'Podporte nás pravidelným finančným darom';
 	$dajnato_cta_button = 'Podporiť';
@@ -59,6 +58,12 @@
         'praca' => 'V saleziánskej komunite to počas Vianoc vždy žije. Každý má svoju úlohu, ktorej sa zhostí – presne tak, ako to v rodine býva. A hoci sú ich povinnosti rozdielne, všetky smerujú k jednému: aby boli Vianoce skutočne časom radosti a spoločného času. Vtedy si tak ako aj každá rodina - aj tá saleziánska môže oddýchnuť a vychutnať si chvíľu pohody za štedrovečerným stolom.',
     ];
 
+    $headerDescriptions = [
+        'jedlo' => 'Keď niekoho poznáme a máme radi, vieme, čo mu chutí, po čom siahne na štedrovečernom stole a pri čom sa mu rozžiaria oči.',
+        'pitie' => 'Keď niekoho poznáme a máme radi, vieme, čo mu chutí, po čom siahne na štedrovečernom stole a pri čom sa mu rozžiaria oči.',
+        'praca' => 'Keď niekoho poznáme a máme radi, vieme, čo mu chutí, po čom siahne na štedrovečernom stole a pri čom sa mu rozžiaria oči.',
+    ];
+
     $verbs = [
         'jedlo' => 'si rád pochutí na',
         'pitie' => 'si rád štrngne',
@@ -69,6 +74,7 @@
     $desctiption = $desctiptions[$category];
     $verb = $verbs[$category];
     $answers = $categories[$category];
+    $header_description = $headerDescriptions[$category];
 
     $people = [
         ['name' => 'Radovan “Rusty” Rumanovič', 'image' => 'images/people/rumanovic.png', 'answer' => ['jedlo' => 'rezne', 'praca' => 'stavia-stromcek', 'pitie' => 'domaca-a-pivo']],
