@@ -6,7 +6,7 @@
 
 @php
     $header_title = 'Sledujte, čo máme nové';
-    $header_description = 'V Saleziánskom stredisku Trnávka sa neustále niečo deje. Ak chcete byť v obraze, prihláste sa na odber našich noviniek a my vám budeme pravidelne posielať informácie o dianí u nás.';
+    $header_description = 'V Saleziánskom stredisku na Trnávke sa neustále niečo deje. Ak chcete byť v obraze, prihláste sa na odber našich noviniek a my vám budeme pravidelne posielať informácie o dianí u nás.';
     $show_service_links = true;
 	$dajnato_cta_title = 'Podporte nás pravidelným finančným darom';
 	$dajnato_cta_button = 'Podporiť';
