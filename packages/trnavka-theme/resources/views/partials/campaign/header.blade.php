@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <p class="lead">
-                            {!! $header_description ?? 'Tvoj pravidelný dar dá impulz tomu, na&nbsp;čom pracujeme.' !!}
+                            {!! $header_description ?? 'Tvoj pravidelný dar pomáha veciam, ktoré majú na Trnávke zmysel.' !!}
                         </p>
 
                         @if(isset($dajnato_cta_form_url))

@@ -9,13 +9,14 @@
             <div class="col-md-6">
                 <div class="donate-content">
                     <p>
-                        TRNÁVKA - saleziánske dielo je saleziánske komunitné centrum, v ktorom stovky ľudí denne trávia zmysluplný čas.
-                        Širokú ponuku služieb využívajú ľudia z Trnávky a širšieho okolia, bez ohľadu na ich vierovyznanie. Každý je vítaný.
-                        Tvoj pravidelný mesačný príspevok je potrebný pre udržanie a rozvoj športových, kultúrnych, sociálnych a duchovných aktivít pre deti, mladých, rodičov aj seniorov.
+                        Saleziánske dielo na Trnávke je živé komunitné miesto, kde každý deň nachádzajú priestor deti, mladí, rodičia aj seniori. Naše aktivity využívajú ľudia z Trnávky aj širšieho okolia bez ohľadu na vierovyznanie. Každý je u nás vítaný.
                     </p>
 
                     <p>
-                        <strong>Je dôležité finančne prispievať pravidelne, aby Saleziánske dielo mohlo fungovať. Ďakujeme.</strong>
+                        <strong>Pravidelný mesačný dar nám pomáha udržať a rozvíjať športové, kultúrne, sociálne aj duchovné aktivity, ktoré slúžia celej komunite.</strong>
+                            </p>
+                            <p>
+                                <strong>Práve pravidelná podpora nám dáva istotu, že toto dielo môže fungovať dlhodobo a zodpovedne. Ďakujeme, že v tom stojíš s nami.</strong>
                     </p>
                 </div>
             </div>

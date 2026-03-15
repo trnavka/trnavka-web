@@ -17,15 +17,14 @@
                         <div class="card-description">
                             <h4>Saleziánske dielo na Trnávke</h4>
                             <p>
-                                Pravidelné finančné dary pre celé Saleziánske dielo na Trnávke sú určené na vytváranie grantového fondu, z ktorého sa
-                                poskytuje štartovací príspevok pre zbierky na konkrétne projekty.
+                                Pravidelné dary pre celé Saleziánske dielo na Trnávke tvoria grantový fond, z ktorého vieme podporiť rozbeh konkrétnych projektov.
                             </p>
                             <p class="mt-2">
                                 Takto môžeš pomôcť udržať a rozvíjať športové, kultúrne, sociálne a duchovné aktivity pre deti, mladých, rodičov aj seniorov.
                             </p>
                         </div>
                         <div class="card-actions">
-                            <button class="btn-donate btn-dajnato-cta stretched-link" data-form-url="{{$dajnato_cta_form_url}}">Chcem pravidelne podporiť</button>
+                            <button class="btn-donate btn-dajnato-cta stretched-link" data-form-url="{{$dajnato_cta_form_url}}">Chcem podporovať pravidelne</button>
                         </div>
                     </div>
                 </div>
